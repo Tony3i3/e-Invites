@@ -1,0 +1,2613 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>دعوة زفاف أحمد ♥ نور</title>
+<meta name="description" content="يتشرف آل الحسيني وآل الراشد بدعوتكم لحضور حفل زفاف أحمد ونور - السبت ١٥ آذار ٢٠٢٥">
+<meta property="og:title" content="دعوة زفاف أحمد ♥ نور">
+<meta property="og:description" content="يتشرف آل الحسيني وآل الراشد بدعوتكم لحضور حفل زفاف أحمد ونور">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://placeholder.com/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   CSS CUSTOM PROPERTIES
+   ═══════════════════════════════════════════ */
+:root {
+  --bg-deep: #0a0a18;
+  --bg-primary: #0c0c1d;
+  --bg-card: #161633;
+  --gold: #C9A96E;
+  --gold-light: #E8D5B0;
+  --gold-bright: #D4AF37;
+  --gold-dark: #9A7B4F;
+  --warm-white: #F5F0E8;
+  --rose: #C97070;
+  --success: #6EC96E;
+  --font-display: 'Aref Ruqaa', serif;
+  --font-heading: 'Amiri', serif;
+  --font-body: 'Tajawal', sans-serif;
+  --ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ═══════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold-dark) var(--bg-deep);
+}
+
+html::-webkit-scrollbar { width: 6px; }
+html::-webkit-scrollbar-track { background: var(--bg-deep); }
+html::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 3px; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-deep);
+  color: var(--warm-white);
+  direction: rtl;
+  overflow-x: hidden;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.locked { overflow: hidden; }
+
+/* ═══════════════════════════════════════════
+   ORNAMENTAL ELEMENTS (CSS-only decorations)
+   ═══════════════════════════════════════════ */
+.ornament-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 20px auto;
+  width: 80%;
+  max-width: 400px;
+}
+.ornament-divider::before,
+.ornament-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.ornament-divider .diamond {
+  width: 8px; height: 8px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+.ornament-line {
+  width: 60%;
+  max-width: 300px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dark), transparent);
+  margin: 15px auto;
+}
+
+/* ═══════════════════════════════════════════
+   GOLD SHIMMER TEXT
+   ═══════════════════════════════════════════ */
+.shimmer-text {
+  background: linear-gradient(
+    120deg,
+    var(--gold-dark) 0%,
+    var(--gold-light) 25%,
+    var(--gold-bright) 50%,
+    var(--gold-light) 75%,
+    var(--gold-dark) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+/* ═══════════════════════════════════════════
+   HEARTBEAT ANIMATION
+   ═══════════════════════════════════════════ */
+.heartbeat {
+  display: inline-block;
+  color: var(--rose);
+  animation: heartbeat 1.5s ease-in-out infinite;
+  -webkit-text-fill-color: var(--rose);
+}
+
+@keyframes heartbeat {
+  0%   { transform: scale(1); }
+  15%  { transform: scale(1.25); }
+  30%  { transform: scale(1); }
+  45%  { transform: scale(1.15); }
+  60%  { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+
+/* ═══════════════════════════════════════════
+   FLOATING PARTICLES
+   ═══════════════════════════════════════════ */
+.particles-container {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  bottom: -10px;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: floatUp var(--dur) linear infinite;
+  animation-delay: var(--delay);
+  opacity: var(--opa);
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: var(--opa);
+  }
+  50% {
+    opacity: var(--opa);
+  }
+  100% {
+    transform: translateY(calc(-100vh - 20px)) translateX(var(--drift));
+    opacity: 0;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   SCREEN 1: ENVELOPE / OPENING OVERLAY
+   ═══════════════════════════════════════════ */
+.envelope-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: var(--bg-deep);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.8s var(--ease-out), opacity 0.8s var(--ease-out);
+}
+
+.envelope-overlay.opened {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.envelope-content {
+  text-align: center;
+  padding: 30px 20px;
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+}
+
+/* Ornamental double-border frame */
+.envelope-frame {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border: 1px solid rgba(201,169,110,0.3);
+  pointer-events: none;
+  animation: frameGlow 3s ease-in-out infinite;
+}
+.envelope-frame::before {
+  content: '';
+  position: absolute;
+  top: 8px; left: 8px; right: 8px; bottom: 8px;
+  border: 1px solid rgba(201,169,110,0.15);
+}
+/* Gold corner accents */
+.envelope-frame .corner {
+  position: absolute;
+  width: 20px; height: 20px;
+  border-color: var(--gold);
+  border-style: solid;
+}
+.envelope-frame .corner-tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+.envelope-frame .corner-tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+.envelope-frame .corner-bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
+.envelope-frame .corner-br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+@keyframes frameGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(201,169,110,0.05); }
+  50% { box-shadow: 0 0 40px rgba(201,169,110,0.15); }
+}
+
+.envelope-bismillah {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--gold-light);
+  margin-bottom: 10px;
+}
+
+.envelope-families {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--gold);
+  margin: 12px 0 6px;
+  letter-spacing: 1px;
+}
+
+.envelope-invite-text {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: rgba(245,240,232,0.7);
+  margin-bottom: 15px;
+}
+
+.envelope-couple {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  margin: 10px 0;
+  font-weight: 700;
+}
+
+.envelope-date {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--gold-dark);
+  margin: 8px 0 15px;
+}
+
+.envelope-guest {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--gold-light);
+  margin: 15px 0 25px;
+  font-style: italic;
+}
+
+/* Envelope open button */
+.envelope-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 40px;
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--gold);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s var(--ease-out);
+  border-radius: 2px;
+}
+.envelope-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+  opacity: 0;
+  transition: opacity 0.4s;
+  z-index: -1;
+}
+.envelope-btn:hover::before { opacity: 1; }
+.envelope-btn:hover { color: var(--bg-deep); border-color: var(--gold); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(201,169,110,0.3); }
+.envelope-btn:active { transform: scale(0.97); }
+
+/* Envelope flap animation */
+.envelope-flap {
+  position: absolute;
+  top: -2px; left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 40px solid transparent;
+  border-right: 40px solid transparent;
+  border-top: 30px solid var(--gold-dark);
+  transform-origin: top center;
+  transition: transform 0.6s var(--ease-out);
+  opacity: 0;
+}
+.envelope-overlay.opening .envelope-flap {
+  opacity: 1;
+  transform: translateX(-50%) rotateX(180deg);
+}
+
+/* ═══════════════════════════════════════════
+   SECTION BASE STYLES
+   ═══════════════════════════════════════════ */
+.section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.section-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: rgba(245,240,232,0.6);
+  margin-bottom: 30px;
+}
+
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL ANIMATIONS
+   ═══════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* ═══════════════════════════════════════════
+   SCREEN 2: HERO SECTION
+   ═══════════════════════════════════════════ */
+.hero-section {
+  background: radial-gradient(ellipse at center, rgba(201,169,110,0.05) 0%, transparent 70%);
+}
+
+.hero-bismillah {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--gold-light);
+  margin-bottom: 15px;
+}
+
+.hero-families {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--gold);
+  letter-spacing: 2px;
+  margin-bottom: 5px;
+}
+
+.hero-invitation-text {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: rgba(245,240,232,0.7);
+  margin-bottom: 25px;
+}
+
+/* Decorative frame around names */
+.hero-names-frame {
+  position: relative;
+  padding: 30px 40px;
+  margin: 10px 0 25px;
+}
+.hero-names-frame::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border: 1px solid rgba(201,169,110,0.2);
+}
+.hero-names-frame .frame-corner {
+  position: absolute;
+  width: 16px; height: 16px;
+}
+.hero-names-frame .frame-corner::before,
+.hero-names-frame .frame-corner::after {
+  content: '';
+  position: absolute;
+  background: var(--gold);
+}
+.hero-names-frame .frame-corner::before { width: 16px; height: 1.5px; }
+.hero-names-frame .frame-corner::after { width: 1.5px; height: 16px; }
+.hero-names-frame .fc-tl { top: -1px; left: -1px; }
+.hero-names-frame .fc-tl::before { top: 0; left: 0; }
+.hero-names-frame .fc-tl::after { top: 0; left: 0; }
+.hero-names-frame .fc-tr { top: -1px; right: -1px; }
+.hero-names-frame .fc-tr::before { top: 0; right: 0; }
+.hero-names-frame .fc-tr::after { top: 0; right: 0; }
+.hero-names-frame .fc-bl { bottom: -1px; left: -1px; }
+.hero-names-frame .fc-bl::before { bottom: 0; left: 0; }
+.hero-names-frame .fc-bl::after { bottom: 0; left: 0; }
+.hero-names-frame .fc-br { bottom: -1px; right: -1px; }
+.hero-names-frame .fc-br::before { bottom: 0; right: 0; }
+.hero-names-frame .fc-br::after { bottom: 0; right: 0; }
+
+.hero-name {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.hero-heart {
+  font-size: 1.8rem;
+  margin: 5px 0;
+}
+
+.hero-date {
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  color: var(--gold);
+  letter-spacing: 4px;
+  margin-bottom: 5px;
+}
+
+.hero-hijri {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  color: rgba(245,240,232,0.5);
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(245,240,232,0.4);
+  font-size: 0.8rem;
+  animation: bounce 2s ease-in-out infinite;
+}
+.scroll-indicator .arrow {
+  font-size: 1.2rem;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+/* ═══════════════════════════════════════════
+   SCREEN 3: QURANIC VERSE
+   ═══════════════════════════════════════════ */
+.verse-section {
+  background: radial-gradient(ellipse at center, rgba(201,169,110,0.03) 0%, transparent 70%);
+}
+
+.verse-container {
+  max-width: 700px;
+  text-align: center;
+  position: relative;
+  padding: 20px;
+}
+
+.verse-quote-mark {
+  font-family: var(--font-heading);
+  font-size: 6rem;
+  color: rgba(201,169,110,0.15);
+  line-height: 1;
+  margin-bottom: -30px;
+}
+
+.verse-text {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  line-height: 2.2;
+  color: var(--warm-white);
+  margin: 15px 0;
+}
+
+.verse-reference {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--gold-dark);
+  margin-top: 15px;
+}
+
+/* ═══════════════════════════════════════════
+   SCREEN 4: COUNTDOWN TIMER
+   ═══════════════════════════════════════════ */
+.countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  max-width: 500px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.countdown-card {
+  background: var(--bg-card);
+  border-top: 2px solid var(--gold);
+  padding: 20px 10px;
+  text-align: center;
+  border-radius: 4px;
+  transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+}
+.countdown-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(201,169,110,0.15);
+}
+
+.countdown-number {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  color: var(--gold-light);
+  line-height: 1;
+  margin-bottom: 6px;
+  min-height: 2.2rem;
+}
+
+.countdown-label {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: rgba(245,240,232,0.5);
+}
+
+.countdown-passed {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--gold);
+  text-align: center;
+}
+
+/* ═══════════════════════════════════════════
+   SCREEN 5: EVENT DETAILS
+   ═══════════════════════════════════════════ */
+.events-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  max-width: 800px;
+  width: 100%;
+}
+
+.event-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(201,169,110,0.15);
+  border-radius: 6px;
+  padding: 25px 20px;
+  text-align: center;
+  transition: all 0.4s var(--ease-out);
+}
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(201,169,110,0.1);
+  border-color: rgba(201,169,110,0.4);
+}
+
+.event-icon { font-size: 2rem; margin-bottom: 10px; }
+
+.event-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.event-detail {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: rgba(245,240,232,0.7);
+  margin: 6px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.event-detail-icon {
+  color: var(--gold-dark);
+  font-size: 0.9rem;
+  width: 20px;
+}
+
+.event-map {
+  width: 100%;
+  height: 180px;
+  border: 1px solid rgba(201,169,110,0.15);
+  border-radius: 4px;
+  margin: 15px 0;
+  filter: grayscale(0.7) brightness(0.7);
+  transition: filter 0.4s;
+}
+.event-card:hover .event-map {
+  filter: grayscale(0.3) brightness(0.85);
+}
+
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 24px;
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  cursor: pointer;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: all 0.4s var(--ease-out);
+  margin-top: 5px;
+}
+.btn-gold:hover {
+  background: var(--gold);
+  color: var(--bg-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(201,169,110,0.3);
+}
+
+.locations-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--gold);
+  margin: 30px 0 15px;
+  text-align: center;
+}
+
+.locations-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  max-width: 800px;
+  width: 100%;
+}
+
+.location-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(201,169,110,0.1);
+  border-radius: 6px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.4s var(--ease-out);
+}
+.location-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(201,169,110,0.3);
+}
+
+.location-icon { font-size: 1.5rem; margin-bottom: 8px; }
+.location-label {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.location-address {
+  font-size: 0.85rem;
+  color: rgba(245,240,232,0.5);
+  margin-bottom: 12px;
+}
+
+/* ═══════════════════════════════════════════
+   SCREEN 6: LOVE STORY TIMELINE
+   ═══════════════════════════════════════════ */
+.timeline-container {
+  position: relative;
+  max-width: 700px;
+  width: 100%;
+  padding: 20px 0;
+}
+
+/* Center line */
+.timeline-container::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  right: 50%;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent 0%, var(--gold) 15%, var(--gold) 85%, transparent 100%);
+  transform: translateX(50%);
+}
+
+.timeline-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 40px;
+  position: relative;
+  width: 100%;
+}
+
+.timeline-item:nth-child(odd) {
+  flex-direction: row;
+  padding-left: calc(50% + 25px);
+}
+
+.timeline-item:nth-child(even) {
+  flex-direction: row-reverse;
+  padding-right: calc(50% + 25px);
+}
+
+.timeline-dot {
+  position: absolute;
+  right: calc(50% - 8px);
+  top: 5px;
+  width: 16px; height: 16px;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  background: var(--bg-deep);
+  z-index: 2;
+  transition: all 0.4s var(--ease-out);
+}
+.timeline-item:hover .timeline-dot {
+  background: var(--gold);
+  box-shadow: 0 0 15px rgba(201,169,110,0.5);
+}
+
+.timeline-content {
+  text-align: center;
+}
+
+.timeline-year {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+
+.timeline-event {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--warm-white);
+  margin-bottom: 4px;
+}
+
+.timeline-desc {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: rgba(245,240,232,0.5);
+  font-style: italic;
+}
+
+/* ═══════════════════════════════════════════
+   SCREEN 7: PHOTO GALLERY
+   ═══════════════════════════════════════════ */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  gap: 12px;
+  max-width: 700px;
+  width: 100%;
+}
+
+.gallery-item {
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(22,22,51,0.8) 100%);
+  border: 1px solid rgba(201,169,110,0.1);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s var(--ease-out);
+}
+.gallery-item:hover {
+  transform: scale(1.02);
+  border-color: rgba(201,169,110,0.4);
+  box-shadow: 0 10px 30px rgba(201,169,110,0.1);
+}
+
+.gallery-item.featured {
+  grid-column: span 2;
+  grid-row: span 2;
+  min-height: 340px;
+}
+
+.gallery-icon {
+  font-size: 2rem;
+  opacity: 0.3;
+  transition: opacity 0.4s;
+}
+.gallery-item:hover .gallery-icon { opacity: 0.6; }
+
+.gallery-label {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 10px;
+  background: linear-gradient(transparent, rgba(10,10,24,0.9));
+  font-size: 0.8rem;
+  color: var(--gold-light);
+  text-align: center;
+  transform: translateY(100%);
+  transition: transform 0.4s var(--ease-out);
+}
+.gallery-item:hover .gallery-label { transform: translateY(0); }
+
+/* ═══════════════════════════════════════════
+   SCREEN 8: GIFTS SECTION
+   ═══════════════════════════════════════════ */
+.gifts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  max-width: 700px;
+  width: 100%;
+}
+
+.gift-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(201,169,110,0.12);
+  border-radius: 6px;
+  padding: 25px 20px;
+  text-align: center;
+  transition: all 0.4s var(--ease-out);
+}
+.gift-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(201,169,110,0.3);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.gift-icon { font-size: 2.2rem; margin-bottom: 10px; }
+
+.gift-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.gift-text {
+  font-size: 0.9rem;
+  color: rgba(245,240,232,0.6);
+  margin-bottom: 12px;
+}
+
+.gift-note {
+  font-size: 0.8rem;
+  color: rgba(245,240,232,0.4);
+  font-style: italic;
+}
+
+/* QR Code container */
+.qr-container {
+  display: inline-block;
+  padding: 12px;
+  border: 2px solid var(--gold);
+  border-radius: 6px;
+  margin: 10px 0;
+  background: #fff;
+}
+
+.qr-container canvas {
+  display: block;
+}
+
+/* ═══════════════════════════════════════════
+   SCREEN 9: RSVP FORM
+   ═══════════════════════════════════════════ */
+.rsvp-section {
+  background: radial-gradient(ellipse at center, rgba(201,169,110,0.03) 0%, transparent 70%);
+}
+
+.rsvp-form {
+  max-width: 550px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--gold-light);
+  font-weight: 500;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  background: var(--bg-card);
+  border: 1px solid rgba(201,169,110,0.2);
+  color: var(--warm-white);
+  padding: 12px 16px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  border-radius: 4px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  direction: rtl;
+  width: 100%;
+}
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201,169,110,0.1);
+}
+
+.form-textarea { min-height: 100px; resize: vertical; }
+
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23C9A96E' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 14px center;
+  padding-left: 36px;
+}
+
+/* Custom radio buttons */
+.radio-group {
+  display: flex;
+  gap: 12px;
+}
+
+.radio-option {
+  flex: 1;
+  position: relative;
+}
+
+.radio-option input { position: absolute; opacity: 0; width: 0; height: 0; }
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: var(--bg-card);
+  border: 1px solid rgba(201,169,110,0.2);
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  transition: all 0.3s;
+  min-height: 48px;
+}
+
+.radio-option input:checked + .radio-label.yes {
+  border-color: var(--success);
+  background: rgba(110,201,110,0.1);
+  color: var(--success);
+}
+
+.radio-option input:checked + .radio-label.no {
+  border-color: var(--rose);
+  background: rgba(201,112,112,0.1);
+  color: var(--rose);
+}
+
+/* Checkbox group */
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.checkbox-option {
+  position: relative;
+}
+
+.checkbox-option input { position: absolute; opacity: 0; }
+
+.checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  background: var(--bg-card);
+  border: 1px solid rgba(201,169,110,0.2);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+  min-height: 44px;
+}
+
+.checkbox-option input:checked + .checkbox-label {
+  border-color: var(--gold);
+  background: rgba(201,169,110,0.1);
+  color: var(--gold);
+}
+
+.btn-submit {
+  padding: 14px 30px;
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-dark));
+  background-size: 200% 100%;
+  border: none;
+  color: var(--bg-deep);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.4s var(--ease-out);
+  min-height: 48px;
+}
+.btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(201,169,110,0.3);
+  background-position: 100% center;
+}
+.btn-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* RSVP Success */
+.rsvp-success {
+  text-align: center;
+  padding: 40px 20px;
+  display: none;
+}
+
+.rsvp-success.show {
+  display: block;
+  animation: fadeInUp 0.8s var(--ease-out);
+}
+
+.rsvp-success-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.rsvp-success-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.rsvp-success-text {
+  font-size: 0.95rem;
+  color: rgba(245,240,232,0.7);
+  margin-bottom: 6px;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══════════════════════════════════════════
+   SCREEN 10: FOOTER
+   ═══════════════════════════════════════════ */
+.footer-section {
+  min-height: auto;
+  padding: 60px 20px 40px;
+}
+
+.footer-waiting {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.footer-couple {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.footer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.footer-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  background: var(--bg-card);
+  border: 1px solid rgba(201,169,110,0.2);
+  color: var(--warm-white);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  cursor: pointer;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.4s var(--ease-out);
+  min-height: 44px;
+}
+.footer-btn:hover {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(201,169,110,0.15);
+}
+
+.footer-btn .toast-msg {
+  display: none;
+  color: var(--success);
+  font-size: 0.8rem;
+}
+
+.footer-credit {
+  font-size: 0.8rem;
+  color: rgba(245,240,232,0.3);
+  margin-top: 25px;
+}
+.footer-credit a {
+  color: var(--gold-dark);
+  text-decoration: none;
+}
+
+.footer-rights {
+  font-size: 0.7rem;
+  color: rgba(245,240,232,0.2);
+  margin-top: 8px;
+}
+
+/* ═══════════════════════════════════════════
+   MUSIC TOGGLE (fixed bottom-left)
+   ═══════════════════════════════════════════ */
+.music-toggle {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  width: 45px; height: 45px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--gold-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  cursor: pointer;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.5s, transform 0.3s, border-color 0.3s;
+  transform: scale(0);
+}
+.music-toggle.show {
+  opacity: 1;
+  transform: scale(1);
+}
+.music-toggle:hover {
+  border-color: var(--gold);
+  transform: scale(1.1);
+}
+
+.music-bar {
+  width: 3px;
+  background: var(--gold);
+  border-radius: 2px;
+  transition: height 0.3s;
+}
+
+.music-toggle.playing .music-bar:nth-child(1) { animation: musicBar 0.6s ease-in-out infinite alternate; height: 12px; }
+.music-toggle.playing .music-bar:nth-child(2) { animation: musicBar 0.6s ease-in-out infinite alternate 0.15s; height: 18px; }
+.music-toggle.playing .music-bar:nth-child(3) { animation: musicBar 0.6s ease-in-out infinite alternate 0.3s; height: 10px; }
+.music-toggle.playing .music-bar:nth-child(4) { animation: musicBar 0.6s ease-in-out infinite alternate 0.45s; height: 15px; }
+
+.music-toggle:not(.playing) .music-bar { height: 4px; }
+
+@keyframes musicBar {
+  0% { height: 5px; }
+  100% { height: 20px; }
+}
+
+/* ═══════════════════════════════════════════
+   NAVIGATION DOTS (fixed left center)
+   ═══════════════════════════════════════════ */
+.nav-dots {
+  position: fixed;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.nav-dots.show { opacity: 1; }
+
+.nav-dot {
+  position: relative;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(201,169,110,0.4);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 0;
+}
+.nav-dot.active,
+.nav-dot:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  box-shadow: 0 0 8px rgba(201,169,110,0.4);
+}
+
+.nav-dot-label {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--gold-light);
+  background: var(--bg-card);
+  padding: 4px 10px;
+  border-radius: 3px;
+  border: 1px solid rgba(201,169,110,0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+  transform: translateY(-50%) translateX(-5px);
+}
+.nav-dot:hover .nav-dot-label {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* ═══════════════════════════════════════════
+   LANGUAGE SWITCHER (fixed top-left)
+   ═══════════════════════════════════════════ */
+.lang-switcher {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  gap: 4px;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.lang-switcher.show { opacity: 1; }
+
+.lang-btn {
+  padding: 5px 10px;
+  background: rgba(22,22,51,0.8);
+  border: 1px solid rgba(201,169,110,0.2);
+  color: rgba(245,240,232,0.5);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: all 0.3s;
+  min-width: 32px;
+  backdrop-filter: blur(10px);
+}
+.lang-btn.active {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(201,169,110,0.1);
+}
+.lang-btn:hover { border-color: var(--gold-dark); color: var(--gold-light); }
+
+/* ═══════════════════════════════════════════
+   CONFETTI
+   ═══════════════════════════════════════════ */
+.confetti-container {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -15px;
+  animation: confettiFall var(--fall-dur) linear forwards;
+}
+
+@keyframes confettiFall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateY(100vh) rotate(var(--rot)); opacity: 0; }
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+   ═══════════════════════════════════════════ */
+
+/* Small phones (375px default - mobile first) */
+@media (min-width: 480px) {
+  .envelope-couple { font-size: 2.8rem; }
+  .hero-name { font-size: 3.5rem; }
+  .verse-text { font-size: 1.5rem; }
+}
+
+@media (min-width: 768px) {
+  .events-grid { grid-template-columns: 1fr 1fr; }
+  .gifts-grid { grid-template-columns: 1fr 1fr 1fr; }
+  .hero-name { font-size: 4rem; }
+  .envelope-couple { font-size: 3rem; }
+  .countdown-number { font-size: 2.8rem; }
+  .section { padding: 80px 40px; }
+  .qr-container canvas { width: 180px !important; height: 180px !important; }
+}
+
+@media (min-width: 1024px) {
+  .hero-name { font-size: 4.5rem; }
+  .verse-text { font-size: 1.7rem; line-height: 2.4; }
+}
+
+/* Mobile timeline: single column */
+@media (max-width: 600px) {
+  .timeline-container::before { right: 15px; transform: none; }
+  .timeline-item:nth-child(odd),
+  .timeline-item:nth-child(even) {
+    flex-direction: row;
+    padding-left: 0;
+    padding-right: 40px;
+  }
+  .timeline-dot { right: 7px; }
+  .timeline-content { text-align: right; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; }
+  .gallery-item.featured { grid-column: span 2; grid-row: span 1; min-height: 200px; }
+  .locations-grid { grid-template-columns: 1fr; }
+  .nav-dots { display: none; }
+  .footer-actions { flex-direction: column; align-items: stretch; }
+}
+
+/* ═══════════════════════════════════════════
+   REDUCED MOTION
+   ═══════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+  .particle { display: none; }
+}
+
+/* ═══════════════════════════════════════════
+   FOCUS STYLES FOR ACCESSIBILITY
+   ═══════════════════════════════════════════ */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* Safe area for notched phones */
+@supports (padding-top: env(safe-area-inset-top)) {
+  .envelope-overlay { padding-top: env(safe-area-inset-top); }
+  .lang-switcher { top: calc(20px + env(safe-area-inset-top)); }
+}
+</style>
+</head>
+<body class="locked">
+
+<!-- ═══════════════ PARTICLES ═══════════════ -->
+<div class="particles-container" id="particles" aria-hidden="true"></div>
+
+<!-- ═══════════════ CONFETTI CONTAINER ═══════════════ -->
+<div class="confetti-container" id="confetti" aria-hidden="true"></div>
+
+<!-- ═══════════════ AUDIO ═══════════════ -->
+<audio id="bgMusic" loop preload="auto">
+  <source src="" type="audio/mpeg">
+</audio>
+
+<!-- ═══════════════ MUSIC TOGGLE ═══════════════ -->
+<button class="music-toggle" id="musicToggle" aria-label="تشغيل/إيقاف الموسيقى">
+  <span class="music-bar"></span>
+  <span class="music-bar"></span>
+  <span class="music-bar"></span>
+  <span class="music-bar"></span>
+</button>
+
+<!-- ═══════════════ NAV DOTS ═══════════════ -->
+<nav class="nav-dots" id="navDots" aria-label="تنقل بين الأقسام"></nav>
+
+<!-- ═══════════════ LANGUAGE SWITCHER ═══════════════ -->
+<div class="lang-switcher" id="langSwitcher">
+  <button class="lang-btn active" data-lang="ar" aria-label="عربي">AR</button>
+  <button class="lang-btn" data-lang="en" aria-label="English">EN</button>
+  <button class="lang-btn" data-lang="fr" aria-label="Français">FR</button>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SCREEN 1: ENVELOPE OVERLAY
+     ═══════════════════════════════════════════ -->
+<div class="envelope-overlay" id="envelopeOverlay" role="dialog" aria-label="غلاف الدعوة">
+  <div class="envelope-content">
+    <div class="envelope-frame">
+      <div class="corner corner-tl"></div>
+      <div class="corner corner-tr"></div>
+      <div class="corner corner-bl"></div>
+      <div class="corner corner-br"></div>
+    </div>
+    <div class="envelope-flap"></div>
+
+    <p class="envelope-bismillah" data-i18n="bismillah">بسم الله الرحمن الرحيم</p>
+    <div class="ornament-divider"><div class="diamond"></div></div>
+    <p class="envelope-families" data-i18n="families">آل الحسيني  &  آل الراشد</p>
+    <p class="envelope-invite-text" data-i18n="inviteText">يتشرفون بدعوتكم لحضور حفل زفاف</p>
+    <h1 class="envelope-couple">
+      <span class="shimmer-text" data-i18n="groomName">أحمد</span>
+      <span class="heartbeat"> ♥ </span>
+      <span class="shimmer-text" data-i18n="brideName">نور</span>
+    </h1>
+    <p class="envelope-date" data-i18n="weddingDate">السبت ١٥ آذار ٢٠٢٥</p>
+    <p class="envelope-guest" id="guestGreeting" data-i18n="guestGreeting">حضرة المدعوين الكرام</p>
+
+    <button class="envelope-btn" id="openBtn" aria-label="افتح الدعوة">
+      <span data-i18n="openButton">افتح الدعوة</span> ✉
+    </button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     MAIN CONTENT
+     ═══════════════════════════════════════════ -->
+<main>
+
+  <!-- ═══════ SCREEN 2: HERO ═══════ -->
+  <section class="section hero-section" id="sec-hero" data-nav-label="الرئيسية" data-nav-label-en="Home" data-nav-label-fr="Accueil">
+    <p class="hero-bismillah reveal" data-i18n="bismillah">بسم الله الرحمن الرحيم</p>
+    <div class="ornament-divider reveal reveal-delay-1"><div class="diamond"></div></div>
+    <p class="hero-families reveal reveal-delay-1" data-i18n="families">آل الحسيني  &  آل الراشد</p>
+    <p class="hero-invitation-text reveal reveal-delay-2" data-i18n="inviteTextFull">يتشرفون بدعوتكم لحضور حفل زفاف ابنيهما</p>
+
+    <div class="hero-names-frame reveal reveal-delay-2">
+      <div class="frame-corner fc-tl"></div>
+      <div class="frame-corner fc-tr"></div>
+      <div class="frame-corner fc-bl"></div>
+      <div class="frame-corner fc-br"></div>
+      <h2 class="hero-name shimmer-text" data-i18n="groomFullName">أحمد</h2>
+      <div class="hero-heart"><span class="heartbeat">♥</span></div>
+      <h2 class="hero-name shimmer-text" data-i18n="brideFullName">نور</h2>
+    </div>
+
+    <p class="hero-date reveal reveal-delay-3" data-i18n="dateFormatted">١٥ . ٠٣ . ٢٠٢٥</p>
+    <p class="hero-hijri reveal reveal-delay-4" data-i18n="hijriDate">١٤ شعبان ١٤٤٦ هـ</p>
+
+    <div class="scroll-indicator reveal reveal-delay-5">
+      <span data-i18n="scrollDown">مرر للأسفل</span>
+      <span class="arrow">▼</span>
+    </div>
+  </section>
+
+  <!-- ═══════ SCREEN 3: QURANIC VERSE ═══════ -->
+  <section class="section verse-section" id="sec-verse" data-nav-label="الآية" data-nav-label-en="Verse" data-nav-label-fr="Verset">
+    <div class="verse-container">
+      <div class="ornament-divider reveal"><div class="diamond"></div></div>
+      <div class="verse-quote-mark reveal reveal-delay-1">❝</div>
+      <p class="verse-text reveal reveal-delay-2" data-i18n="quranVerse">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ</p>
+      <p class="verse-reference reveal reveal-delay-3" data-i18n="verseRef">— سورة الروم، الآية ٢١</p>
+      <div class="ornament-divider reveal reveal-delay-4"><div class="diamond"></div></div>
+    </div>
+  </section>
+
+  <!-- ═══════ SCREEN 4: COUNTDOWN ═══════ -->
+  <section class="section" id="sec-countdown" data-nav-label="العد التنازلي" data-nav-label-en="Countdown" data-nav-label-fr="Compte à rebours">
+    <h2 class="section-title reveal" data-i18n="countdownTitle">العد التنازلي</h2>
+    <p class="section-subtitle reveal reveal-delay-1" data-i18n="countdownSubtitle">نعدّ الأيام بشوق لهذه المناسبة السعيدة</p>
+    <div class="ornament-divider reveal reveal-delay-1"><div class="diamond"></div></div>
+    <div class="countdown-grid reveal reveal-delay-2" id="countdownGrid">
+      <div class="countdown-card">
+        <div class="countdown-number" id="cd-days">٠٠</div>
+        <div class="countdown-label" data-i18n="days">يوم</div>
+      </div>
+      <div class="countdown-card">
+        <div class="countdown-number" id="cd-hours">٠٠</div>
+        <div class="countdown-label" data-i18n="hours">ساعة</div>
+      </div>
+      <div class="countdown-card">
+        <div class="countdown-number" id="cd-minutes">٠٠</div>
+        <div class="countdown-label" data-i18n="minutes">دقيقة</div>
+      </div>
+      <div class="countdown-card">
+        <div class="countdown-number" id="cd-seconds">٠٠</div>
+        <div class="countdown-label" data-i18n="seconds">ثانية</div>
+      </div>
+    </div>
+    <p class="countdown-passed reveal" id="countdownPassed" style="display:none" data-i18n="countdownPassed">🎊 بارك الله لهما</p>
+  </section>
+
+  <!-- ═══════ SCREEN 5: EVENT DETAILS ═══════ -->
+  <section class="section" id="sec-events" data-nav-label="تفاصيل الحفل" data-nav-label-en="Events" data-nav-label-fr="Événements">
+    <h2 class="section-title reveal" data-i18n="eventsTitle">تفاصيل الحفل</h2>
+    <div class="ornament-divider reveal reveal-delay-1"><div class="diamond"></div></div>
+
+    <div class="events-grid">
+      <!-- Katb El Kitab -->
+      <div class="event-card reveal reveal-delay-2">
+        <div class="event-icon">💍</div>
+        <h3 class="event-title" data-i18n="katbTitle">عقد القران</h3>
+        <div class="event-detail">
+          <span class="event-detail-icon">📅</span>
+          <span data-i18n="katbDate">الجمعة ١٤ آذار ٢٠٢٥</span>
+        </div>
+        <div class="event-detail">
+          <span class="event-detail-icon">🕓</span>
+          <span data-i18n="katbTime">الساعة ٤:٠٠ عصراً</span>
+        </div>
+        <div class="event-detail">
+          <span class="event-detail-icon">📍</span>
+          <span data-i18n="katbVenue">مسجد النور الكبير</span>
+        </div>
+        <iframe class="event-map" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3000!2d35.5018!3d33.8938!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen="" title="موقع عقد القران"></iframe>
+        <a href="https://maps.google.com/?q=33.8938,35.5018" target="_blank" rel="noopener" class="btn-gold" aria-label="عرض موقع عقد القران">
+          <span data-i18n="viewLocation">عرض الموقع</span> 📍
+        </a>
+      </div>
+
+      <!-- Wedding Reception -->
+      <div class="event-card reveal reveal-delay-3">
+        <div class="event-icon">🎊</div>
+        <h3 class="event-title" data-i18n="weddingTitle">حفل الزفاف</h3>
+        <div class="event-detail">
+          <span class="event-detail-icon">📅</span>
+          <span data-i18n="weddingDateDetail">السبت ١٥ آذار ٢٠٢٥</span>
+        </div>
+        <div class="event-detail">
+          <span class="event-detail-icon">🕖</span>
+          <span data-i18n="weddingTime">الساعة ٧:٣٠ مساءً</span>
+        </div>
+        <div class="event-detail">
+          <span class="event-detail-icon">📍</span>
+          <span data-i18n="weddingVenue">فندق القصر الملكي — قاعة الألماس</span>
+        </div>
+        <iframe class="event-map" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3000!2d35.4955!3d33.8886!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen="" title="موقع حفل الزفاف"></iframe>
+        <a href="https://maps.google.com/?q=33.8886,35.4955" target="_blank" rel="noopener" class="btn-gold" aria-label="عرض موقع حفل الزفاف">
+          <span data-i18n="viewLocation">عرض الموقع</span> 📍
+        </a>
+      </div>
+    </div>
+
+    <!-- Important Locations -->
+    <h3 class="locations-title reveal reveal-delay-3" data-i18n="locationsTitle">المواقع المهمة</h3>
+    <div class="locations-grid reveal reveal-delay-4">
+      <div class="location-card">
+        <div class="location-icon">🏠</div>
+        <h4 class="location-label" data-i18n="groomHouse">منزل العريس</h4>
+        <p class="location-address" data-i18n="groomAddress">شارع المتنبي، بيروت</p>
+        <a href="https://maps.google.com/?q=33.8950,35.5100" target="_blank" rel="noopener" class="btn-gold" aria-label="اتجاهات منزل العريس">
+          <span data-i18n="directions">الاتجاهات</span> 📍
+        </a>
+      </div>
+      <div class="location-card">
+        <div class="location-icon">🏠</div>
+        <h4 class="location-label" data-i18n="brideHouse">منزل العروس</h4>
+        <p class="location-address" data-i18n="brideAddress">شارع الحمرا، بيروت</p>
+        <a href="https://maps.google.com/?q=33.8990,35.4870" target="_blank" rel="noopener" class="btn-gold" aria-label="اتجاهات منزل العروس">
+          <span data-i18n="directions">الاتجاهات</span> 📍
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ SCREEN 6: LOVE STORY ═══════ -->
+  <section class="section" id="sec-story" data-nav-label="قصتنا" data-nav-label-en="Our Story" data-nav-label-fr="Notre Histoire">
+    <h2 class="section-title reveal" data-i18n="storyTitle">قصتنا</h2>
+    <p class="section-subtitle reveal reveal-delay-1" data-i18n="storySubtitle">رحلة حبنا من البداية</p>
+    <div class="ornament-divider reveal reveal-delay-1"><div class="diamond"></div></div>
+
+    <div class="timeline-container" id="timeline">
+      <!-- Timeline items rendered by JS -->
+    </div>
+  </section>
+
+  <!-- ═══════ SCREEN 7: PHOTO GALLERY ═══════ -->
+  <section class="section" id="sec-gallery" data-nav-label="الصور" data-nav-label-en="Gallery" data-nav-label-fr="Galerie">
+    <h2 class="section-title reveal" data-i18n="galleryTitle">صور تجمعنا</h2>
+    <div class="ornament-divider reveal reveal-delay-1"><div class="diamond"></div></div>
+
+    <div class="gallery-grid reveal reveal-delay-2">
+      <div class="gallery-item featured">
+        <span class="gallery-icon">📷</span>
+        <div class="gallery-label" data-i18n="galleryFeatured">صورة مميزة</div>
+      </div>
+      <div class="gallery-item">
+        <span class="gallery-icon">📷</span>
+        <div class="gallery-label" data-i18n="galleryLabel1">الخطوبة</div>
+      </div>
+      <div class="gallery-item">
+        <span class="gallery-icon">📷</span>
+        <div class="gallery-label" data-i18n="galleryLabel2">لحظات سعيدة</div>
+      </div>
+      <div class="gallery-item">
+        <span class="gallery-icon">📷</span>
+        <div class="gallery-label" data-i18n="galleryLabel3">ذكريات جميلة</div>
+      </div>
+      <div class="gallery-item">
+        <span class="gallery-icon">📷</span>
+        <div class="gallery-label" data-i18n="galleryLabel4">معاً دائماً</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ SCREEN 8: GIFTS ═══════ -->
+  <section class="section" id="sec-gifts" data-nav-label="الهدايا" data-nav-label-en="Gifts" data-nav-label-fr="Cadeaux">
+    <h2 class="section-title reveal" data-i18n="giftsTitle">هدايا العروسين</h2>
+    <p class="section-subtitle reveal reveal-delay-1" data-i18n="giftsSubtitle">إن أحببتم إهداءنا بمناسبة زفافنا</p>
+    <div class="ornament-divider reveal reveal-delay-1"><div class="diamond"></div></div>
+
+    <div class="gifts-grid reveal reveal-delay-2">
+      <div class="gift-card">
+        <div class="gift-icon">💰</div>
+        <h3 class="gift-title" data-i18n="cashGift">هدية نقدية</h3>
+        <p class="gift-text" data-i18n="cashGiftText">يمكنكم إرسال هديتكم عبر</p>
+        <a href="https://evantocards.com" target="_blank" rel="noopener" class="btn-gold" aria-label="إرسال هدية نقدية">EvantoCARDS</a>
+      </div>
+      <div class="gift-card">
+        <div class="gift-icon">🎁</div>
+        <h3 class="gift-title" data-i18n="physicalGift">هدية عينية</h3>
+        <p class="gift-text" data-i18n="physicalGiftText">يسعدنا استقبال هداياكم يوم الحفل</p>
+        <p class="gift-note" data-i18n="giftNote">نقدّر محبتكم وتقديركم</p>
+      </div>
+      <div class="gift-card">
+        <div class="gift-icon">📸</div>
+        <h3 class="gift-title" data-i18n="sharePhotos">شاركونا صوركم</h3>
+        <p class="gift-text" data-i18n="sharePhotosText">امسح الرمز لرفع الصور التي التقطتموها في الحفل</p>
+        <div class="qr-container">
+          <canvas id="qrCanvas" width="150" height="150"></canvas>
+        </div>
+        <p class="gift-note" data-i18n="photosNote">ستُضاف صوركم إلى ألبوم العروسين</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ SCREEN 9: RSVP ═══════ -->
+  <section class="section rsvp-section" id="sec-rsvp" data-nav-label="تأكيد الحضور" data-nav-label-en="RSVP" data-nav-label-fr="RSVP">
+    <h2 class="section-title reveal" data-i18n="rsvpTitle">تأكيد الحضور</h2>
+    <p class="section-subtitle reveal reveal-delay-1" data-i18n="rsvpSubtitle">يسعدنا تأكيد حضوركم لمشاركتنا فرحتنا</p>
+    <div class="ornament-divider reveal reveal-delay-1"><div class="diamond"></div></div>
+
+    <form class="rsvp-form reveal reveal-delay-2" id="rsvpForm" novalidate>
+      <!-- Name -->
+      <div class="form-group">
+        <label class="form-label" for="rsvpName" data-i18n="labelName">الاسم الكامل *</label>
+        <input class="form-input" type="text" id="rsvpName" required aria-required="true" placeholder="">
+      </div>
+
+      <!-- Phone -->
+      <div class="form-group">
+        <label class="form-label" for="rsvpPhone" data-i18n="labelPhone">رقم الهاتف</label>
+        <input class="form-input" type="tel" id="rsvpPhone" placeholder="+961" dir="ltr" style="text-align:right">
+      </div>
+
+      <!-- Attendance -->
+      <div class="form-group">
+        <label class="form-label" data-i18n="labelAttend">هل ستحضرون بإذن الله؟ *</label>
+        <div class="radio-group">
+          <div class="radio-option">
+            <input type="radio" name="attend" id="attendYes" value="yes" required>
+            <label for="attendYes" class="radio-label yes" data-i18n="attendYes">✓ نعم، سأحضر</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" name="attend" id="attendNo" value="no">
+            <label for="attendNo" class="radio-label no" data-i18n="attendNo">✗ لن أتمكن</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Guests count -->
+      <div class="form-group">
+        <label class="form-label" for="rsvpGuests" data-i18n="labelGuests">عدد المرافقين</label>
+        <select class="form-select" id="rsvpGuests">
+          <option value="0">٠</option>
+          <option value="1">١</option>
+          <option value="2">٢</option>
+          <option value="3">٣</option>
+          <option value="4">٤</option>
+          <option value="5">٥+</option>
+        </select>
+      </div>
+
+      <!-- Which event -->
+      <div class="form-group">
+        <label class="form-label" data-i18n="labelWhichEvent">أي حفل ستحضرون؟</label>
+        <div class="checkbox-group">
+          <div class="checkbox-option">
+            <input type="checkbox" id="evKatb" value="katb">
+            <label for="evKatb" class="checkbox-label" data-i18n="katbTitle">عقد القران</label>
+          </div>
+          <div class="checkbox-option">
+            <input type="checkbox" id="evWedding" value="wedding">
+            <label for="evWedding" class="checkbox-label" data-i18n="weddingTitle">حفل الزفاف</label>
+          </div>
+          <div class="checkbox-option">
+            <input type="checkbox" id="evBoth" value="both">
+            <label for="evBoth" class="checkbox-label" data-i18n="both">كلاهما</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Message -->
+      <div class="form-group">
+        <label class="form-label" for="rsvpMessage" data-i18n="labelMessage">رسالة للعروسين (اختياري)</label>
+        <textarea class="form-textarea" id="rsvpMessage"></textarea>
+      </div>
+
+      <!-- Allergies -->
+      <div class="form-group">
+        <label class="form-label" for="rsvpAllergy" data-i18n="labelAllergy">هل لديكم حساسية تجاه أي طعام؟ (اختياري)</label>
+        <input class="form-input" type="text" id="rsvpAllergy">
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="btn-submit" id="submitBtn">
+        <span data-i18n="submitBtn">إرسال التأكيد ✦</span>
+      </button>
+    </form>
+
+    <!-- Success message -->
+    <div class="rsvp-success" id="rsvpSuccess">
+      <div class="rsvp-success-icon">✨</div>
+      <h3 class="rsvp-success-title" data-i18n="successTitle">شكراً لتأكيد حضوركم</h3>
+      <p class="rsvp-success-text" data-i18n="successText1">تم استلام ردكم بنجاح</p>
+      <p class="rsvp-success-text" data-i18n="successText2">نتشوق لرؤيتكم ومشاركتنا هذه الفرحة</p>
+    </div>
+  </section>
+
+  <!-- ═══════ SCREEN 10: FOOTER ═══════ -->
+  <footer class="section footer-section" id="sec-footer" data-nav-label="المشاركة" data-nav-label-en="Share" data-nav-label-fr="Partager">
+    <p class="footer-waiting reveal" data-i18n="waitingText">في انتظاركم</p>
+    <h2 class="footer-couple reveal reveal-delay-1">
+      <span class="shimmer-text" data-i18n="groomName">أحمد</span>
+      <span class="heartbeat"> ♥ </span>
+      <span class="shimmer-text" data-i18n="brideName">نور</span>
+    </h2>
+    <div class="ornament-divider reveal reveal-delay-2"><div class="diamond"></div></div>
+
+    <div class="footer-actions reveal reveal-delay-3">
+      <button class="footer-btn" id="shareWhatsApp" aria-label="مشاركة عبر واتساب">
+        <span>💬</span> <span data-i18n="shareWhatsApp">مشاركة عبر واتساب</span>
+      </button>
+      <button class="footer-btn" id="addCalendar" aria-label="أضف إلى التقويم">
+        <span>📅</span> <span data-i18n="addCalendar">أضف إلى التقويم</span>
+      </button>
+      <button class="footer-btn" id="copyLink" aria-label="نسخ رابط الدعوة">
+        <span>📋</span> <span class="copy-text" data-i18n="copyLink">نسخ رابط الدعوة</span>
+        <span class="toast-msg">تم النسخ ✓</span>
+      </button>
+      <button class="footer-btn" id="shareNative" aria-label="مشاركة">
+        <span>📤</span> <span data-i18n="share">مشاركة</span>
+      </button>
+    </div>
+
+    <div class="ornament-line"></div>
+    <p class="footer-credit reveal reveal-delay-4">
+      <span data-i18n="designedBy">صُمّمت بـ 🤍 بواسطة</span>
+      <a href="https://carta.com" target="_blank" rel="noopener">CARTA</a>
+    </p>
+    <p class="footer-rights reveal reveal-delay-5" data-i18n="rights">جميع الحقوق محفوظة © ٢٠٢٥</p>
+  </footer>
+
+</main>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   CONFIGURATION OBJECT — Edit this to customize the invitation
+   ═══════════════════════════════════════════════════════════ */
+const CONFIG = {
+  groom: { name: 'أحمد', family: 'الحسيني', fullName: 'أحمد الحسيني' },
+  bride: { name: 'نور', family: 'الراشد', fullName: 'نور الراشد' },
+  events: {
+    katb: {
+      title: 'عقد القران', date: '2025-03-14T16:00:00',
+      dateAr: 'الجمعة ١٤ آذار ٢٠٢٥', time: '٤:٠٠ عصراً',
+      venue: 'مسجد النور الكبير',
+      mapUrl: 'https://maps.google.com/?q=33.8938,35.5018',
+      mapEmbed: 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3000!2d35.5018!3d33.8938'
+    },
+    wedding: {
+      title: 'حفل الزفاف', date: '2025-03-15T19:30:00',
+      dateAr: 'السبت ١٥ آذار ٢٠٢٥', time: '٧:٣٠ مساءً',
+      venue: 'فندق القصر الملكي — قاعة الألماس',
+      mapUrl: 'https://maps.google.com/?q=33.8886,35.4955',
+      mapEmbed: 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3000!2d35.4955!3d33.8886'
+    }
+  },
+  locations: {
+    groomHouse: { label: 'منزل العريس', address: 'شارع المتنبي، بيروت', mapUrl: 'https://maps.google.com/?q=33.8950,35.5100' },
+    brideHouse: { label: 'منزل العروس', address: 'شارع الحمرا، بيروت', mapUrl: 'https://maps.google.com/?q=33.8990,35.4870' }
+  },
+  gifts: {
+    cashLink: 'https://evantocards.com',
+    photoUploadUrl: 'https://carta.com/photos/ahmad-nour'
+  },
+  rsvp: { endpoint: null },
+  countdownTarget: '2025-03-15T19:30:00',
+  hashtag: '#أحمد_و_نور',
+  musicSrc: null,
+  timeline: [
+    { year: '٢٠٢١', title: 'التقينا لأول مرة 💫', desc: 'جمعنا القدر في لحظة لم نكن نتوقعها' },
+    { year: '٢٠٢٢', title: 'بداية الحكاية 🌹', desc: 'أدركنا أن قلوبنا تنبض بنفس الإيقاع' },
+    { year: '٢٠٢٣', title: 'الخطبة 💍', desc: 'خطوة أقرب نحو الأبد، قلنا فيه نعم' },
+    { year: '٢٠٢٥', title: 'الزفاف 🎊', desc: 'اليوم الذي طالما حلمنا به' }
+  ]
+};
+
+/* ═══════════════════════════════════════════════════════════
+   TRANSLATIONS
+   ═══════════════════════════════════════════════════════════ */
+const translations = {
+  ar: {
+    bismillah: 'بسم الله الرحمن الرحيم',
+    families: 'آل الحسيني  &  آل الراشد',
+    inviteText: 'يتشرفون بدعوتكم لحضور حفل زفاف',
+    inviteTextFull: 'يتشرفون بدعوتكم لحضور حفل زفاف ابنيهما',
+    groomName: CONFIG.groom.name,
+    brideName: CONFIG.bride.name,
+    groomFullName: CONFIG.groom.name,
+    brideFullName: CONFIG.bride.name,
+    weddingDate: 'السبت ١٥ آذار ٢٠٢٥',
+    guestGreeting: 'حضرة المدعوين الكرام',
+    openButton: 'افتح الدعوة',
+    scrollDown: 'مرر للأسفل',
+    dateFormatted: '١٥ . ٠٣ . ٢٠٢٥',
+    hijriDate: '١٤ شعبان ١٤٤٦ هـ',
+    quranVerse: 'وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ',
+    verseRef: '— سورة الروم، الآية ٢١',
+    countdownTitle: 'العد التنازلي',
+    countdownSubtitle: 'نعدّ الأيام بشوق لهذه المناسبة السعيدة',
+    days: 'يوم', hours: 'ساعة', minutes: 'دقيقة', seconds: 'ثانية',
+    countdownPassed: '🎊 بارك الله لهما',
+    eventsTitle: 'تفاصيل الحفل',
+    katbTitle: 'عقد القران',
+    katbDate: 'الجمعة ١٤ آذار ٢٠٢٥',
+    katbTime: 'الساعة ٤:٠٠ عصراً',
+    katbVenue: 'مسجد النور الكبير',
+    weddingTitle: 'حفل الزفاف',
+    weddingDateDetail: 'السبت ١٥ آذار ٢٠٢٥',
+    weddingTime: 'الساعة ٧:٣٠ مساءً',
+    weddingVenue: 'فندق القصر الملكي — قاعة الألماس',
+    viewLocation: 'عرض الموقع',
+    locationsTitle: 'المواقع المهمة',
+    groomHouse: 'منزل العريس', groomAddress: 'شارع المتنبي، بيروت',
+    brideHouse: 'منزل العروس', brideAddress: 'شارع الحمرا، بيروت',
+    directions: 'الاتجاهات',
+    storyTitle: 'قصتنا', storySubtitle: 'رحلة حبنا من البداية',
+    galleryTitle: 'صور تجمعنا',
+    galleryFeatured: 'صورة مميزة', galleryLabel1: 'الخطوبة', galleryLabel2: 'لحظات سعيدة',
+    galleryLabel3: 'ذكريات جميلة', galleryLabel4: 'معاً دائماً',
+    giftsTitle: 'هدايا العروسين', giftsSubtitle: 'إن أحببتم إهداءنا بمناسبة زفافنا',
+    cashGift: 'هدية نقدية', cashGiftText: 'يمكنكم إرسال هديتكم عبر',
+    physicalGift: 'هدية عينية', physicalGiftText: 'يسعدنا استقبال هداياكم يوم الحفل',
+    giftNote: 'نقدّر محبتكم وتقديركم',
+    sharePhotos: 'شاركونا صوركم', sharePhotosText: 'امسح الرمز لرفع الصور التي التقطتموها في الحفل',
+    photosNote: 'ستُضاف صوركم إلى ألبوم العروسين',
+    rsvpTitle: 'تأكيد الحضور', rsvpSubtitle: 'يسعدنا تأكيد حضوركم لمشاركتنا فرحتنا',
+    labelName: 'الاسم الكامل *', labelPhone: 'رقم الهاتف',
+    labelAttend: 'هل ستحضرون بإذن الله؟ *',
+    attendYes: '✓ نعم، سأحضر', attendNo: '✗ لن أتمكن',
+    labelGuests: 'عدد المرافقين', labelWhichEvent: 'أي حفل ستحضرون؟',
+    both: 'كلاهما',
+    labelMessage: 'رسالة للعروسين (اختياري)',
+    labelAllergy: 'هل لديكم حساسية تجاه أي طعام؟ (اختياري)',
+    submitBtn: 'إرسال التأكيد ✦', submitting: 'جاري الإرسال...',
+    successTitle: 'شكراً لتأكيد حضوركم',
+    successText1: 'تم استلام ردكم بنجاح',
+    successText2: 'نتشوق لرؤيتكم ومشاركتنا هذه الفرحة',
+    waitingText: 'في انتظاركم',
+    shareWhatsApp: 'مشاركة عبر واتساب',
+    addCalendar: 'أضف إلى التقويم',
+    copyLink: 'نسخ رابط الدعوة', share: 'مشاركة',
+    designedBy: 'صُمّمت بـ 🤍 بواسطة', rights: 'جميع الحقوق محفوظة © ٢٠٢٥',
+    guestPrefix: 'حضرة السيد/ة'
+  },
+  en: {
+    bismillah: 'In the Name of God, the Most Gracious, the Most Merciful',
+    families: 'Al-Husseini  &  Al-Rashed Families',
+    inviteText: 'cordially invite you to the wedding of',
+    inviteTextFull: 'cordially invite you to the wedding celebration of',
+    groomName: 'Ahmad', brideName: 'Nour',
+    groomFullName: 'Ahmad Al-Husseini', brideFullName: 'Nour Al-Rashed',
+    weddingDate: 'Saturday, March 15, 2025',
+    guestGreeting: 'Dear Esteemed Guests',
+    openButton: 'Open Invitation',
+    scrollDown: 'Scroll Down',
+    dateFormatted: '15 . 03 . 2025',
+    hijriDate: '14 Shaaban 1446 AH',
+    quranVerse: 'And among His Signs is that He created for you mates from among yourselves, that you may dwell in tranquility with them, and He has put love and mercy between your hearts. Verily in that are Signs for those who reflect.',
+    verseRef: '— Surah Ar-Rum, Verse 21',
+    countdownTitle: 'Countdown', countdownSubtitle: 'Counting the days to this joyous occasion',
+    days: 'Days', hours: 'Hours', minutes: 'Minutes', seconds: 'Seconds',
+    countdownPassed: '🎊 May God bless them',
+    eventsTitle: 'Event Details',
+    katbTitle: 'Katb El Kitab', katbDate: 'Friday, March 14, 2025',
+    katbTime: '4:00 PM', katbVenue: 'Al-Nour Grand Mosque',
+    weddingTitle: 'Wedding Reception', weddingDateDetail: 'Saturday, March 15, 2025',
+    weddingTime: '7:30 PM', weddingVenue: 'Royal Palace Hotel — Diamond Hall',
+    viewLocation: 'View Location',
+    locationsTitle: 'Important Locations',
+    groomHouse: "Groom's House", groomAddress: 'Al-Mutanabbi Street, Beirut',
+    brideHouse: "Bride's House", brideAddress: 'Hamra Street, Beirut',
+    directions: 'Directions',
+    storyTitle: 'Our Story', storySubtitle: 'Our love journey from the beginning',
+    galleryTitle: 'Our Gallery',
+    galleryFeatured: 'Featured Photo', galleryLabel1: 'Engagement', galleryLabel2: 'Happy Moments',
+    galleryLabel3: 'Beautiful Memories', galleryLabel4: 'Always Together',
+    giftsTitle: 'Wedding Gifts', giftsSubtitle: 'If you wish to gift us on our wedding',
+    cashGift: 'Cash Gift', cashGiftText: 'You can send your gift via',
+    physicalGift: 'Physical Gift', physicalGiftText: 'We would love to receive your gifts on the wedding day',
+    giftNote: 'We appreciate your love and thoughtfulness',
+    sharePhotos: 'Share Your Photos', sharePhotosText: 'Scan the code to upload your celebration photos',
+    photosNote: 'Your photos will be added to the couple\'s album',
+    rsvpTitle: 'RSVP', rsvpSubtitle: 'We would love to confirm your attendance',
+    labelName: 'Full Name *', labelPhone: 'Phone Number',
+    labelAttend: 'Will you be attending? *',
+    attendYes: '✓ Yes, I will attend', attendNo: '✗ Cannot attend',
+    labelGuests: 'Number of Guests', labelWhichEvent: 'Which event will you attend?',
+    both: 'Both',
+    labelMessage: 'Message to the couple (optional)',
+    labelAllergy: 'Any food allergies? (optional)',
+    submitBtn: 'Send Confirmation ✦', submitting: 'Sending...',
+    successTitle: 'Thank you for your RSVP',
+    successText1: 'Your response has been received',
+    successText2: 'We look forward to celebrating with you',
+    waitingText: 'We await you',
+    shareWhatsApp: 'Share via WhatsApp',
+    addCalendar: 'Add to Calendar',
+    copyLink: 'Copy Invitation Link', share: 'Share',
+    designedBy: 'Designed with 🤍 by', rights: 'All Rights Reserved © 2025',
+    guestPrefix: 'Dear'
+  },
+  fr: {
+    bismillah: 'Au nom de Dieu, le Très Miséricordieux, le Tout Miséricordieux',
+    families: 'Familles Al-Husseini  &  Al-Rashed',
+    inviteText: 'ont l\'honneur de vous inviter au mariage de',
+    inviteTextFull: 'ont l\'honneur de vous inviter à la célébration du mariage de',
+    groomName: 'Ahmad', brideName: 'Nour',
+    groomFullName: 'Ahmad Al-Husseini', brideFullName: 'Nour Al-Rashed',
+    weddingDate: 'Samedi 15 Mars 2025',
+    guestGreeting: 'Chers invités',
+    openButton: 'Ouvrir l\'invitation',
+    scrollDown: 'Défiler vers le bas',
+    dateFormatted: '15 . 03 . 2025',
+    hijriDate: '14 Chaabane 1446 H',
+    quranVerse: 'Et parmi Ses signes, Il a créé de vous, pour vous, des épouses pour que vous viviez en tranquillité avec elles et Il a mis entre vous de l\'affection et de la bonté. Il y a en cela des preuves pour des gens qui réfléchissent.',
+    verseRef: '— Sourate Ar-Rum, Verset 21',
+    countdownTitle: 'Compte à rebours', countdownSubtitle: 'Nous comptons les jours avec impatience',
+    days: 'Jours', hours: 'Heures', minutes: 'Minutes', seconds: 'Secondes',
+    countdownPassed: '🎊 Que Dieu les bénisse',
+    eventsTitle: 'Détails de l\'événement',
+    katbTitle: 'Katb El Kitab', katbDate: 'Vendredi 14 Mars 2025',
+    katbTime: '16h00', katbVenue: 'Grande Mosquée Al-Nour',
+    weddingTitle: 'Réception de mariage', weddingDateDetail: 'Samedi 15 Mars 2025',
+    weddingTime: '19h30', weddingVenue: 'Hôtel Royal Palace — Salle Diamant',
+    viewLocation: 'Voir l\'emplacement',
+    locationsTitle: 'Lieux importants',
+    groomHouse: 'Maison du marié', groomAddress: 'Rue Al-Mutanabbi, Beyrouth',
+    brideHouse: 'Maison de la mariée', brideAddress: 'Rue Hamra, Beyrouth',
+    directions: 'Itinéraire',
+    storyTitle: 'Notre Histoire', storySubtitle: 'Notre voyage d\'amour depuis le début',
+    galleryTitle: 'Notre Galerie',
+    galleryFeatured: 'Photo vedette', galleryLabel1: 'Fiançailles', galleryLabel2: 'Moments heureux',
+    galleryLabel3: 'Beaux souvenirs', galleryLabel4: 'Toujours ensemble',
+    giftsTitle: 'Cadeaux de mariage', giftsSubtitle: 'Si vous souhaitez nous offrir un cadeau',
+    cashGift: 'Cadeau en espèces', cashGiftText: 'Vous pouvez envoyer votre cadeau via',
+    physicalGift: 'Cadeau physique', physicalGiftText: 'Nous serons heureux de recevoir vos cadeaux le jour du mariage',
+    giftNote: 'Nous apprécions votre amour et votre attention',
+    sharePhotos: 'Partagez vos photos', sharePhotosText: 'Scannez le code pour télécharger vos photos de la fête',
+    photosNote: 'Vos photos seront ajoutées à l\'album du couple',
+    rsvpTitle: 'Confirmation de présence', rsvpSubtitle: 'Nous serions ravis de confirmer votre présence',
+    labelName: 'Nom complet *', labelPhone: 'Numéro de téléphone',
+    labelAttend: 'Serez-vous présent(e) ? *',
+    attendYes: '✓ Oui, je serai présent(e)', attendNo: '✗ Je ne pourrai pas',
+    labelGuests: 'Nombre d\'accompagnants', labelWhichEvent: 'Quel événement ?',
+    both: 'Les deux',
+    labelMessage: 'Message au couple (optionnel)',
+    labelAllergy: 'Allergies alimentaires ? (optionnel)',
+    submitBtn: 'Envoyer la confirmation ✦', submitting: 'Envoi en cours...',
+    successTitle: 'Merci pour votre confirmation',
+    successText1: 'Votre réponse a été reçue',
+    successText2: 'Nous avons hâte de célébrer avec vous',
+    waitingText: 'Nous vous attendons',
+    shareWhatsApp: 'Partager via WhatsApp',
+    addCalendar: 'Ajouter au calendrier',
+    copyLink: 'Copier le lien', share: 'Partager',
+    designedBy: 'Conçu avec 🤍 par', rights: 'Tous droits réservés © 2025',
+    guestPrefix: 'Cher(e)'
+  }
+};
+
+const timelineTranslations = {
+  ar: CONFIG.timeline,
+  en: [
+    { year: '2021', title: 'We First Met 💫', desc: 'Fate brought us together in an unexpected moment' },
+    { year: '2022', title: 'The Beginning 🌹', desc: 'We realized our hearts beat in the same rhythm' },
+    { year: '2023', title: 'The Engagement 💍', desc: 'One step closer to forever, we said yes' },
+    { year: '2025', title: 'The Wedding 🎊', desc: 'The day we have always dreamed of' }
+  ],
+  fr: [
+    { year: '2021', title: 'Notre première rencontre 💫', desc: 'Le destin nous a réunis de façon inattendue' },
+    { year: '2022', title: 'Le début de l\'histoire 🌹', desc: 'Nous avons réalisé que nos cœurs battaient au même rythme' },
+    { year: '2023', title: 'Les fiançailles 💍', desc: 'Un pas de plus vers l\'éternité, nous avons dit oui' },
+    { year: '2025', title: 'Le mariage 🎊', desc: 'Le jour dont nous avons toujours rêvé' }
+  ]
+};
+
+/* ═══════════════════════════════════════════════════════════
+   APP STATE
+   ═══════════════════════════════════════════════════════════ */
+let currentLang = 'ar';
+let isPlaying = false;
+
+/* ═══════════════════════════════════════════════════════════
+   URL PARAMS — GUEST PERSONALIZATION
+   ═══════════════════════════════════════════════════════════ */
+const params = new URLSearchParams(window.location.search);
+const guestName = params.get('guest') || null;
+const urlLang = params.get('lang');
+if (urlLang && translations[urlLang]) { currentLang = urlLang; }
+
+function applyGuestName() {
+  const greetEl = document.getElementById('guestGreeting');
+  const nameInput = document.getElementById('rsvpName');
+  if (guestName) {
+    const prefix = translations[currentLang].guestPrefix || 'حضرة السيد/ة';
+    greetEl.textContent = prefix + ' ' + guestName;
+    if (nameInput && !nameInput.value) { nameInput.value = guestName; }
+  } else {
+    greetEl.textContent = translations[currentLang].guestGreeting;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ARABIC NUMERAL CONVERSION
+   ═══════════════════════════════════════════════════════════ */
+function toArabicNumerals(num) {
+  const arabicDigits = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+  return String(num).replace(/[0-9]/g, d => arabicDigits[parseInt(d)]);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PARTICLES
+   ═══════════════════════════════════════════════════════════ */
+function createParticles() {
+  const container = document.getElementById('particles');
+  const isMobile = window.innerWidth < 768;
+  const count = isMobile ? 15 : 25;
+  container.innerHTML = '';
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 3 + 1;
+    p.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%;
+      --dur:${Math.random()*15+10}s;
+      --delay:${Math.random()*10}s;
+      --opa:${Math.random()*0.3+0.1};
+      --drift:${(Math.random()-0.5)*80}px;
+    `;
+    container.appendChild(p);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ENVELOPE OPENING
+   ═══════════════════════════════════════════════════════════ */
+function openEnvelope() {
+  const overlay = document.getElementById('envelopeOverlay');
+  const btn = document.getElementById('openBtn');
+  btn.style.transform = 'scale(0.95)';
+  overlay.classList.add('opening');
+  setTimeout(() => {
+    overlay.classList.add('opened');
+    document.body.classList.remove('locked');
+    // Show persistent UI
+    document.getElementById('musicToggle').classList.add('show');
+    document.getElementById('navDots').classList.add('show');
+    document.getElementById('langSwitcher').classList.add('show');
+    // Try playing music
+    playMusic();
+  }, 400);
+}
+
+document.getElementById('openBtn').addEventListener('click', openEnvelope);
+
+/* ═══════════════════════════════════════════════════════════
+   MUSIC
+   ═══════════════════════════════════════════════════════════ */
+const bgMusic = document.getElementById('bgMusic');
+const musicToggle = document.getElementById('musicToggle');
+
+if (CONFIG.musicSrc) {
+  bgMusic.querySelector('source').src = CONFIG.musicSrc;
+  bgMusic.load();
+}
+
+function playMusic() {
+  if (!CONFIG.musicSrc) return;
+  try {
+    bgMusic.play().then(() => {
+      isPlaying = true;
+      musicToggle.classList.add('playing');
+    }).catch(() => { /* user hasn't interacted yet */ });
+  } catch(e) {}
+}
+
+musicToggle.addEventListener('click', () => {
+  if (!CONFIG.musicSrc) return;
+  if (isPlaying) {
+    bgMusic.pause();
+    isPlaying = false;
+    musicToggle.classList.remove('playing');
+  } else {
+    playMusic();
+  }
+});
+
+/* ═══════════════════════════════════════════════════════════
+   NAVIGATION DOTS
+   ═══════════════════════════════════════════════════════════ */
+const sections = document.querySelectorAll('.section, .footer-section');
+const navDotsContainer = document.getElementById('navDots');
+
+function buildNavDots() {
+  navDotsContainer.innerHTML = '';
+  const secs = document.querySelectorAll('[data-nav-label]');
+  secs.forEach((sec, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', sec.dataset.navLabel);
+    dot.dataset.target = sec.id;
+
+    const label = document.createElement('span');
+    label.className = 'nav-dot-label';
+    const langKey = currentLang === 'en' ? 'navLabelEn' : currentLang === 'fr' ? 'navLabelFr' : 'navLabel';
+    label.textContent = sec.dataset[langKey] || sec.dataset.navLabel;
+    dot.appendChild(label);
+
+    dot.addEventListener('click', () => {
+      document.getElementById(sec.id).scrollIntoView({ behavior: 'smooth' });
+    });
+    navDotsContainer.appendChild(dot);
+  });
+}
+
+/* IntersectionObserver for active nav dot */
+function setupNavObserver() {
+  const dots = navDotsContainer.querySelectorAll('.nav-dot');
+  const secs = document.querySelectorAll('[data-nav-label]');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        dots.forEach(d => d.classList.remove('active'));
+        const idx = Array.from(secs).indexOf(entry.target);
+        if (dots[idx]) dots[idx].classList.add('active');
+      }
+    });
+  }, { threshold: 0.3 });
+
+  secs.forEach(sec => observer.observe(sec));
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SCROLL REVEAL (IntersectionObserver)
+   ═══════════════════════════════════════════════════════════ */
+function setupScrollReveal() {
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+  reveals.forEach(el => observer.observe(el));
+}
+
+/* ═══════════════════════════════════════════════════════════
+   COUNTDOWN TIMER
+   ═══════════════════════════════════════════════════════════ */
+function updateCountdown() {
+  const target = new Date(CONFIG.countdownTarget).getTime();
+  const now = Date.now();
+  const diff = target - now;
+
+  if (diff <= 0) {
+    document.getElementById('countdownGrid').style.display = 'none';
+    document.getElementById('countdownPassed').style.display = 'block';
+    return;
+  }
+
+  const d = Math.floor(diff / (1000*60*60*24));
+  const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+  const m = Math.floor((diff % (1000*60*60)) / (1000*60));
+  const s = Math.floor((diff % (1000*60)) / 1000);
+
+  const useArabic = currentLang === 'ar';
+  document.getElementById('cd-days').textContent = useArabic ? toArabicNumerals(String(d).padStart(2,'0')) : String(d).padStart(2,'0');
+  document.getElementById('cd-hours').textContent = useArabic ? toArabicNumerals(String(h).padStart(2,'0')) : String(h).padStart(2,'0');
+  document.getElementById('cd-minutes').textContent = useArabic ? toArabicNumerals(String(m).padStart(2,'0')) : String(m).padStart(2,'0');
+  document.getElementById('cd-seconds').textContent = useArabic ? toArabicNumerals(String(s).padStart(2,'0')) : String(s).padStart(2,'0');
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+
+/* ═══════════════════════════════════════════════════════════
+   TIMELINE RENDERING
+   ═══════════════════════════════════════════════════════════ */
+function renderTimeline() {
+  const container = document.getElementById('timeline');
+  const items = timelineTranslations[currentLang] || CONFIG.timeline;
+  container.innerHTML = '';
+
+  items.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'timeline-item reveal reveal-delay-' + (i + 1);
+    div.innerHTML = `
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-year">${item.year}</div>
+        <div class="timeline-event">${item.title}</div>
+        <div class="timeline-desc">"${item.desc}"</div>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════
+   QR CODE GENERATOR (Simple canvas-based)
+   ═══════════════════════════════════════════════════════════ */
+function generateQR() {
+  const canvas = document.getElementById('qrCanvas');
+  const ctx = canvas.getContext('2d');
+  const url = CONFIG.gifts.photoUploadUrl;
+  const size = canvas.width;
+
+  // Simple visual QR-like pattern (placeholder - for production use a proper QR library)
+  // This creates a recognizable QR-code-like pattern
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, size, size);
+
+  const moduleSize = Math.floor(size / 25);
+  ctx.fillStyle = '#1a1a2e';
+
+  // Generate a deterministic pattern from URL string
+  function hashChar(c, i) { return (c.charCodeAt(0) * (i+1) * 7) % 17; }
+
+  // Finder patterns (3 corners)
+  function drawFinder(x, y) {
+    const s = moduleSize;
+    ctx.fillRect(x, y, 7*s, 7*s);
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(x+s, y+s, 5*s, 5*s);
+    ctx.fillStyle = '#1a1a2e';
+    ctx.fillRect(x+2*s, y+2*s, 3*s, 3*s);
+  }
+
+  drawFinder(0, 0);
+  ctx.fillStyle = '#1a1a2e';
+  drawFinder((25-7)*moduleSize, 0);
+  ctx.fillStyle = '#1a1a2e';
+  drawFinder(0, (25-7)*moduleSize);
+
+  // Timing patterns
+  ctx.fillStyle = '#1a1a2e';
+  for (let i = 8; i < 17; i++) {
+    if (i % 2 === 0) {
+      ctx.fillRect(i*moduleSize, 6*moduleSize, moduleSize, moduleSize);
+      ctx.fillRect(6*moduleSize, i*moduleSize, moduleSize, moduleSize);
+    }
+  }
+
+  // Data area - deterministic pattern from URL
+  for (let row = 0; row < 25; row++) {
+    for (let col = 0; col < 25; col++) {
+      // Skip finder pattern areas
+      if ((row < 8 && col < 8) || (row < 8 && col > 16) || (row > 16 && col < 8)) continue;
+      if (row === 6 || col === 6) continue;
+
+      const charIdx = (row * 25 + col) % url.length;
+      const hash = hashChar(url[charIdx], row * col + col);
+      if (hash < 8) {
+        ctx.fillStyle = '#1a1a2e';
+        ctx.fillRect(col * moduleSize, row * moduleSize, moduleSize, moduleSize);
+      }
+    }
+  }
+
+  // Alignment pattern
+  ctx.fillStyle = '#1a1a2e';
+  const ax = 18 * moduleSize, ay = 18 * moduleSize;
+  ctx.fillRect(ax, ay, 5*moduleSize, 5*moduleSize);
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(ax+moduleSize, ay+moduleSize, 3*moduleSize, 3*moduleSize);
+  ctx.fillStyle = '#1a1a2e';
+  ctx.fillRect(ax+2*moduleSize, ay+2*moduleSize, moduleSize, moduleSize);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CONFETTI EXPLOSION
+   ═══════════════════════════════════════════════════════════ */
+function launchConfetti() {
+  const container = document.getElementById('confetti');
+  const colors = ['#C9A96E', '#E8D5B0', '#D4AF37', '#F5F0E8', '#C97070', '#ffffff'];
+  const count = 80;
+
+  for (let i = 0; i < count; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    const s = Math.random() * 8 + 4;
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    const isCircle = Math.random() > 0.5;
+    const dur = Math.random() * 2 + 2;
+    const rot = Math.floor(Math.random() * 720) + 360;
+
+    piece.style.cssText = `
+      left: ${Math.random() * 100}%;
+      width: ${s}px; height: ${s}px;
+      background: ${color};
+      border-radius: ${isCircle ? '50%' : '2px'};
+      --fall-dur: ${dur}s;
+      --rot: ${rot}deg;
+      animation-delay: ${Math.random() * 0.5}s;
+    `;
+    container.appendChild(piece);
+  }
+
+  setTimeout(() => { container.innerHTML = ''; }, 5000);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RSVP FORM SUBMISSION
+   ═══════════════════════════════════════════════════════════ */
+document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const form = this;
+  const btn = document.getElementById('submitBtn');
+  const name = document.getElementById('rsvpName').value.trim();
+  const attend = form.querySelector('input[name="attend"]:checked');
+
+  // Validation
+  if (!name) {
+    document.getElementById('rsvpName').focus();
+    document.getElementById('rsvpName').style.borderColor = 'var(--rose)';
+    setTimeout(() => document.getElementById('rsvpName').style.borderColor = '', 2000);
+    return;
+  }
+  if (!attend) { return; }
+
+  // Gather data
+  const data = {
+    name: name,
+    phone: document.getElementById('rsvpPhone').value,
+    attending: attend.value,
+    guests: document.getElementById('rsvpGuests').value,
+    events: [],
+    message: document.getElementById('rsvpMessage').value,
+    allergies: document.getElementById('rsvpAllergy').value,
+    timestamp: new Date().toISOString()
+  };
+
+  if (document.getElementById('evKatb').checked) data.events.push('katb');
+  if (document.getElementById('evWedding').checked) data.events.push('wedding');
+  if (document.getElementById('evBoth').checked) data.events.push('both');
+
+  // Loading state
+  btn.disabled = true;
+  const originalText = btn.querySelector('[data-i18n]').textContent;
+  btn.querySelector('[data-i18n]').textContent = translations[currentLang].submitting;
+
+  try {
+    if (CONFIG.rsvp.endpoint) {
+      // Production: send to API
+      // await fetch(CONFIG.rsvp.endpoint, {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(data)
+      // });
+    }
+
+    // Log for testing
+    console.log('RSVP Data:', data);
+
+    // Simulate network delay
+    await new Promise(resolve => setTimeout(resolve, 1200));
+
+    // Success
+    form.style.opacity = '0';
+    form.style.transform = 'translateY(-20px)';
+    setTimeout(() => {
+      form.style.display = 'none';
+      document.getElementById('rsvpSuccess').classList.add('show');
+      launchConfetti();
+    }, 400);
+
+  } catch (error) {
+    console.error('RSVP Error:', error);
+    btn.disabled = false;
+    btn.querySelector('[data-i18n]').textContent = originalText;
+  }
+});
+
+/* ═══════════════════════════════════════════════════════════
+   LANGUAGE SWITCHER
+   ═══════════════════════════════════════════════════════════ */
+function applyLanguage(lang) {
+  currentLang = lang;
+  const t = translations[lang];
+  const isRTL = lang === 'ar';
+
+  document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
+  document.documentElement.lang = lang;
+
+  // Update all translatable elements
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (t[key]) el.textContent = t[key];
+  });
+
+  // Update nav dot labels
+  const secs = document.querySelectorAll('[data-nav-label]');
+  const dots = navDotsContainer.querySelectorAll('.nav-dot');
+  secs.forEach((sec, i) => {
+    const labelKey = lang === 'en' ? 'navLabelEn' : lang === 'fr' ? 'navLabelFr' : 'navLabel';
+    if (dots[i]) {
+      const labelEl = dots[i].querySelector('.nav-dot-label');
+      if (labelEl) labelEl.textContent = sec.dataset[labelKey] || sec.dataset.navLabel;
+    }
+  });
+
+  // Update lang button active states
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+
+  // Guest name
+  applyGuestName();
+
+  // Re-render timeline
+  renderTimeline();
+  setupScrollReveal();
+
+  // Update countdown (numeral format)
+  updateCountdown();
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    applyLanguage(btn.dataset.lang);
+  });
+});
+
+/* ═══════════════════════════════════════════════════════════
+   FOOTER ACTIONS
+   ═══════════════════════════════════════════════════════════ */
+
+// WhatsApp Share
+document.getElementById('shareWhatsApp').addEventListener('click', () => {
+  const text = currentLang === 'ar'
+    ? `يسعدنا دعوتكم لحضور حفل زفاف ${CONFIG.groom.name} و ${CONFIG.bride.name}\n📅 ${CONFIG.events.wedding.dateAr}\n🕖 ${CONFIG.events.wedding.time}\n📍 ${CONFIG.events.wedding.venue}\n\n${window.location.href}`
+    : `You are invited to the wedding of Ahmad & Nour\n📅 Saturday, March 15, 2025\n🕖 7:30 PM\n📍 Royal Palace Hotel\n\n${window.location.href}`;
+  window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+});
+
+// Add to Calendar (.ics)
+document.getElementById('addCalendar').addEventListener('click', () => {
+  const ics = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'BEGIN:VEVENT',
+    'DTSTART:20250315T193000',
+    'DTEND:20250316T010000',
+    'SUMMARY:حفل زفاف أحمد ♥ نور',
+    'DESCRIPTION:حفل زفاف أحمد الحسيني ونور الراشد',
+    'LOCATION:فندق القصر الملكي — قاعة الألماس',
+    'END:VEVENT',
+    'END:VCALENDAR'
+  ].join('\r\n');
+
+  const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = 'ahmad-nour-wedding.ics';
+  link.click();
+  URL.revokeObjectURL(link.href);
+});
+
+// Copy Link
+document.getElementById('copyLink').addEventListener('click', async function() {
+  try {
+    await navigator.clipboard.writeText(window.location.href);
+    const copyText = this.querySelector('.copy-text');
+    const toast = this.querySelector('.toast-msg');
+    copyText.style.display = 'none';
+    toast.style.display = 'inline';
+    setTimeout(() => {
+      copyText.style.display = 'inline';
+      toast.style.display = 'none';
+    }, 2000);
+  } catch(e) {
+    // Fallback
+    const ta = document.createElement('textarea');
+    ta.value = window.location.href;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+  }
+});
+
+// Native Share
+document.getElementById('shareNative').addEventListener('click', async () => {
+  const shareData = {
+    title: 'دعوة زفاف أحمد ♥ نور',
+    text: 'يسعدنا دعوتكم لحضور حفل زفافنا',
+    url: window.location.href
+  };
+  try {
+    if (navigator.share) {
+      await navigator.share(shareData);
+    } else {
+      // Fallback: copy link
+      await navigator.clipboard.writeText(window.location.href);
+    }
+  } catch(e) { /* User cancelled */ }
+});
+
+/* ═══════════════════════════════════════════════════════════
+   INITIALIZATION
+   ═══════════════════════════════════════════════════════════ */
+function init() {
+  createParticles();
+  buildNavDots();
+  renderTimeline();
+  generateQR();
+  applyGuestName();
+  setupScrollReveal();
+  setupNavObserver();
+
+  // Apply initial language (from URL or default)
+  if (currentLang !== 'ar') {
+    applyLanguage(currentLang);
+  }
+
+  // Debounced resize for particles
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(createParticles, 300);
+  }, { passive: true });
+}
+
+// Run on DOM ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,2294 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Georges & Lara — Wedding Invitation</title>
+<meta name="description" content="You are cordially invited to celebrate the wedding of Georges & Lara">
+<meta property="og:title" content="Georges & Lara Wedding">
+<meta property="og:description" content="Join us in celebrating our special day">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ══════════════════════════════════════════
+   CONFIG-DRIVEN CSS VARIABLES — Edit here
+══════════════════════════════════════════ */
+:root {
+  /* Colors — change these to restyle the whole invite */
+  --bg-deep: #0e0d0b;
+  --bg-main: #13110e;
+  --bg-card: #1a1713;
+  --bg-card2: #1f1c17;
+  --gold: #C8A96E;
+  --gold-light: #E8D5A3;
+  --gold-bright: #D4B96A;
+  --gold-dim: rgba(200,169,110,0.25);
+  --gold-dimmer: rgba(200,169,110,0.12);
+  --ivory: #F4EFE4;
+  --ivory-dim: rgba(244,239,228,0.65);
+  --ivory-muted: rgba(244,239,228,0.4);
+  --rose: #C47B7B;
+  --rose-dim: rgba(196,123,123,0.25);
+  --success: #7EC47E;
+
+  /* Typography */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-verse: 'EB Garamond', Georgia, serif;
+  --font-body: 'Jost', sans-serif;
+
+  /* Spacing */
+  --section-pad: clamp(60px, 10vh, 100px) clamp(20px, 6vw, 80px);
+  --card-radius: 16px;
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* ══════════════════════════════════════════
+   RESET & BASE
+══════════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--bg-deep);
+  color: var(--ivory);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+body.locked { overflow: hidden; }
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb { background: var(--gold-dark, #8a6d3a); border-radius: 2px; }
+
+/* ══════════════════════════════════════════
+   FLOATING PARTICLES
+══════════════════════════════════════════ */
+#particles {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+}
+.particle {
+  position: absolute; border-radius: 50%;
+  background: var(--gold);
+  animation: float-up linear infinite;
+  opacity: 0;
+}
+@keyframes float-up {
+  0%   { transform: translateY(100vh) translateX(0); opacity: 0; }
+  10%  { opacity: var(--particle-opacity); }
+  90%  { opacity: var(--particle-opacity); }
+  100% { transform: translateY(-10vh) translateX(var(--drift)); opacity: 0; }
+}
+
+/* ══════════════════════════════════════════
+   OPENING ENVELOPE SCREEN
+══════════════════════════════════════════ */
+#opening-screen {
+  position: fixed; inset: 0; z-index: 1000;
+  background: var(--bg-deep);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 40px 24px;
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+#opening-screen.exit {
+  opacity: 0; transform: translateY(-3%); pointer-events: none;
+}
+
+/* Ornamental frame */
+.env-frame {
+  position: relative;
+  border: 1px solid var(--gold-dim);
+  padding: clamp(36px, 8vw, 64px) clamp(24px, 8vw, 64px);
+  max-width: 480px; width: 100%;
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 18px;
+  animation: frame-glow 4s ease-in-out infinite;
+}
+@keyframes frame-glow {
+  0%,100% { box-shadow: 0 0 0 rgba(200,169,110,0); }
+  50%     { box-shadow: 0 0 40px rgba(200,169,110,0.08); }
+}
+
+/* Corner accents */
+.env-frame::before, .env-frame::after,
+.env-frame .corner-bl, .env-frame .corner-br {
+  content: ''; position: absolute;
+  width: 20px; height: 20px;
+  border-color: var(--gold);
+  border-style: solid;
+}
+.env-frame::before  { top: 6px;    left: 6px;    border-width: 1px 0 0 1px; }
+.env-frame::after   { top: 6px;    right: 6px;   border-width: 1px 1px 0 0; }
+.env-frame .corner-bl { bottom: 6px; left: 6px;  border-width: 0 0 1px 1px; }
+.env-frame .corner-br { bottom: 6px; right: 6px; border-width: 0 1px 1px 0; }
+
+.env-bsm {
+  font-family: var(--font-verse);
+  font-size: clamp(13px, 3.5vw, 15px);
+  color: var(--gold);
+  letter-spacing: 0.05em;
+  font-style: italic;
+}
+
+.env-divider {
+  display: flex; align-items: center; gap: 10px; width: 100%;
+}
+.env-divider::before, .env-divider::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold-dim));
+}
+.env-divider::after { background: linear-gradient(to left, transparent, var(--gold-dim)); }
+.env-divider-icon { color: var(--gold); font-size: 12px; opacity: 0.7; }
+
+.env-families {
+  font-family: var(--font-body);
+  font-size: clamp(11px, 3vw, 13px);
+  color: var(--ivory-muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+
+.env-invite-text {
+  font-family: var(--font-verse);
+  font-size: clamp(13px, 3.5vw, 15px);
+  color: var(--ivory-dim);
+  font-style: italic;
+}
+
+.env-names {
+  font-family: var(--font-display);
+  font-size: clamp(44px, 13vw, 68px);
+  font-weight: 300;
+  line-height: 1.1;
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-bright) 100%);
+  background-size: 200%;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 6s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0%,100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+.env-heart {
+  color: var(--rose);
+  font-size: 0.55em;
+  -webkit-text-fill-color: var(--rose);
+  animation: heartbeat 1.8s ease-in-out infinite;
+  display: inline-block; vertical-align: middle; margin: 0 6px;
+}
+@keyframes heartbeat {
+  0%,100% { transform: scale(1); }
+  25%      { transform: scale(1.2); }
+  45%      { transform: scale(1); }
+  65%      { transform: scale(1.12); }
+}
+
+.env-date-line {
+  font-family: var(--font-body);
+  font-size: clamp(11px, 3vw, 13px);
+  color: var(--ivory-muted);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.env-guest {
+  font-family: var(--font-verse);
+  font-size: clamp(14px, 3.5vw, 16px);
+  color: var(--gold-light);
+  font-style: italic;
+}
+
+.env-open-btn {
+  margin-top: 6px;
+  background: transparent;
+  border: 1px solid var(--gold-dim);
+  color: var(--gold);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  padding: 14px 36px;
+  cursor: pointer;
+  transition: all 0.4s var(--ease-out);
+  position: relative; overflow: hidden;
+}
+.env-open-btn::before {
+  content: ''; position: absolute; inset: 0;
+  background: var(--gold);
+  transform: translateX(-101%);
+  transition: transform 0.4s var(--ease-out);
+  z-index: 0;
+}
+.env-open-btn:hover::before { transform: translateX(0); }
+.env-open-btn:hover { color: var(--bg-deep); }
+.env-open-btn span { position: relative; z-index: 1; }
+
+/* ══════════════════════════════════════════
+   PERSISTENT UI: MUSIC + NAV DOTS + LANG
+══════════════════════════════════════════ */
+#music-toggle {
+  position: fixed; bottom: 24px; left: 20px; z-index: 900;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: rgba(14,13,11,0.85);
+  border: 1px solid var(--gold-dim);
+  cursor: pointer;
+  display: none; align-items: center; justify-content: center; gap: 2px;
+  backdrop-filter: blur(10px);
+  transition: border-color 0.3s;
+}
+#music-toggle.visible { display: flex; }
+#music-toggle:hover { border-color: var(--gold); }
+.music-bar {
+  width: 3px; border-radius: 2px;
+  background: var(--gold);
+  animation: music-wave 0.9s ease-in-out infinite;
+}
+.music-bar:nth-child(1) { height: 8px;  animation-delay: 0s; }
+.music-bar:nth-child(2) { height: 14px; animation-delay: 0.15s; }
+.music-bar:nth-child(3) { height: 10px; animation-delay: 0.3s; }
+.music-bar:nth-child(4) { height: 16px; animation-delay: 0.1s; }
+@keyframes music-wave {
+  0%,100% { transform: scaleY(0.5); }
+  50%      { transform: scaleY(1.2); }
+}
+#music-toggle.paused .music-bar { animation-play-state: paused; }
+
+#nav-dots {
+  position: fixed; right: 14px; top: 50%; transform: translateY(-50%);
+  z-index: 900; display: none; flex-direction: column; gap: 10px; align-items: center;
+}
+#nav-dots.visible { display: flex; }
+.nav-dot {
+  position: relative;
+  width: 7px; height: 7px; border-radius: 50%;
+  border: 1px solid var(--gold-dim);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.nav-dot.active { background: var(--gold); border-color: var(--gold); }
+.nav-dot-label {
+  position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+  background: rgba(14,13,11,0.9);
+  border: 1px solid var(--gold-dim);
+  padding: 4px 10px;
+  font-size: 11px; font-family: var(--font-body);
+  color: var(--gold); white-space: nowrap; letter-spacing: 0.1em;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.2s;
+}
+.nav-dot:hover .nav-dot-label { opacity: 1; }
+
+#lang-switcher {
+  position: fixed; top: 20px; left: 20px; z-index: 900;
+  display: none; gap: 0; align-items: center;
+  background: rgba(14,13,11,0.85);
+  border: 1px solid var(--gold-dim);
+  border-radius: 4px;
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+#lang-switcher.visible { display: flex; }
+.lang-btn {
+  background: transparent; border: none;
+  color: var(--ivory-muted); font-family: var(--font-body);
+  font-size: 11px; letter-spacing: 0.1em;
+  padding: 8px 12px; cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+}
+.lang-btn.active { background: var(--gold-dimmer); color: var(--gold); }
+.lang-btn:hover:not(.active) { color: var(--ivory); }
+
+/* ══════════════════════════════════════════
+   SCROLL REVEAL
+══════════════════════════════════════════ */
+.reveal {
+  opacity: 0; transform: translateY(36px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.3s; }
+.reveal-d4 { transition-delay: 0.4s; }
+.reveal-d5 { transition-delay: 0.55s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .particle { animation: none !important; transition: none !important; opacity: 1 !important; transform: none !important; }
+}
+
+/* ══════════════════════════════════════════
+   SECTION GLOBALS
+══════════════════════════════════════════ */
+section {
+  position: relative; z-index: 1;
+  padding: var(--section-pad);
+  display: flex; flex-direction: column;
+  align-items: center; text-align: center;
+}
+
+.section-label {
+  font-family: var(--font-body);
+  font-size: 10px; letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold); margin-bottom: 14px;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 9vw, 56px);
+  font-weight: 300; line-height: 1.15;
+  color: var(--ivory);
+  font-style: italic;
+}
+
+.ornament {
+  display: flex; align-items: center; gap: 14px;
+  margin: 20px 0; width: 100%; max-width: 360px;
+}
+.ornament-line {
+  flex: 1; height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold-dim));
+}
+.ornament:last-child .ornament-line,
+.ornament .ornament-line:last-child {
+  background: linear-gradient(to left, transparent, var(--gold-dim));
+}
+.ornament-diamond {
+  width: 8px; height: 8px;
+  background: var(--gold); opacity: 0.6;
+  transform: rotate(45deg);
+}
+
+/* ══════════════════════════════════════════
+   SECTION 1: HERO
+══════════════════════════════════════════ */
+#hero {
+  min-height: 100svh; justify-content: center;
+  background:
+    linear-gradient(180deg, rgba(14,13,11,0.4) 0%, rgba(14,13,11,0.85) 100%),
+    url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1400&q=80&auto=format') center/cover no-repeat;
+  /* ↑ REPLACE with your own background image URL */
+}
+/* Background overlay pattern */
+#hero::before {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  background-image: radial-gradient(circle at 50% 60%, rgba(200,169,110,0.06) 0%, transparent 70%);
+}
+
+.hero-bsm {
+  font-family: var(--font-verse);
+  font-size: clamp(13px, 3.5vw, 15px);
+  color: var(--gold); font-style: italic;
+  letter-spacing: 0.05em; margin-bottom: 6px;
+}
+
+.hero-families {
+  font-family: var(--font-body);
+  font-size: clamp(11px, 3vw, 13px);
+  color: var(--ivory-muted);
+  letter-spacing: 0.15em; text-transform: uppercase;
+  line-height: 2.2;
+}
+
+.hero-invite-line {
+  font-family: var(--font-verse);
+  font-size: clamp(14px, 4vw, 17px);
+  color: var(--ivory-dim);
+  font-style: italic; margin: 4px 0 20px;
+}
+
+.hero-names-wrap {
+  position: relative;
+  padding: 28px 40px;
+  margin: 4px 0;
+}
+.hero-names-wrap::before, .hero-names-wrap::after {
+  content: ''; position: absolute;
+  width: 28px; height: 28px;
+  border-color: var(--gold); border-style: solid; opacity: 0.5;
+}
+.hero-names-wrap::before { top: 0; left: 0; border-width: 1px 0 0 1px; }
+.hero-names-wrap::after  { top: 0; right:0; border-width: 1px 1px 0 0; }
+.hero-names-wrap .corner-bl { position:absolute; bottom:0; left:0;  border-color:var(--gold); border-style:solid; border-width:0 0 1px 1px; width:28px; height:28px; opacity:0.5; }
+.hero-names-wrap .corner-br { position:absolute; bottom:0; right:0; border-color:var(--gold); border-style:solid; border-width:0 1px 1px 0; width:28px; height:28px; opacity:0.5; }
+
+.hero-groom, .hero-bride {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 16vw, 88px);
+  font-weight: 300; line-height: 1;
+  background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-bright) 100%);
+  background-size: 200%;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 6s ease-in-out infinite;
+}
+
+.hero-and {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 6vw, 28px);
+  font-weight: 300; font-style: italic;
+  color: var(--rose); display: block; margin: -4px 0;
+  -webkit-text-fill-color: var(--rose);
+  animation: heartbeat 1.8s ease-in-out infinite;
+}
+
+.hero-dates {
+  font-family: var(--font-body);
+  font-size: clamp(12px, 3.2vw, 14px);
+  letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--ivory-muted); margin-top: 8px;
+  line-height: 2;
+}
+
+.scroll-hint {
+  margin-top: 36px;
+  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--ivory-muted);
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+}
+.scroll-arrow {
+  width: 1px; height: 40px;
+  background: linear-gradient(to bottom, var(--gold-dim), transparent);
+  animation: arrow-drop 2s ease-in-out infinite;
+}
+@keyframes arrow-drop {
+  0%,100% { transform: translateY(0); opacity: 1; }
+  50%      { transform: translateY(8px); opacity: 0.4; }
+}
+
+/* ══════════════════════════════════════════
+   SECTION 2: BIBLE VERSE
+══════════════════════════════════════════ */
+#verse {
+  min-height: 60vh; justify-content: center;
+  background: var(--bg-main);
+}
+.verse-quote-mark {
+  font-family: var(--font-display);
+  font-size: 120px; line-height: 0.6;
+  color: var(--gold); opacity: 0.1;
+  align-self: flex-start;
+  margin-bottom: -20px;
+  font-style: italic;
+}
+.verse-text {
+  font-family: var(--font-verse);
+  font-size: clamp(16px, 4.5vw, 22px);
+  line-height: 2; font-style: italic;
+  color: var(--ivory-dim);
+  max-width: 620px;
+}
+.verse-text em { color: var(--ivory); font-style: inherit; }
+.verse-ref {
+  font-family: var(--font-body);
+  font-size: 11px; letter-spacing: 0.25em;
+  text-transform: uppercase; color: var(--gold);
+  margin-top: 10px;
+}
+
+/* ══════════════════════════════════════════
+   SECTION 3: COUNTDOWN
+══════════════════════════════════════════ */
+#countdown {
+  min-height: 60vh; justify-content: center;
+  background:
+    linear-gradient(180deg, rgba(14,13,11,0.7) 0%, rgba(14,13,11,0.85) 100%),
+    url('https://images.unsplash.com/photo-1529636798458-92182e662485?w=1400&q=80&auto=format') center/cover no-repeat fixed;
+  /* ↑ REPLACE with your own parallax image URL */
+}
+.countdown-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 12px; max-width: 420px; width: 100%; margin-top: 24px;
+}
+.countdown-card {
+  background: var(--bg-card);
+  border: 1px solid var(--gold-dimmer);
+  border-top: 2px solid var(--gold-dim);
+  padding: 20px 10px; border-radius: 8px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.countdown-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(200,169,110,0.08);
+}
+.countdown-num {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 9vw, 48px);
+  font-weight: 300; color: var(--gold);
+  line-height: 1;
+}
+.countdown-label {
+  font-family: var(--font-body);
+  font-size: 9px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--ivory-muted);
+  margin-top: 6px;
+}
+.countdown-done {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 7vw, 36px);
+  font-style: italic; color: var(--gold);
+}
+
+/* ══════════════════════════════════════════
+   SECTION 4: EVENT DETAILS
+══════════════════════════════════════════ */
+#events { background: var(--bg-main); }
+
+.events-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px; width: 100%; max-width: 680px;
+  margin-top: 28px;
+}
+@media (min-width: 600px) {
+  .events-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.event-card {
+  background: var(--bg-card);
+  border: 1px solid var(--gold-dimmer);
+  border-radius: var(--card-radius);
+  padding: 28px 24px;
+  text-align: center; position: relative;
+  transition: transform 0.4s var(--ease-out), box-shadow 0.4s, border-color 0.4s;
+  overflow: hidden;
+}
+.event-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+}
+.event-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(200,169,110,0.15);
+  border-color: rgba(200,169,110,0.2);
+}
+
+.event-icon {
+  font-size: 24px; margin-bottom: 14px; display: block;
+}
+.event-type {
+  font-family: var(--font-body);
+  font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 10px;
+}
+.event-name {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 6vw, 28px);
+  font-weight: 300; font-style: italic;
+  color: var(--ivory); margin-bottom: 14px;
+}
+.event-detail-row {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  font-size: 12px; color: var(--ivory-muted);
+  letter-spacing: 0.08em; margin: 5px 0;
+}
+.event-detail-row strong { color: var(--ivory-dim); font-weight: 400; }
+
+.event-map-thumb {
+  margin: 16px -24px -28px;
+  height: 120px;
+  overflow: hidden; position: relative;
+}
+.event-map-thumb iframe {
+  width: 100%; height: 100%; border: none;
+  filter: grayscale(100%) brightness(0.6) sepia(0.3);
+  transition: filter 0.4s;
+}
+.event-card:hover .event-map-thumb iframe {
+  filter: grayscale(60%) brightness(0.7);
+}
+.event-map-btn {
+  display: block; margin-top: 14px;
+  font-family: var(--font-body);
+  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); text-decoration: none;
+  border: 1px solid var(--gold-dim);
+  padding: 10px 20px; border-radius: 3px;
+  transition: all 0.3s; text-align: center;
+}
+.event-map-btn:hover {
+  background: var(--gold-dimmer); color: var(--gold-light);
+}
+
+/* Important Locations */
+.locations-section {
+  width: 100%; max-width: 680px; margin-top: 28px;
+}
+.locations-title {
+  font-family: var(--font-body);
+  font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--ivory-muted); margin-bottom: 16px;
+}
+.locations-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.location-card {
+  background: var(--bg-card2);
+  border: 1px solid var(--gold-dimmer);
+  border-radius: 10px;
+  padding: 18px 16px;
+  text-align: center;
+  transition: all 0.3s var(--ease-out);
+}
+.location-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(200,169,110,0.2);
+}
+.location-icon { font-size: 20px; margin-bottom: 8px; }
+.location-label {
+  font-family: var(--font-body);
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 4px;
+}
+.location-address {
+  font-size: 12px; color: var(--ivory-muted); margin-bottom: 10px;
+  line-height: 1.5;
+}
+.location-btn {
+  font-family: var(--font-body);
+  font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--gold); text-decoration: none;
+  border: 1px solid var(--gold-dimmer);
+  padding: 7px 14px; border-radius: 3px; display: inline-block;
+  transition: all 0.3s;
+}
+.location-btn:hover { background: var(--gold-dimmer); }
+
+/* ══════════════════════════════════════════
+   SECTION 5: PHOTO GALLERY
+══════════════════════════════════════════ */
+#gallery { background: var(--bg-deep); }
+.gallery-subtitle {
+  font-family: var(--font-verse);
+  font-size: clamp(13px, 4vw, 15px);
+  font-style: italic; color: var(--ivory-muted);
+  margin-bottom: 28px;
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 10px; width: 100%; max-width: 680px;
+}
+@media (min-width: 600px) {
+  .gallery-grid {
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 200px 200px;
+  }
+  .gallery-item:first-child { grid-row: 1 / 3; }
+}
+
+.gallery-item {
+  background: var(--bg-card);
+  border: 1px solid var(--gold-dimmer);
+  border-radius: 10px; min-height: 160px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden; cursor: pointer;
+  transition: all 0.4s var(--ease-out);
+}
+.gallery-item img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.6s var(--ease-out);
+}
+.gallery-item:hover img { transform: scale(1.05); }
+.gallery-placeholder {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 8px;
+  color: var(--ivory-muted);
+}
+.gallery-placeholder-icon { font-size: 28px; opacity: 0.4; }
+.gallery-placeholder-text {
+  font-size: 10px; letter-spacing: 0.15em;
+  text-transform: uppercase; opacity: 0.4;
+}
+.gallery-item:hover {
+  border-color: rgba(200,169,110,0.25);
+  box-shadow: 0 0 20px rgba(200,169,110,0.06);
+}
+.gallery-item-overlay {
+  position: absolute; inset: 0; z-index: 2;
+  background: rgba(14,13,11,0.6);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.3s;
+}
+.gallery-item:hover .gallery-item-overlay { opacity: 1; }
+.gallery-item-overlay span {
+  font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--gold);
+  border: 1px solid var(--gold-dim); padding: 8px 16px; border-radius: 2px;
+}
+
+/* ══════════════════════════════════════════
+   SECTION 6: LOVE STORY
+══════════════════════════════════════════ */
+#story { background: var(--bg-main); }
+.story-subtitle {
+  font-family: var(--font-verse);
+  font-size: clamp(13px, 4vw, 15px);
+  font-style: italic; color: var(--ivory-muted);
+  margin-bottom: 40px;
+}
+.timeline {
+  position: relative; width: 100%; max-width: 500px;
+  padding: 0 0 0 40px;
+}
+.timeline::before {
+  content: ''; position: absolute;
+  left: 14px; top: 8px; bottom: 8px; width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--gold-dim) 15%, var(--gold-dim) 85%, transparent);
+}
+.timeline-item {
+  position: relative; margin-bottom: 40px;
+  text-align: left;
+}
+.timeline-dot {
+  position: absolute; left: -33px; top: 4px;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--bg-main);
+  border: 1px solid var(--gold-dim);
+  transition: all 0.3s;
+}
+.timeline-item:hover .timeline-dot {
+  background: var(--gold); border-color: var(--gold);
+  box-shadow: 0 0 12px rgba(200,169,110,0.4);
+}
+.timeline-year {
+  font-family: var(--font-display);
+  font-size: 32px; font-weight: 300;
+  color: var(--gold); line-height: 1;
+  margin-bottom: 4px;
+}
+.timeline-event {
+  font-family: var(--font-body);
+  font-size: 13px; letter-spacing: 0.08em;
+  color: var(--ivory-dim); font-weight: 400;
+  margin-bottom: 4px;
+}
+.timeline-desc {
+  font-family: var(--font-verse);
+  font-size: 14px; font-style: italic;
+  color: var(--ivory-muted); line-height: 1.7;
+}
+
+/* ══════════════════════════════════════════
+   SECTION 7: GIFT / REGISTRY
+══════════════════════════════════════════ */
+#gifts { background: var(--bg-deep); }
+.gifts-subtitle {
+  font-family: var(--font-verse);
+  font-size: clamp(13px, 4vw, 15px);
+  font-style: italic; color: var(--ivory-muted);
+  margin-bottom: 28px; max-width: 440px;
+}
+.gifts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px; width: 100%; max-width: 480px;
+}
+@media (min-width: 600px) {
+  .gifts-grid { grid-template-columns: 1fr 1fr; }
+}
+.gift-card {
+  background: var(--bg-card);
+  border: 1px solid var(--gold-dimmer);
+  border-radius: var(--card-radius);
+  padding: 24px 20px; text-align: center;
+  transition: all 0.4s var(--ease-out);
+}
+.gift-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(200,169,110,0.2);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+}
+.gift-card-icon { font-size: 28px; margin-bottom: 12px; }
+.gift-card-title {
+  font-family: var(--font-display);
+  font-size: 20px; font-weight: 300; font-style: italic;
+  color: var(--ivory); margin-bottom: 8px;
+}
+.gift-card-text {
+  font-size: 12px; color: var(--ivory-muted);
+  line-height: 1.7; margin-bottom: 14px;
+}
+.gift-card-btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); text-decoration: none;
+  border: 1px solid var(--gold-dim);
+  padding: 10px 20px; border-radius: 3px;
+  transition: all 0.3s; background: transparent; cursor: pointer;
+}
+.gift-card-btn:hover { background: var(--gold-dimmer); }
+
+/* QR Card */
+.qr-card {
+  grid-column: 1 / -1;
+  background: var(--bg-card2);
+  border: 1px solid var(--gold-dimmer);
+  border-radius: var(--card-radius);
+  padding: 24px 20px;
+  display: flex; align-items: center; gap: 20px;
+  flex-wrap: wrap; justify-content: center;
+}
+.qr-box {
+  width: 120px; height: 120px;
+  border: 2px solid var(--gold-dim);
+  border-radius: 8px; overflow: hidden;
+  flex-shrink: 0;
+}
+.qr-info { text-align: left; }
+.qr-title {
+  font-family: var(--font-display);
+  font-size: 20px; font-weight: 300; font-style: italic;
+  color: var(--ivory); margin-bottom: 6px;
+}
+.qr-text { font-size: 12px; color: var(--ivory-muted); line-height: 1.7; }
+
+/* ══════════════════════════════════════════
+   SECTION 8: RSVP
+══════════════════════════════════════════ */
+#rsvp {
+  background:
+    linear-gradient(180deg, rgba(14,13,11,0.85) 0%, rgba(14,13,11,0.92) 100%),
+    url('https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=1400&q=80&auto=format') center/cover no-repeat;
+  /* ↑ REPLACE with your background */
+}
+.rsvp-subtitle {
+  font-family: var(--font-verse);
+  font-size: clamp(14px, 4vw, 16px);
+  font-style: italic; color: var(--ivory-muted);
+  margin-bottom: 28px; max-width: 440px;
+}
+.rsvp-deadline {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--gold); border: 1px solid var(--gold-dim);
+  padding: 8px 18px; border-radius: 3px; margin-bottom: 24px;
+}
+
+.rsvp-form {
+  width: 100%; max-width: 480px;
+  background: var(--bg-card);
+  border: 1px solid var(--gold-dimmer);
+  border-radius: 18px; padding: clamp(24px, 6vw, 40px);
+  text-align: left;
+}
+
+.form-group { margin-bottom: 18px; }
+.form-label {
+  display: block; font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--ivory-muted);
+  margin-bottom: 8px;
+}
+.form-input, .form-select, .form-textarea {
+  width: 100%; background: var(--bg-deep);
+  border: 1px solid var(--gold-dimmer);
+  border-radius: 6px; padding: 12px 14px;
+  font-family: var(--font-body); font-size: 14px;
+  color: var(--ivory); outline: none;
+  transition: border-color 0.3s;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--gold-dim);
+  box-shadow: 0 0 0 2px rgba(200,169,110,0.07);
+}
+.form-input::placeholder, .form-textarea::placeholder { color: var(--ivory-muted); }
+.form-select { appearance: none; cursor: pointer; }
+.form-textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
+.form-select option { background: var(--bg-card); }
+
+/* Radio group */
+.radio-group { display: flex; gap: 10px; flex-wrap: wrap; }
+.radio-option {
+  flex: 1; min-width: 120px;
+  position: relative;
+}
+.radio-option input { position: absolute; opacity: 0; pointer-events: none; }
+.radio-label {
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  padding: 12px; border: 1px solid var(--gold-dimmer);
+  border-radius: 8px; cursor: pointer;
+  font-size: 13px; color: var(--ivory-muted);
+  transition: all 0.3s; letter-spacing: 0.05em;
+}
+.radio-option input:checked + .radio-label {
+  border-color: var(--gold-dim); background: var(--gold-dimmer); color: var(--ivory);
+}
+.radio-option.yes input:checked + .radio-label { color: var(--success); border-color: rgba(126,196,126,0.3); }
+.radio-option.no  input:checked + .radio-label { color: var(--rose);   border-color: rgba(196,123,123,0.3); }
+
+/* Checkbox group */
+.check-group { display: flex; flex-direction: column; gap: 8px; }
+.check-option {
+  display: flex; align-items: center; gap: 10px; cursor: pointer;
+  font-size: 13px; color: var(--ivory-muted);
+}
+.check-option input { display: none; }
+.check-box {
+  width: 18px; height: 18px; border: 1px solid var(--gold-dimmer);
+  border-radius: 3px; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: all 0.3s; font-size: 11px;
+}
+.check-option input:checked ~ .check-box {
+  background: var(--gold-dimmer); border-color: var(--gold-dim); color: var(--gold);
+}
+.check-box::after { content: '✓'; opacity: 0; transition: opacity 0.2s; }
+.check-option input:checked ~ .check-box::after { opacity: 1; }
+
+.rsvp-submit {
+  width: 100%; margin-top: 24px;
+  background: transparent;
+  border: 1px solid var(--gold-dim);
+  color: var(--gold); padding: 16px;
+  font-family: var(--font-body); font-size: 11px;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  cursor: pointer; border-radius: 6px;
+  position: relative; overflow: hidden;
+  transition: color 0.4s;
+}
+.rsvp-submit::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--gold-bright), var(--gold));
+  transform: translateX(-101%);
+  transition: transform 0.4s var(--ease-out);
+}
+.rsvp-submit:hover::before { transform: translateX(0); }
+.rsvp-submit:hover { color: var(--bg-deep); }
+.rsvp-submit span { position: relative; z-index: 1; }
+
+/* RSVP Success */
+.rsvp-success {
+  display: none; text-align: center; padding: 40px 20px;
+  animation: fadeInUp 0.6s var(--ease-out);
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.rsvp-success.show { display: block; }
+.success-icon { font-size: 48px; margin-bottom: 20px; }
+.success-title {
+  font-family: var(--font-display); font-size: 32px;
+  font-weight: 300; font-style: italic; color: var(--ivory);
+  margin-bottom: 10px;
+}
+.success-text { font-size: 14px; color: var(--ivory-muted); line-height: 1.8; }
+
+/* Confetti */
+#confetti-container {
+  position: fixed; inset: 0; pointer-events: none; z-index: 9999; overflow: hidden;
+}
+.confetti-piece {
+  position: absolute; border-radius: 2px;
+  animation: confetti-fall linear forwards;
+}
+@keyframes confetti-fall {
+  0%   { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+/* ══════════════════════════════════════════
+   SECTION 9: FOOTER
+══════════════════════════════════════════ */
+footer {
+  background: var(--bg-deep);
+  border-top: 1px solid var(--gold-dimmer);
+  padding: clamp(48px, 8vh, 80px) clamp(20px, 6vw, 60px);
+  display: flex; flex-direction: column;
+  align-items: center; text-align: center; gap: 20px;
+  position: relative; z-index: 1;
+}
+.footer-await {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 9vw, 52px);
+  font-weight: 300; font-style: italic; color: var(--gold);
+}
+.footer-names {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 6vw, 32px);
+  font-weight: 300; color: var(--ivory-dim);
+}
+.footer-heart {
+  color: var(--rose); display: inline-block;
+  animation: heartbeat 1.8s ease-in-out infinite;
+}
+
+.footer-actions {
+  display: flex; flex-wrap: wrap;
+  gap: 10px; justify-content: center; margin-top: 10px;
+}
+.footer-btn {
+  background: transparent; border: 1px solid var(--gold-dimmer);
+  color: var(--ivory-muted); font-family: var(--font-body);
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  padding: 12px 20px; border-radius: 3px; cursor: pointer;
+  display: flex; align-items: center; gap: 7px;
+  transition: all 0.3s; text-decoration: none;
+}
+.footer-btn:hover { border-color: var(--gold-dim); color: var(--gold); }
+
+.footer-credit {
+  font-size: 11px; color: var(--ivory-muted);
+  letter-spacing: 0.08em;
+}
+.footer-credit a {
+  color: var(--gold); text-decoration: none;
+}
+
+/* ══════════════════════════════════════════
+   QR CODE SVG PLACEHOLDER
+══════════════════════════════════════════ */
+/* Replace the SVG below with a real QR code generator */
+
+/* ══════════════════════════════════════════
+   AUDIO
+══════════════════════════════════════════ */
+audio { display: none; }
+</style>
+</head>
+<body class="locked" id="body">
+
+<!-- ═══════════════════════════════════════
+     CONFETTI CONTAINER
+═══════════════════════════════════════ -->
+<div id="confetti-container" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════
+     FLOATING PARTICLES
+═══════════════════════════════════════ -->
+<div id="particles" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════
+     AUDIO (replace src)
+═══════════════════════════════════════ -->
+<audio id="bg-music" loop preload="none">
+  <!-- REPLACE src with path to your music file -->
+  <!-- <source src="music/wedding-nasheed.mp3" type="audio/mpeg"> -->
+</audio>
+
+<!-- ═══════════════════════════════════════
+     PERSISTENT: LANGUAGE SWITCHER
+═══════════════════════════════════════ -->
+<nav id="lang-switcher" aria-label="Language switcher">
+  <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" data-lang="ar" onclick="setLang('ar')">AR</button>
+  <button class="lang-btn" data-lang="fr" onclick="setLang('fr')">FR</button>
+</nav>
+
+<!-- ═══════════════════════════════════════
+     PERSISTENT: MUSIC TOGGLE
+═══════════════════════════════════════ -->
+<button id="music-toggle" aria-label="Toggle music" onclick="toggleMusic()">
+  <div class="music-bar"></div>
+  <div class="music-bar"></div>
+  <div class="music-bar"></div>
+  <div class="music-bar"></div>
+</button>
+
+<!-- ═══════════════════════════════════════
+     PERSISTENT: NAV DOTS
+═══════════════════════════════════════ -->
+<nav id="nav-dots" aria-label="Section navigation">
+  <!-- Populated via JS -->
+</nav>
+
+<!-- ═══════════════════════════════════════
+     OPENING SCREEN
+═══════════════════════════════════════ -->
+<div id="opening-screen" role="dialog" aria-modal="true" aria-label="Wedding invitation opening">
+  <div class="env-frame">
+    <div class="corner-bl"></div><div class="corner-br"></div>
+
+    <p class="env-bsm" data-key="verse_short">
+      "What God has joined together, let no one separate" — Mark 10:9
+    </p>
+
+    <div class="ornament">
+      <div class="ornament-line"></div>
+      <div class="ornament-diamond"></div>
+      <div class="ornament-line" style="background:linear-gradient(to left,transparent,var(--gold-dim))"></div>
+    </div>
+
+    <div class="env-families" data-key="families_invite">
+      The Khoury Family &amp; The Nassar Family<br>
+      <span style="color:var(--ivory-muted);font-size:0.9em">joyfully invite you to celebrate</span>
+    </div>
+
+    <div class="env-names">
+      <span id="env-groom-name">Georges</span>
+      <span class="env-heart">♥</span>
+      <span id="env-bride-name">Lara</span>
+    </div>
+
+    <div class="env-date-line" data-key="main_date">Saturday · May 10, 2025</div>
+
+    <p class="env-guest" id="env-guest-line">Dear Honoured Guests</p>
+
+    <button class="env-open-btn" onclick="openInvitation()" aria-label="Open invitation">
+      <span data-key="open_btn">Open Invitation ✦</span>
+    </button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     MAIN CONTENT
+═══════════════════════════════════════ -->
+<main>
+
+  <!-- SECTION 1: HERO -->
+  <section id="hero" data-section="0">
+    <div style="position:relative;z-index:1;width:100%;display:flex;flex-direction:column;align-items:center;gap:14px">
+      <p class="hero-bsm reveal reveal-d1" data-key="verse_short">"What God has joined together, let no one separate"</p>
+
+      <div class="ornament reveal reveal-d2">
+        <div class="ornament-line"></div>
+        <div class="ornament-diamond"></div>
+        <div class="ornament-line" style="background:linear-gradient(to left,transparent,var(--gold-dim))"></div>
+      </div>
+
+      <div class="hero-families reveal reveal-d2" data-key="families_full">
+        The Khoury Family &amp; The Nassar Family<br>
+        together with their parents
+      </div>
+
+      <p class="hero-invite-line reveal reveal-d3" data-key="invite_line">
+        joyfully invite you to celebrate the marriage of their children
+      </p>
+
+      <div class="hero-names-wrap reveal reveal-d3">
+        <div class="corner-bl"></div><div class="corner-br"></div>
+        <div class="hero-groom" id="hero-groom">Georges</div>
+        <span class="hero-and">♥</span>
+        <div class="hero-bride" id="hero-bride">Lara</div>
+      </div>
+
+      <div class="hero-dates reveal reveal-d4" data-key="hero_dates">
+        Saturday, May 10, 2025 · 6:00 PM<br>
+        <span style="font-size:0.9em;opacity:0.7" data-key="hero_dates_hijri">٠٩ شوّال ١٤٤٦ هـ</span>
+      </div>
+
+      <div class="scroll-hint reveal reveal-d5" data-key="scroll_hint">
+        <span>Scroll</span>
+        <div class="scroll-arrow"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: BIBLE VERSE -->
+  <section id="verse" data-section="1">
+    <div class="verse-quote-mark reveal">&ldquo;</div>
+    <div class="ornament reveal reveal-d1">
+      <div class="ornament-line"></div>
+      <div class="ornament-diamond"></div>
+      <div class="ornament-line" style="background:linear-gradient(to left,transparent,var(--gold-dim))"></div>
+    </div>
+    <p class="verse-text reveal reveal-d2" data-key="bible_verse">
+      <em>"Love is patient, love is kind. It does not envy, it does not boast, it is not proud. It always protects, always trusts, always hopes, always perseveres. Love never fails."</em>
+    </p>
+    <p class="verse-ref reveal reveal-d3" data-key="bible_ref">— 1 Corinthians 13:4, 7-8</p>
+    <div class="ornament reveal reveal-d4">
+      <div class="ornament-line"></div>
+      <div class="ornament-diamond"></div>
+      <div class="ornament-line" style="background:linear-gradient(to left,transparent,var(--gold-dim))"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: COUNTDOWN -->
+  <section id="countdown" data-section="2">
+    <p class="section-label reveal" data-key="countdown_label">Counting the Days</p>
+    <h2 class="section-title reveal reveal-d1" data-key="countdown_title">Until We Say <em>I Do</em></h2>
+    <p class="reveal reveal-d2" style="font-size:13px;color:var(--ivory-muted);margin-top:6px" data-key="countdown_sub">Saturday, May 10, 2025</p>
+    <div class="countdown-grid reveal reveal-d3" id="countdown-grid">
+      <div class="countdown-card"><div class="countdown-num" id="cd-days">00</div><div class="countdown-label" data-key="days">Days</div></div>
+      <div class="countdown-card"><div class="countdown-num" id="cd-hours">00</div><div class="countdown-label" data-key="hours">Hours</div></div>
+      <div class="countdown-card"><div class="countdown-num" id="cd-mins">00</div><div class="countdown-label" data-key="minutes">Minutes</div></div>
+      <div class="countdown-card"><div class="countdown-num" id="cd-secs">00</div><div class="countdown-label" data-key="seconds">Seconds</div></div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: EVENT DETAILS -->
+  <section id="events" data-section="3">
+    <p class="section-label reveal" data-key="events_label">Save the Date</p>
+    <h2 class="section-title reveal reveal-d1" data-key="events_title">The Celebrations</h2>
+
+    <div class="ornament reveal reveal-d2">
+      <div class="ornament-line"></div>
+      <div class="ornament-diamond"></div>
+      <div class="ornament-line" style="background:linear-gradient(to left,transparent,var(--gold-dim))"></div>
+    </div>
+
+    <div class="events-grid">
+      <!-- Card: Church Ceremony -->
+      <div class="event-card reveal reveal-d2">
+        <span class="event-icon">⛪</span>
+        <div class="event-type" data-key="ceremony_type">Church Ceremony</div>
+        <div class="event-name" data-key="ceremony_name">Holy Mass</div>
+        <div class="event-detail-row"><strong data-key="ceremony_date">Saturday, May 10, 2025</strong></div>
+        <div class="event-detail-row">
+          <span data-key="at">at</span> <strong data-key="ceremony_time">4:00 PM</strong>
+        </div>
+        <div class="event-detail-row" style="font-size:11px" data-key="ceremony_venue">
+          Saint George Maronite Cathedral, Beirut
+        </div>
+        <div class="event-map-thumb">
+          <!-- REPLACE with actual embed URL -->
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.0!2d35.505!3d33.893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDUzJzM0LjgiTiAzNcKwMzAnMTguMCJF!5e0!3m2!1sen!2slb!4v1"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Church location">
+          </iframe>
+        </div>
+        <a class="event-map-btn" href="https://maps.google.com/?q=33.8938,35.5018" target="_blank" rel="noopener" data-key="view_map">View Location 📍</a>
+      </div>
+
+      <!-- Card: Reception -->
+      <div class="event-card reveal reveal-d3">
+        <span class="event-icon">🥂</span>
+        <div class="event-type" data-key="reception_type">Wedding Reception</div>
+        <div class="event-name" data-key="reception_name">Dinner & Dance</div>
+        <div class="event-detail-row"><strong data-key="reception_date">Saturday, May 10, 2025</strong></div>
+        <div class="event-detail-row">
+          <span data-key="at">at</span> <strong data-key="reception_time">7:30 PM</strong>
+        </div>
+        <div class="event-detail-row" style="font-size:11px" data-key="reception_venue">
+          Grand Hills Hotel — Diamond Ballroom
+        </div>
+        <div class="event-map-thumb">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.0!2d35.495!3d33.888!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDUzJzE2LjgiTiAzNcKwMjknNDIuMCJF!5e0!3m2!1sen!2slb!4v1"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Venue location">
+          </iframe>
+        </div>
+        <a class="event-map-btn" href="https://maps.google.com/?q=33.8886,35.4955" target="_blank" rel="noopener" data-key="view_map">View Location 📍</a>
+      </div>
+    </div>
+
+    <!-- Important Locations -->
+    <div class="locations-section">
+      <p class="locations-title reveal" data-key="locations_title">Important Locations</p>
+      <div class="locations-grid">
+        <div class="location-card reveal reveal-d1">
+          <div class="location-icon">🏠</div>
+          <div class="location-label" data-key="groom_house">Groom's Home</div>
+          <div class="location-address" data-key="groom_address">Al-Mutanabbi Street, Beirut</div>
+          <a class="location-btn" href="https://maps.google.com/?q=33.8950,35.5100" target="_blank" rel="noopener" data-key="directions">Directions 📍</a>
+        </div>
+        <div class="location-card reveal reveal-d2">
+          <div class="location-icon">🏠</div>
+          <div class="location-label" data-key="bride_house">Bride's Home</div>
+          <div class="location-address" data-key="bride_address">Hamra Street, Beirut</div>
+          <a class="location-btn" href="https://maps.google.com/?q=33.8990,35.4870" target="_blank" rel="noopener" data-key="directions">Directions 📍</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: PHOTO GALLERY -->
+  <section id="gallery" data-section="4">
+    <p class="section-label reveal" data-key="gallery_label">Our Moments</p>
+    <h2 class="section-title reveal reveal-d1" data-key="gallery_title">A Life in Pictures</h2>
+    <p class="gallery-subtitle reveal reveal-d2" data-key="gallery_sub">Moments that brought us here</p>
+
+    <div class="gallery-grid reveal reveal-d3" style="max-width:680px;width:100%">
+      <!-- Replace .gallery-placeholder with <img src="..." alt="..."> for real photos -->
+      <div class="gallery-item" style="min-height:200px">
+        <!-- <img src="photo1.jpg" alt="Georges and Lara"> -->
+        <div class="gallery-placeholder">
+          <div class="gallery-placeholder-icon">📷</div>
+          <div class="gallery-placeholder-text" data-key="photo_placeholder">Your Photo Here</div>
+        </div>
+        <div class="gallery-item-overlay"><span data-key="view_photo">View</span></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder">
+          <div class="gallery-placeholder-icon">📷</div>
+          <div class="gallery-placeholder-text" data-key="photo_placeholder">Your Photo Here</div>
+        </div>
+        <div class="gallery-item-overlay"><span data-key="view_photo">View</span></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder">
+          <div class="gallery-placeholder-icon">📷</div>
+          <div class="gallery-placeholder-text" data-key="photo_placeholder">Your Photo Here</div>
+        </div>
+        <div class="gallery-item-overlay"><span data-key="view_photo">View</span></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder">
+          <div class="gallery-placeholder-icon">📷</div>
+          <div class="gallery-placeholder-text" data-key="photo_placeholder">Your Photo Here</div>
+        </div>
+        <div class="gallery-item-overlay"><span data-key="view_photo">View</span></div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder">
+          <div class="gallery-placeholder-icon">📷</div>
+          <div class="gallery-placeholder-text" data-key="photo_placeholder">Your Photo Here</div>
+        </div>
+        <div class="gallery-item-overlay"><span data-key="view_photo">View</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: LOVE STORY -->
+  <section id="story" data-section="5">
+    <p class="section-label reveal" data-key="story_label">Our Story</p>
+    <h2 class="section-title reveal reveal-d1" data-key="story_title">The Journey to <em>Forever</em></h2>
+    <p class="story-subtitle reveal reveal-d2" data-key="story_sub">A love story written by God's grace</p>
+
+    <div class="timeline">
+      <div class="timeline-item reveal reveal-d2">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2020</div>
+        <div class="timeline-event" data-key="story_1_title">The First Meeting ✨</div>
+        <div class="timeline-desc" data-key="story_1_desc">"Fate brought us together when we least expected it — a chance encounter that changed everything."</div>
+      </div>
+      <div class="timeline-item reveal reveal-d3">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2021</div>
+        <div class="timeline-event" data-key="story_2_title">Falling in Love 🌹</div>
+        <div class="timeline-desc" data-key="story_2_desc">"We discovered our hearts beating in perfect rhythm, and knew this was something extraordinary."</div>
+      </div>
+      <div class="timeline-item reveal reveal-d4">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2023</div>
+        <div class="timeline-event" data-key="story_3_title">The Proposal 💍</div>
+        <div class="timeline-desc" data-key="story_3_desc">"A breathtaking moment beneath the stars. One question. One answer. One beautiful future."</div>
+      </div>
+      <div class="timeline-item reveal reveal-d5">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">2025</div>
+        <div class="timeline-event" data-key="story_4_title">The Wedding 🎊</div>
+        <div class="timeline-desc" data-key="story_4_desc">"The day we've been dreaming of — forever begins today."</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: GIFTS -->
+  <section id="gifts" data-section="6">
+    <p class="section-label reveal" data-key="gifts_label">Wedding Gifts</p>
+    <h2 class="section-title reveal reveal-d1" data-key="gifts_title">A Token of Love 🎁</h2>
+    <p class="gifts-subtitle reveal reveal-d2" data-key="gifts_sub">Your presence is the greatest gift. If you wish to honour us further:</p>
+
+    <div class="gifts-grid reveal reveal-d3">
+      <!-- Cash Gift -->
+      <div class="gift-card">
+        <div class="gift-card-icon">💸</div>
+        <div class="gift-card-title" data-key="gift_cash_title">Cash Gift</div>
+        <div class="gift-card-text" data-key="gift_cash_text">Send your gift via Whish Money, OMT, or bank transfer. Details available upon request.</div>
+        <button class="gift-card-btn" onclick="alert('Please contact the couple directly for bank details.')" data-key="gift_cash_btn">Get Details</button>
+      </div>
+
+      <!-- Physical Gift -->
+      <div class="gift-card">
+        <div class="gift-card-icon">🎁</div>
+        <div class="gift-card-title" data-key="gift_physical_title">Physical Gift</div>
+        <div class="gift-card-text" data-key="gift_physical_text">We joyfully welcome your gifts on the evening of the celebration. We are grateful for your love.</div>
+        <div style="font-size:11px;color:var(--gold);letter-spacing:0.1em" data-key="gift_physical_note">Thank you from the bottom of our hearts</div>
+      </div>
+
+      <!-- QR Code -->
+      <div class="qr-card">
+        <div class="qr-box" id="qr-container">
+          <!-- QR Code generated via JS -->
+        </div>
+        <div class="qr-info">
+          <div class="qr-title" data-key="qr_title">Share Your Photos 📸</div>
+          <div class="qr-text" data-key="qr_text">Scan to upload the photos you took at the wedding. They'll be added to our couple album — a gift we'll cherish forever.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8: RSVP -->
+  <section id="rsvp" data-section="7">
+    <p class="section-label reveal" data-key="rsvp_label">RSVP</p>
+    <h2 class="section-title reveal reveal-d1" data-key="rsvp_title">Confirm Your Attendance</h2>
+    <p class="rsvp-subtitle reveal reveal-d2" data-key="rsvp_sub">We'd love to celebrate with you — please let us know by May 1st.</p>
+    <div class="rsvp-deadline reveal reveal-d2">
+      <span>🗓</span> <span data-key="rsvp_deadline">Kindly reply by May 1, 2025</span>
+    </div>
+
+    <div class="rsvp-form reveal reveal-d3" id="rsvp-form-wrap">
+
+      <div class="form-group">
+        <label class="form-label" for="rsvp-name" data-key="form_name">Full Name</label>
+        <input class="form-input" type="text" id="rsvp-name" placeholder="Your full name" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="rsvp-phone" data-key="form_phone">Phone Number</label>
+        <input class="form-input" type="tel" id="rsvp-phone" placeholder="+961 XX XXX XXX">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" data-key="form_attending">Will you be joining us?</label>
+        <div class="radio-group">
+          <label class="radio-option yes">
+            <input type="radio" name="attending" value="yes" checked>
+            <div class="radio-label">✓ <span data-key="form_yes">Yes, I'll be there!</span></div>
+          </label>
+          <label class="radio-option no">
+            <input type="radio" name="attending" value="no">
+            <div class="radio-label">✗ <span data-key="form_no">Unable to attend</span></div>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="rsvp-guests" data-key="form_guests">Number of Accompanying Guests</label>
+        <select class="form-select" id="rsvp-guests">
+          <option value="0" data-key="form_solo">Just me</option>
+          <option value="1">+1</option>
+          <option value="2">+2</option>
+          <option value="3">+3</option>
+          <option value="4">+4</option>
+          <option value="5">+5 or more</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" data-key="form_events">Which event(s) will you attend?</label>
+        <div class="check-group">
+          <label class="check-option">
+            <input type="checkbox" name="event" value="ceremony">
+            <div class="check-box"></div>
+            <span data-key="form_ceremony">Church Ceremony (4:00 PM)</span>
+          </label>
+          <label class="check-option">
+            <input type="checkbox" name="event" value="reception" checked>
+            <div class="check-box"></div>
+            <span data-key="form_reception">Wedding Reception (7:30 PM)</span>
+          </label>
+          <label class="check-option">
+            <input type="checkbox" name="event" value="both">
+            <div class="check-box"></div>
+            <span data-key="form_both">Both Events</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="rsvp-message" data-key="form_message">A Message for the Couple <span style="opacity:0.5">(optional)</span></label>
+        <textarea class="form-textarea" id="rsvp-message" placeholder="Share your wishes..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="rsvp-dietary" data-key="form_dietary">Dietary Requirements <span style="opacity:0.5">(optional)</span></label>
+        <input class="form-input" type="text" id="rsvp-dietary" placeholder="e.g. vegetarian, allergies...">
+      </div>
+
+      <button class="rsvp-submit" onclick="submitRSVP()" id="rsvp-submit-btn" aria-label="Submit RSVP">
+        <span id="rsvp-btn-text" data-key="form_submit">Send My RSVP ✦</span>
+      </button>
+    </div>
+
+    <div class="rsvp-success" id="rsvp-success">
+      <div class="success-icon">✨</div>
+      <div class="success-title" data-key="success_title">Thank You!</div>
+      <div class="success-text" data-key="success_text">
+        Your RSVP has been received.<br>
+        We can't wait to celebrate with you and share this beautiful day.
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════ -->
+<footer id="footer" data-section="8">
+  <div class="footer-await reveal" data-key="footer_await">We await you with joy</div>
+  <div class="footer-names reveal reveal-d1">
+    <span id="footer-groom-name">Georges</span>
+    <span class="footer-heart"> ♥ </span>
+    <span id="footer-bride-name">Lara</span>
+  </div>
+
+  <div class="ornament reveal reveal-d2" style="max-width:200px">
+    <div class="ornament-line"></div>
+    <div class="ornament-diamond"></div>
+    <div class="ornament-line" style="background:linear-gradient(to left,transparent,var(--gold-dim))"></div>
+  </div>
+
+  <div class="footer-actions reveal reveal-d3">
+    <button class="footer-btn" onclick="shareWhatsApp()" aria-label="Share on WhatsApp">
+      💬 <span data-key="share_whatsapp">WhatsApp</span>
+    </button>
+    <button class="footer-btn" onclick="addToCalendar()" aria-label="Add to calendar">
+      📅 <span data-key="add_calendar">Add to Calendar</span>
+    </button>
+    <button class="footer-btn" onclick="copyLink()" id="copy-btn" aria-label="Copy invitation link">
+      📋 <span data-key="copy_link">Copy Link</span>
+    </button>
+    <button class="footer-btn" onclick="shareInvitation()" aria-label="Share invitation">
+      📤 <span data-key="share">Share</span>
+    </button>
+  </div>
+
+  <div class="ornament reveal reveal-d4" style="max-width:200px">
+    <div class="ornament-line"></div>
+    <div class="ornament-diamond"></div>
+    <div class="ornament-line" style="background:linear-gradient(to left,transparent,var(--gold-dim))"></div>
+  </div>
+
+  <div class="footer-credit reveal reveal-d5">
+    Designed with 🤍 by <a href="https://cartamoments.com" target="_blank" rel="noopener">CartaMoments</a>
+  </div>
+  <div class="footer-credit" style="opacity:0.4;font-size:10px;letter-spacing:0.1em">
+    © 2025 All rights reserved
+  </div>
+</footer>
+
+<script>
+/* ══════════════════════════════════════════════════════
+   CONFIG — All client-editable data lives here
+══════════════════════════════════════════════════════ */
+const CONFIG = {
+  // ── Couple ──────────────────────────────────────────
+  groom: {
+    name: 'Georges',
+    familyName: 'Khoury',
+    nameAr: 'جورج',
+    nameFr: 'Georges'
+  },
+  bride: {
+    name: 'Lara',
+    familyName: 'Nassar',
+    nameAr: 'لارا',
+    nameFr: 'Lara'
+  },
+
+  // ── Families ─────────────────────────────────────────
+  groomFamily: { en: 'The Khoury Family', ar: 'عائلة خوري', fr: 'La famille Khoury' },
+  brideFamily: { en: 'The Nassar Family', ar: 'عائلة نصار', fr: 'La famille Nassar' },
+
+  // ── Events ───────────────────────────────────────────
+  events: {
+    ceremony: {
+      nameEn: 'Holy Mass',
+      nameAr: 'القداس الإلهي',
+      nameFr: 'Messe Solennelle',
+      date: '2025-05-10T16:00:00',
+      dateDisplayEn: 'Saturday, May 10, 2025',
+      dateDisplayAr: 'السبت ١٠ أيار ٢٠٢٥',
+      dateDisplayFr: 'Samedi 10 Mai 2025',
+      timeEn: '4:00 PM',
+      timeAr: '٤:٠٠ مساءً',
+      timeFr: '16h00',
+      venueEn: 'Saint George Maronite Cathedral, Beirut',
+      venueAr: 'كاتدرائية مار جرجس المارونية، بيروت',
+      venueFr: 'Cathédrale Saint-Georges Maronite, Beyrouth',
+      mapUrl: 'https://maps.google.com/?q=33.8938,35.5018',
+      mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.0!2d35.505!3d33.893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDUzJzM0LjgiTiAzNcKwMzAnMTguMCJF!5e0!3m2!1sen!2slb!4v1'
+    },
+    reception: {
+      nameEn: 'Dinner & Dance',
+      nameAr: 'حفل العشاء والرقص',
+      nameFr: 'Dîner & Soirée Dansante',
+      date: '2025-05-10T19:30:00',
+      dateDisplayEn: 'Saturday, May 10, 2025',
+      dateDisplayAr: 'السبت ١٠ أيار ٢٠٢٥',
+      dateDisplayFr: 'Samedi 10 Mai 2025',
+      timeEn: '7:30 PM',
+      timeAr: '٧:٣٠ مساءً',
+      timeFr: '19h30',
+      venueEn: 'Grand Hills Hotel — Diamond Ballroom',
+      venueAr: 'فندق غراند هيلز — قاعة الألماس',
+      venueFr: 'Grand Hills Hotel — Salle Diamond',
+      mapUrl: 'https://maps.google.com/?q=33.8886,35.4955',
+      mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.0!2d35.495!3d33.888!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDUzJzE2LjgiTiAzNcKwMjknNDIuMCJF!5e0!3m2!1sen!2slb!4v1'
+    }
+  },
+
+  // ── Locations ────────────────────────────────────────
+  locations: {
+    groom: {
+      en: 'Al-Mutanabbi Street, Beirut',
+      ar: 'شارع المتنبي، بيروت',
+      fr: 'Rue Al-Mutanabbi, Beyrouth',
+      mapUrl: 'https://maps.google.com/?q=33.8950,35.5100'
+    },
+    bride: {
+      en: 'Hamra Street, Beirut',
+      ar: 'شارع الحمرا، بيروت',
+      fr: 'Rue Hamra, Beyrouth',
+      mapUrl: 'https://maps.google.com/?q=33.8990,35.4870'
+    }
+  },
+
+  // ── Countdown target ──────────────────────────────────
+  countdownTarget: '2025-05-10T19:30:00',
+
+  // ── RSVP ─────────────────────────────────────────────
+  rsvp: {
+    endpoint: null, // Replace: 'https://cartamoments.com/api/rsvp'
+    deadline: { en: 'May 1, 2025', ar: '١ أيار ٢٠٢٥', fr: '1er Mai 2025' }
+  },
+
+  // ── Gift ─────────────────────────────────────────────
+  gifts: {
+    photoUploadUrl: 'https://cartamoments.com/photos/georges-lara'
+  },
+
+  // ── Music ─────────────────────────────────────────────
+  music: {
+    enabled: false, // Set true and add src to enable
+    src: null       // Replace: 'music/wedding.mp3'
+  },
+
+  // ── Social ───────────────────────────────────────────
+  hashtag: '#Georges_Lara_2025',
+
+  // ── Story ────────────────────────────────────────────
+  story: [
+    { year: '2020', emoji: '✨', titleEn: 'The First Meeting', descEn: 'Fate brought us together when we least expected it — a chance encounter that changed everything.' },
+    { year: '2021', emoji: '🌹', titleEn: 'Falling in Love',   descEn: 'We discovered our hearts beating in perfect rhythm, and knew this was something extraordinary.' },
+    { year: '2023', emoji: '💍', titleEn: 'The Proposal',       descEn: 'A breathtaking moment beneath the stars. One question. One answer. One beautiful future.' },
+    { year: '2025', emoji: '🎊', titleEn: 'The Wedding',        descEn: 'The day we\'ve been dreaming of — forever begins today.' }
+  ]
+};
+
+/* ══════════════════════════════════════════════════════
+   TRANSLATIONS
+══════════════════════════════════════════════════════ */
+const T = {
+  en: {
+    open_btn: 'Open Invitation ✦',
+    verse_short: '"What God has joined together, let no one separate" — Mark 10:9',
+    families_invite: `${CONFIG.groomFamily.en} &amp; ${CONFIG.brideFamily.en}<br><span style="color:var(--ivory-muted);font-size:0.9em">joyfully invite you to celebrate</span>`,
+    families_full: `${CONFIG.groomFamily.en} &amp; ${CONFIG.brideFamily.en}<br>together with their parents`,
+    invite_line: 'joyfully invite you to celebrate the marriage of their children',
+    main_date: 'Saturday · May 10, 2025',
+    hero_dates: 'Saturday, May 10, 2025 · 6:00 PM',
+    scroll_hint: 'Scroll',
+    bible_verse: '"Love is patient, love is kind. It does not envy, it does not boast, it is not proud. It always protects, always trusts, always hopes, always perseveres. Love never fails."',
+    bible_ref: '— 1 Corinthians 13:4, 7–8',
+    countdown_label: 'Counting the Days',
+    countdown_title: 'Until We Say <em>I Do</em>',
+    countdown_sub: 'Saturday, May 10, 2025',
+    days: 'Days', hours: 'Hours', minutes: 'Minutes', seconds: 'Seconds',
+    events_label: 'Save the Date', events_title: 'The Celebrations',
+    ceremony_type: 'Church Ceremony', ceremony_name: CONFIG.events.ceremony.nameEn,
+    ceremony_date: CONFIG.events.ceremony.dateDisplayEn,
+    ceremony_time: CONFIG.events.ceremony.timeEn,
+    ceremony_venue: CONFIG.events.ceremony.venueEn,
+    reception_type: 'Wedding Reception', reception_name: CONFIG.events.reception.nameEn,
+    reception_date: CONFIG.events.reception.dateDisplayEn,
+    reception_time: CONFIG.events.reception.timeEn,
+    reception_venue: CONFIG.events.reception.venueEn,
+    at: 'at', view_map: 'View Location 📍',
+    locations_title: 'Important Locations',
+    groom_house: "Groom's Home", groom_address: CONFIG.locations.groom.en,
+    bride_house: "Bride's Home", bride_address: CONFIG.locations.bride.en,
+    directions: 'Directions 📍',
+    gallery_label: 'Our Moments', gallery_title: 'A Life in Pictures',
+    gallery_sub: 'Moments that brought us here',
+    photo_placeholder: 'Your Photo Here', view_photo: 'View',
+    story_label: 'Our Story', story_title: 'The Journey to <em>Forever</em>',
+    story_sub: "A love story written by God's grace",
+    story_1_title: `${CONFIG.story[0].emoji} ${CONFIG.story[0].titleEn}`, story_1_desc: `"${CONFIG.story[0].descEn}"`,
+    story_2_title: `${CONFIG.story[1].emoji} ${CONFIG.story[1].titleEn}`, story_2_desc: `"${CONFIG.story[1].descEn}"`,
+    story_3_title: `${CONFIG.story[2].emoji} ${CONFIG.story[2].titleEn}`, story_3_desc: `"${CONFIG.story[2].descEn}"`,
+    story_4_title: `${CONFIG.story[3].emoji} ${CONFIG.story[3].titleEn}`, story_4_desc: `"${CONFIG.story[3].descEn}"`,
+    gifts_label: 'Wedding Gifts', gifts_title: 'A Token of Love 🎁',
+    gifts_sub: 'Your presence is the greatest gift. If you wish to honour us further:',
+    gift_cash_title: 'Cash Gift', gift_cash_text: 'Send your gift via Whish Money, OMT, or bank transfer. Details available upon request.',
+    gift_cash_btn: 'Get Details',
+    gift_physical_title: 'Physical Gift', gift_physical_text: 'We joyfully welcome your gifts on the evening of the celebration.',
+    gift_physical_note: 'Thank you from the bottom of our hearts',
+    qr_title: 'Share Your Photos 📸', qr_text: 'Scan to upload the photos you took at the wedding. They\'ll be added to our couple album.',
+    rsvp_label: 'RSVP', rsvp_title: 'Confirm Your Attendance',
+    rsvp_sub: "We'd love to celebrate with you — please let us know by May 1st.",
+    rsvp_deadline: `Kindly reply by ${CONFIG.rsvp.deadline.en}`,
+    form_name: 'Full Name', form_phone: 'Phone Number',
+    form_attending: 'Will you be joining us?',
+    form_yes: "Yes, I'll be there!", form_no: 'Unable to attend',
+    form_guests: 'Number of Accompanying Guests', form_solo: 'Just me',
+    form_events: 'Which event(s) will you attend?',
+    form_ceremony: 'Church Ceremony (4:00 PM)', form_reception: 'Wedding Reception (7:30 PM)', form_both: 'Both Events',
+    form_message: 'A Message for the Couple', form_dietary: 'Dietary Requirements',
+    form_submit: 'Send My RSVP ✦',
+    success_title: 'Thank You!', success_text: 'Your RSVP has been received.<br>We can\'t wait to celebrate with you.',
+    footer_await: 'We await you with joy',
+    share_whatsapp: 'WhatsApp', add_calendar: 'Add to Calendar', copy_link: 'Copy Link', share: 'Share',
+    groom_name: CONFIG.groom.name, bride_name: CONFIG.bride.name,
+    dir: 'ltr', lang: 'en'
+  },
+  ar: {
+    open_btn: 'افتح الدعوة ✦',
+    verse_short: '"مَا جَمَعَهُ اللهُ لَا يُفَرِّقْهُ إِنْسَانٌ" — مرقس ١٠:٩',
+    families_invite: `${CONFIG.groomFamily.ar} و ${CONFIG.brideFamily.ar}<br><span style="color:var(--ivory-muted);font-size:0.9em">يتشرفون بدعوتكم للاحتفال</span>`,
+    families_full: `${CONFIG.groomFamily.ar} و ${CONFIG.brideFamily.ar}<br>مع أسرتيهما الكريمتين`,
+    invite_line: 'يتشرفون بدعوتكم لحضور زفاف ابنيهما',
+    main_date: 'السبت · ١٠ أيار ٢٠٢٥',
+    hero_dates: 'السبت، ١٠ أيار ٢٠٢٥ · ٧:٣٠ مساءً',
+    scroll_hint: 'مرر للأسفل',
+    bible_verse: '"اَلْمَحَبَّةُ تَتَأَنَّى وَتَرْفُقُ. اَلْمَحَبَّةُ لاَ تَحْسُدُ. لاَ تَتَفَاخَرُ وَلاَ تَنْتَفِخُ. تَحْتَمِلُ كُلَّ شَيْءٍ، وَتُصَدِّقُ كُلَّ شَيْءٍ، وَتَأْمُلُ كُلَّ شَيْءٍ، وَتَصْبِرُ عَلَى كُلِّ شَيْءٍ. اَلْمَحَبَّةُ لاَ تَسْقُطُ أَبَدًا."',
+    bible_ref: '— كورنثوس الأولى ١٣: ٤، ٧-٨',
+    countdown_label: 'العدّ التنازلي',
+    countdown_title: 'حتى نقول <em>نعم</em>',
+    countdown_sub: 'السبت، ١٠ أيار ٢٠٢٥',
+    days: 'يوم', hours: 'ساعة', minutes: 'دقيقة', seconds: 'ثانية',
+    events_label: 'موعد الفرح', events_title: 'تفاصيل الاحتفال',
+    ceremony_type: 'القداس الإلهي', ceremony_name: CONFIG.events.ceremony.nameAr,
+    ceremony_date: CONFIG.events.ceremony.dateDisplayAr, ceremony_time: CONFIG.events.ceremony.timeAr,
+    ceremony_venue: CONFIG.events.ceremony.venueAr,
+    reception_type: 'حفل الاستقبال', reception_name: CONFIG.events.reception.nameAr,
+    reception_date: CONFIG.events.reception.dateDisplayAr, reception_time: CONFIG.events.reception.timeAr,
+    reception_venue: CONFIG.events.reception.venueAr,
+    at: 'الساعة', view_map: 'عرض الموقع 📍',
+    locations_title: 'المواقع المهمة',
+    groom_house: 'منزل العريس', groom_address: CONFIG.locations.groom.ar,
+    bride_house: 'منزل العروس', bride_address: CONFIG.locations.bride.ar,
+    directions: 'الاتجاهات 📍',
+    gallery_label: 'لحظاتنا', gallery_title: 'حياة بالصور',
+    gallery_sub: 'اللحظات التي أوصلتنا إلى هنا',
+    photo_placeholder: 'صورتكم هنا', view_photo: 'عرض',
+    story_label: 'قصتنا', story_title: 'رحلة إلى <em>الأبد</em>',
+    story_sub: 'قصة حب كتبها الرب',
+    story_1_title: `${CONFIG.story[0].emoji} اللقاء الأول`, story_1_desc: '"جمعنا القدر في لحظة لم نكن نتوقعها — لقاء غيّر كل شيء."',
+    story_2_title: `${CONFIG.story[1].emoji} الحب`, story_2_desc: '"أدركنا أن قلوبنا تنبض بنفس الإيقاع، وعرفنا أن هذا شيء استثنائي."',
+    story_3_title: `${CONFIG.story[2].emoji} الخطبة`, story_3_desc: '"لحظة لا تُنسى تحت النجوم. سؤال واحد. جواب واحد. مستقبل جميل."',
+    story_4_title: `${CONFIG.story[3].emoji} الزفاف`, story_4_desc: '"اليوم الذي طالما حلمنا به — يبدأ الأبد اليوم."',
+    gifts_label: 'هدايا العروسين', gifts_title: 'هدية من القلب 🎁',
+    gifts_sub: 'حضوركم هو أثمن هدية. وإن أحببتم إكرامنا بأكثر:',
+    gift_cash_title: 'هدية نقدية', gift_cash_text: 'يمكنكم إرسال هديتكم عبر Whish Money أو OMT أو تحويل بنكي.',
+    gift_cash_btn: 'احصلوا على التفاصيل',
+    gift_physical_title: 'هدية عينية', gift_physical_text: 'يسعدنا استقبال هداياكم يوم الحفل بكل فرح وامتنان.',
+    gift_physical_note: 'نقدّر محبتكم من أعماق القلب',
+    qr_title: 'شاركونا صوركم 📸', qr_text: 'امسحوا الرمز لرفع الصور التي التقطتموها في الحفل. ستُضاف إلى ألبوم العروسين.',
+    rsvp_label: 'تأكيد الحضور', rsvp_title: 'أكّدوا حضوركم',
+    rsvp_sub: 'يسعدنا وجودكم معنا — يُرجى الرد قبل ١ أيار.',
+    rsvp_deadline: `يُرجى الرد قبل ${CONFIG.rsvp.deadline.ar}`,
+    form_name: 'الاسم الكامل', form_phone: 'رقم الهاتف',
+    form_attending: 'هل ستحضرون بإذن الله؟',
+    form_yes: 'نعم، سأحضر!', form_no: 'لن أتمكن من الحضور',
+    form_guests: 'عدد المرافقين', form_solo: 'وحدي',
+    form_events: 'أي حفل ستحضرون؟',
+    form_ceremony: 'القداس الإلهي (٤:٠٠ م)', form_reception: 'حفل الزفاف (٧:٣٠ م)', form_both: 'كلا الحفلين',
+    form_message: 'رسالة للعروسين', form_dietary: 'حساسية تجاه الطعام',
+    form_submit: 'إرسال التأكيد ✦',
+    success_title: 'شكراً جزيلاً!', success_text: 'تم استلام ردكم بنجاح.<br>نتشوق لرؤيتكم ومشاركتنا هذه الفرحة.',
+    footer_await: 'في انتظاركم بشوق',
+    share_whatsapp: 'واتساب', add_calendar: 'أضف للتقويم', copy_link: 'نسخ الرابط', share: 'مشاركة',
+    groom_name: CONFIG.groom.nameAr, bride_name: CONFIG.bride.nameAr,
+    dir: 'rtl', lang: 'ar'
+  },
+  fr: {
+    open_btn: "Ouvrir l'Invitation ✦",
+    verse_short: '"Ce que Dieu a uni, que l\'homme ne le sépare pas" — Marc 10:9',
+    families_invite: `${CONFIG.groomFamily.fr} &amp; ${CONFIG.brideFamily.fr}<br><span style="color:var(--ivory-muted);font-size:0.9em">ont la joie de vous inviter</span>`,
+    families_full: `${CONFIG.groomFamily.fr} &amp; ${CONFIG.brideFamily.fr}<br>avec leurs familles respectives`,
+    invite_line: 'ont la joie de vous convier au mariage de leurs enfants',
+    main_date: 'Samedi · 10 Mai 2025',
+    hero_dates: 'Samedi 10 Mai 2025 · 18h00',
+    scroll_hint: 'Défiler',
+    bible_verse: '"La charité est patiente, elle est pleine de bonté; la charité n\'est point envieuse; la charité ne se vante point, elle ne s\'enfle point d\'orgueil. Elle supporte tout, elle croit tout, elle espère tout, elle endure tout. La charité ne périt jamais."',
+    bible_ref: '— 1 Corinthiens 13:4, 7–8',
+    countdown_label: 'Compte à Rebours',
+    countdown_title: "Jusqu'au Grand Jour",
+    countdown_sub: 'Samedi 10 Mai 2025',
+    days: 'Jours', hours: 'Heures', minutes: 'Minutes', seconds: 'Secondes',
+    events_label: 'Réservez la Date', events_title: 'Les Festivités',
+    ceremony_type: 'Cérémonie Religieuse', ceremony_name: CONFIG.events.ceremony.nameFr,
+    ceremony_date: CONFIG.events.ceremony.dateDisplayFr, ceremony_time: CONFIG.events.ceremony.timeFr,
+    ceremony_venue: CONFIG.events.ceremony.venueFr,
+    reception_type: 'Réception de Mariage', reception_name: CONFIG.events.reception.nameFr,
+    reception_date: CONFIG.events.reception.dateDisplayFr, reception_time: CONFIG.events.reception.timeFr,
+    reception_venue: CONFIG.events.reception.venueFr,
+    at: 'à', view_map: 'Voir le lieu 📍',
+    locations_title: 'Lieux Importants',
+    groom_house: "Maison du Marié", groom_address: CONFIG.locations.groom.fr,
+    bride_house: "Maison de la Mariée", bride_address: CONFIG.locations.bride.fr,
+    directions: 'Itinéraire 📍',
+    gallery_label: 'Nos Moments', gallery_title: 'Une Vie en Images',
+    gallery_sub: 'Les moments qui nous ont menés ici',
+    photo_placeholder: 'Votre Photo Ici', view_photo: 'Voir',
+    story_label: 'Notre Histoire', story_title: 'Le Voyage vers <em>l\'Éternité</em>',
+    story_sub: "Une histoire d'amour écrite par la grâce de Dieu",
+    story_1_title: `${CONFIG.story[0].emoji} La Première Rencontre`, story_1_desc: '"Le destin nous a réunis quand nous nous y attendions le moins — une rencontre fortuite qui a tout changé."',
+    story_2_title: `${CONFIG.story[1].emoji} Tomber Amoureux`,      story_2_desc: '"Nous avons découvert nos cœurs battant au même rythme, et su que c\'était quelque chose d\'extraordinaire."',
+    story_3_title: `${CONFIG.story[2].emoji} La Demande en Mariage`, story_3_desc: '"Un moment époustouflant sous les étoiles. Une question. Une réponse. Un bel avenir."',
+    story_4_title: `${CONFIG.story[3].emoji} Le Mariage`,           story_4_desc: '"Le jour dont nous rêvions — l\'éternité commence aujourd\'hui."',
+    gifts_label: 'Cadeaux de Mariage', gifts_title: 'Un Geste du Cœur 🎁',
+    gifts_sub: 'Votre présence est le plus beau cadeau. Si vous souhaitez nous honorer davantage:',
+    gift_cash_title: 'Cadeau Financier', gift_cash_text: 'Envoyez votre cadeau via Whish Money, OMT ou virement bancaire.',
+    gift_cash_btn: 'Obtenir les Détails',
+    gift_physical_title: 'Cadeau Physique', gift_physical_text: 'Nous accueillerons vos cadeaux avec joie lors de la soirée.',
+    gift_physical_note: 'Merci du fond du cœur',
+    qr_title: 'Partagez vos Photos 📸', qr_text: 'Scannez pour envoyer vos photos du mariage. Elles rejoindront l\'album du couple.',
+    rsvp_label: 'RSVP', rsvp_title: 'Confirmez votre Présence',
+    rsvp_sub: "Nous adorerions fêter avec vous — merci de nous répondre avant le 1er Mai.",
+    rsvp_deadline: `Répondre avant le ${CONFIG.rsvp.deadline.fr}`,
+    form_name: 'Nom Complet', form_phone: 'Numéro de Téléphone',
+    form_attending: 'Serez-vous parmi nous?',
+    form_yes: "Oui, j'y serai!", form_no: 'Je ne pourrai pas venir',
+    form_guests: "Nombre d'Accompagnateurs", form_solo: 'Seul(e)',
+    form_events: 'Quelle(s) cérémonie(s)?',
+    form_ceremony: 'Cérémonie (16h00)', form_reception: 'Réception (19h30)', form_both: 'Les deux',
+    form_message: 'Un Message pour les Mariés', form_dietary: 'Régimes Alimentaires',
+    form_submit: 'Envoyer mon RSVP ✦',
+    success_title: 'Merci!', success_text: "Votre RSVP a bien été reçu.<br>Nous avons hâte de fêter avec vous!",
+    footer_await: 'Nous vous attendons avec joie',
+    share_whatsapp: 'WhatsApp', add_calendar: 'Ajouter au Calendrier', copy_link: 'Copier le Lien', share: 'Partager',
+    groom_name: CONFIG.groom.nameFr, bride_name: CONFIG.bride.nameFr,
+    dir: 'ltr', lang: 'fr'
+  }
+};
+
+/* ══════════════════════════════════════════════════════
+   STATE
+══════════════════════════════════════════════════════ */
+let currentLang = 'en';
+let musicPlaying = false;
+let invitationOpened = false;
+
+/* ══════════════════════════════════════════════════════
+   GUEST PERSONALISATION + LANG FROM URL
+══════════════════════════════════════════════════════ */
+(function initFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  const guest = params.get('guest');
+  const lang  = params.get('lang');
+
+  const guestLine = document.getElementById('env-guest-line');
+  if (guest) {
+    guestLine.textContent = `Dear ${guest}`;
+    document.getElementById('rsvp-name').value = guest;
+  }
+
+  if (lang && T[lang]) {
+    currentLang = lang;
+  }
+})();
+
+/* ══════════════════════════════════════════════════════
+   LANGUAGE SWITCHER
+══════════════════════════════════════════════════════ */
+function setLang(lang) {
+  if (!T[lang]) return;
+  currentLang = lang;
+
+  const tr = T[lang];
+  const html = document.documentElement;
+  html.lang = tr.lang;
+  html.dir  = tr.dir;
+
+  // Update names
+  const groomEls = document.querySelectorAll('[id$="-groom"], [id$="-groom-name"], #hero-groom, #env-groom-name, #footer-groom-name');
+  const brideEls = document.querySelectorAll('[id$="-bride"], [id$="-bride-name"], #hero-bride, #env-bride-name, #footer-bride-name');
+  groomEls.forEach(el => el.textContent = tr.groom_name);
+  brideEls.forEach(el => el.textContent = tr.bride_name);
+
+  // Update all data-key elements
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const key = el.dataset.key;
+    if (tr[key] !== undefined) {
+      el.innerHTML = tr[key];
+    }
+  });
+
+  // Update lang buttons
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+
+  // Update nav labels
+  updateNavLabels(lang);
+}
+
+function updateNavLabels(lang) {
+  const labels = {
+    en: ['Home','Verse','Countdown','Events','Gallery','Our Story','Gifts','RSVP','Footer'],
+    ar: ['الرئيسية','الآية','العدّ','الحفل','الصور','قصتنا','الهدايا','الحضور','الختام'],
+    fr: ['Accueil','Verset','Compte','Événements','Galerie','Histoire','Cadeaux','RSVP','Fin']
+  };
+  const dots = document.querySelectorAll('.nav-dot');
+  const lab = labels[lang] || labels.en;
+  dots.forEach((dot, i) => {
+    const lbl = dot.querySelector('.nav-dot-label');
+    if (lbl && lab[i]) lbl.textContent = lab[i];
+  });
+}
+
+/* ══════════════════════════════════════════════════════
+   OPENING ANIMATION
+══════════════════════════════════════════════════════ */
+function openInvitation() {
+  if (invitationOpened) return;
+  invitationOpened = true;
+
+  const screen = document.getElementById('opening-screen');
+  screen.classList.add('exit');
+
+  setTimeout(() => {
+    screen.style.display = 'none';
+    document.getElementById('body').classList.remove('locked');
+    document.getElementById('music-toggle').classList.add('visible');
+    document.getElementById('nav-dots').classList.add('visible');
+    document.getElementById('lang-switcher').classList.add('visible');
+    setLang(currentLang);
+    startMusic();
+  }, 850);
+}
+
+/* ══════════════════════════════════════════════════════
+   MUSIC
+══════════════════════════════════════════════════════ */
+function startMusic() {
+  if (!CONFIG.music.enabled) return;
+  const audio = document.getElementById('bg-music');
+  if (!audio.src && CONFIG.music.src) {
+    audio.src = CONFIG.music.src;
+  }
+  audio.play().then(() => {
+    musicPlaying = true;
+    document.getElementById('music-toggle').classList.remove('paused');
+  }).catch(() => {});
+}
+
+function toggleMusic() {
+  const audio = document.getElementById('bg-music');
+  const btn   = document.getElementById('music-toggle');
+  if (!CONFIG.music.enabled) {
+    btn.title = 'Add a music source in CONFIG.music.src to enable music';
+    return;
+  }
+  if (musicPlaying) {
+    audio.pause();
+    musicPlaying = false;
+    btn.classList.add('paused');
+  } else {
+    audio.play().catch(() => {});
+    musicPlaying = true;
+    btn.classList.remove('paused');
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   NAV DOTS
+══════════════════════════════════════════════════════ */
+function buildNavDots() {
+  const sectionIds = ['hero','verse','countdown','events','gallery','story','gifts','rsvp','footer'];
+  const labels     = ['Home','Verse','Countdown','Events','Gallery','Our Story','Gifts','RSVP','End'];
+  const nav = document.getElementById('nav-dots');
+
+  sectionIds.forEach((id, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('role', 'button');
+    dot.setAttribute('aria-label', labels[i]);
+    dot.tabIndex = 0;
+    dot.innerHTML = `<div class="nav-dot-label">${labels[i]}</div>`;
+    dot.addEventListener('click', () => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    });
+    dot.addEventListener('keydown', e => { if (e.key === 'Enter') dot.click(); });
+    nav.appendChild(dot);
+  });
+
+  // IntersectionObserver for active dot
+  const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+  const dots = nav.querySelectorAll('.nav-dot');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const idx = sections.indexOf(entry.target);
+        dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(s => obs.observe(s));
+}
+
+/* ══════════════════════════════════════════════════════
+   SCROLL REVEAL
+══════════════════════════════════════════════════════ */
+function initReveal() {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+}
+
+/* ══════════════════════════════════════════════════════
+   COUNTDOWN
+══════════════════════════════════════════════════════ */
+function updateCountdown() {
+  const target = new Date(CONFIG.countdownTarget).getTime();
+  const now    = Date.now();
+  const diff   = target - now;
+
+  if (diff <= 0) {
+    document.getElementById('countdown-grid').innerHTML =
+      `<div class="countdown-done" style="grid-column:1/-1">🎊 Congratulations! 🎊</div>`;
+    return;
+  }
+
+  const days  = Math.floor(diff / 86400000);
+  const hours = Math.floor((diff % 86400000) / 3600000);
+  const mins  = Math.floor((diff % 3600000)  / 60000);
+  const secs  = Math.floor((diff % 60000)    / 1000);
+
+  document.getElementById('cd-days').textContent  = String(days).padStart(2, '0');
+  document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+  document.getElementById('cd-mins').textContent  = String(mins).padStart(2, '0');
+  document.getElementById('cd-secs').textContent  = String(secs).padStart(2, '0');
+}
+
+/* ══════════════════════════════════════════════════════
+   QR CODE (pure SVG placeholder)
+══════════════════════════════════════════════════════ */
+function generateQR() {
+  // Simple placeholder QR pattern
+  // Replace with a real QR library (e.g. qrcode.js) for production
+  const container = document.getElementById('qr-container');
+  const url = CONFIG.gifts.photoUploadUrl;
+  const size = 120;
+  // 7x7 finder pattern blocks
+  const blocks = [
+    [0,0],[1,0],[2,0],[3,0],[4,0],[5,0],[6,0],
+    [0,1],[6,1],[0,2],[2,2],[3,2],[4,2],[6,2],
+    [0,3],[2,3],[4,3],[6,3],[0,4],[2,4],[3,4],[4,4],[6,4],
+    [0,5],[6,5],[0,6],[1,6],[2,6],[3,6],[4,6],[5,6],[6,6],
+    [8,0],[9,0],[10,0],[11,0],[12,0],[8,2],[10,2],[12,2],[8,3],[10,3],[8,4],[10,4],[11,4],[12,4],[8,6],
+    [0,8],[1,8],[2,8],[3,8],[4,8],[0,10],[2,10],[4,10],[0,11],[2,11],[3,11],[4,11],[0,12],[1,12],[2,12],[4,12],
+    [6,8],[8,8],[10,8],[12,8],[6,10],[8,10],[11,10],[6,11],[9,11],[12,11],[7,12],[9,12],[10,12],[12,12]
+  ];
+
+  const cellSize = size / 14;
+  let rects = '';
+  blocks.forEach(([cx, cy]) => {
+    rects += `<rect x="${cx*cellSize}" y="${cy*cellSize}" width="${cellSize}" height="${cellSize}" fill="var(--gold)"/>`;
+  });
+
+  container.innerHTML = `
+    <svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" xmlns="http://www.w3.org/2000/svg"
+         style="border-radius:6px;background:var(--bg-deep)">
+      <title>QR Code for ${url}</title>
+      <rect width="${size}" height="${size}" fill="var(--bg-deep)"/>
+      ${rects}
+    </svg>
+    <div style="font-size:9px;color:var(--ivory-muted);text-align:center;margin-top:6px;letter-spacing:0.05em">Scan to share photos</div>
+  `;
+}
+
+/* ══════════════════════════════════════════════════════
+   FLOATING PARTICLES
+══════════════════════════════════════════════════════ */
+function createParticles() {
+  const container = document.getElementById('particles');
+  const isMobile  = window.innerWidth < 600;
+  const count     = isMobile ? 15 : 28;
+
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 3 + 1;
+    const left = Math.random() * 100;
+    const dur  = Math.random() * 14 + 10;
+    const del  = Math.random() * 15;
+    const drift= (Math.random() - 0.5) * 80 + 'px';
+    const op   = (Math.random() * 0.2 + 0.05).toFixed(2);
+    p.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${left}%;
+      animation-duration:${dur}s;
+      animation-delay:-${del}s;
+      --drift:${drift};
+      --particle-opacity:${op};
+    `;
+    container.appendChild(p);
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   RSVP SUBMISSION
+══════════════════════════════════════════════════════ */
+async function submitRSVP() {
+  const btn       = document.getElementById('rsvp-submit-btn');
+  const btnText   = document.getElementById('rsvp-btn-text');
+  const name      = document.getElementById('rsvp-name').value.trim();
+  const phone     = document.getElementById('rsvp-phone').value.trim();
+  const attending = document.querySelector('input[name="attending"]:checked')?.value;
+  const guests    = document.getElementById('rsvp-guests').value;
+  const events    = [...document.querySelectorAll('input[name="event"]:checked')].map(e => e.value);
+  const message   = document.getElementById('rsvp-message').value.trim();
+  const dietary   = document.getElementById('rsvp-dietary').value.trim();
+
+  if (!name) {
+    document.getElementById('rsvp-name').focus();
+    document.getElementById('rsvp-name').style.borderColor = 'var(--rose)';
+    setTimeout(() => document.getElementById('rsvp-name').style.borderColor = '', 2000);
+    return;
+  }
+
+  const payload = { name, phone, attending, guests, events, message, dietary, lang: currentLang, timestamp: new Date().toISOString() };
+
+  btnText.textContent = 'Sending...';
+  btn.disabled = true;
+
+  try {
+    if (CONFIG.rsvp.endpoint) {
+      await fetch(CONFIG.rsvp.endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+    } else {
+      console.log('📨 RSVP Data (no endpoint configured):', payload);
+      await new Promise(r => setTimeout(r, 800)); // Simulate delay
+    }
+
+    // Success
+    document.getElementById('rsvp-form-wrap').style.display = 'none';
+    const success = document.getElementById('rsvp-success');
+    success.classList.add('show');
+    launchConfetti();
+
+  } catch (err) {
+    console.error('RSVP error:', err);
+    btnText.textContent = 'Error — Please try again';
+    btn.disabled = false;
+    setTimeout(() => {
+      btnText.innerHTML = T[currentLang].form_submit;
+      btn.disabled = false;
+    }, 3000);
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   CONFETTI
+══════════════════════════════════════════════════════ */
+function launchConfetti() {
+  const container = document.getElementById('confetti-container');
+  const colors = ['#C8A96E','#E8D5A3','#D4B96A','#F4EFE4','#C47B7B','#ffffff','#9A7B4F'];
+  const pieces = 80;
+
+  for (let i = 0; i < pieces; i++) {
+    const el = document.createElement('div');
+    el.className = 'confetti-piece';
+    const size  = Math.random() * 8 + 4;
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    const left  = Math.random() * 100;
+    const dur   = Math.random() * 2.5 + 1.8;
+    const del   = Math.random() * 1.2;
+    el.style.cssText = `
+      width:${size}px; height:${size}px; left:${left}vw;
+      background:${color}; border-radius:${Math.random() > 0.5 ? '50%' : '2px'};
+      animation-duration:${dur}s; animation-delay:${del}s;
+    `;
+    container.appendChild(el);
+  }
+
+  setTimeout(() => { container.innerHTML = ''; }, 6000);
+}
+
+/* ══════════════════════════════════════════════════════
+   FOOTER ACTIONS
+══════════════════════════════════════════════════════ */
+function shareWhatsApp() {
+  const tr = T[currentLang];
+  const groom = tr.groom_name;
+  const bride  = tr.bride_name;
+  const text = encodeURIComponent(
+    `🎊 ${groom} & ${bride} Wedding\n📅 ${CONFIG.events.reception.dateDisplayEn}\n🕐 ${CONFIG.events.reception.timeEn}\n📍 ${CONFIG.events.reception.venueEn}\n\n${window.location.href}`
+  );
+  window.open(`https://wa.me/?text=${text}`, '_blank', 'noopener');
+}
+
+function addToCalendar() {
+  const start  = CONFIG.events.reception.date.replace(/[-:]/g,'').replace('T','T') + '00';
+  const end    = start.replace(/T(\d{6})/, (_, t) => `T${String(+t.slice(0,4) + 200).padStart(4,'0')}00`);
+  const title  = encodeURIComponent(`${CONFIG.groom.name} & ${CONFIG.bride.name} Wedding`);
+  const detail = encodeURIComponent(CONFIG.events.reception.venueEn);
+  const ics = [
+    'BEGIN:VCALENDAR','VERSION:2.0','BEGIN:VEVENT',
+    `DTSTART:${CONFIG.events.reception.date.replace(/[-:]/g,'').replace('T','T')}00`,
+    `DTEND:${CONFIG.events.reception.date.replace(/[-:]/g,'').replace('T','T')}00`,
+    `SUMMARY:${CONFIG.groom.name} & ${CONFIG.bride.name} Wedding`,
+    `LOCATION:${CONFIG.events.reception.venueEn}`,
+    'END:VEVENT','END:VCALENDAR'
+  ].join('\n');
+  const blob = new Blob([ics], { type: 'text/calendar' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url; a.download = 'wedding.ics'; a.click();
+  URL.revokeObjectURL(url);
+}
+
+async function copyLink() {
+  const btn = document.getElementById('copy-btn');
+  try {
+    await navigator.clipboard.writeText(window.location.href);
+    const orig = btn.innerHTML;
+    btn.innerHTML = '✓ <span>Copied!</span>';
+    setTimeout(() => { btn.innerHTML = orig; }, 2000);
+  } catch {
+    prompt('Copy this link:', window.location.href);
+  }
+}
+
+async function shareInvitation() {
+  const tr = T[currentLang];
+  const data = {
+    title: `${tr.groom_name} & ${tr.bride_name} Wedding`,
+    text: `You are invited to the wedding of ${tr.groom_name} & ${tr.bride_name}!`,
+    url: window.location.href
+  };
+  try {
+    if (navigator.share) {
+      await navigator.share(data);
+    } else {
+      await copyLink();
+    }
+  } catch {}
+}
+
+/* ══════════════════════════════════════════════════════
+   INIT
+══════════════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  createParticles();
+  buildNavDots();
+  initReveal();
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+  generateQR();
+  setLang(currentLang);
+
+  // Open invite on keyboard
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !invitationOpened) openInvitation();
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,2682 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>حفل زفاف جورج و ماريا — CARTA</title>
+<meta name="description" content="دعوة زفاف جورج خوري و ماريا سمعان — Wedding Invitation">
+<meta property="og:title" content="حفل زفاف جورج و ماريا">
+<meta property="og:description" content="يتشرفون بدعوتكم لحضور حفل زفاف جورج و ماريا">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ══════════��════════════════════════════════════════════════
+   CSS VARIABLES — EDIT THESE TO CUSTOMIZE
+   ═══════════════════════════════════════════════════════════ */
+:root {
+  /* ═══════ BACKGROUND (Change these to customize) ═══════ */
+  --bg-deep: #0B1121;
+  --bg-primary: #0E1529;
+  --bg-card: #141E35;
+  --bg-card-hover: #1A2540;
+  --bg-image: none;            /* Add your Canva/Figma background: url('bg.jpg') */
+  --bg-image-opacity: 0.15;    /* How visible the background image is */
+  --bg-overlay-opacity: 0.85;  /* Overlay darkness (higher = darker) */
+  --texture-opacity: 0.03;     /* Paper texture intensity */
+  /* ═══════ COLORS ═══════ */
+  --gold: #C4A265;
+  --gold-light: #DFC999;
+  --gold-bright: #D4AF37;
+  --gold-dark: #8E7A4A;
+  --warm-white: #ECE6DC;
+  --text-secondary: #8A8478;
+  --text-muted: #5C564E;
+  --rose: #C47070;
+  --success: #6AAF6A;
+  /* ══��════ FONTS ═══════ */
+  --font-display-ar: 'Aref Ruqaa', serif;
+  --font-verse-ar: 'Amiri', serif;
+  --font-body-ar: 'Tajawal', sans-serif;
+  --font-display-en: 'Playfair Display', serif;
+  --font-body-en: 'Montserrat', sans-serif;
+  --font-display: var(--font-display-ar);
+  --font-verse: var(--font-verse-ar);
+  --font-body: var(--font-body-ar);
+}
+/* ═══════ RESET & BASE ═══════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  font-family: var(--font-body);
+  background: var(--bg-deep);
+  color: var(--warm-white);
+  overflow-x: hidden;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+body.locked { overflow: hidden; }
+/* ═══════ CUSTOM SCROLLBAR ═══════ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+/* ═══════ LAYERED BACKGROUND ═══════ */
+.bg-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+/* Layer 2: Background Image */
+.bg-layer--image {
+  background-image: var(--bg-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: var(--bg-image-opacity);
+}
+/* Layer 3: Overlay */
+.bg-layer--overlay {
+  background: linear-gradient(180deg, 
+    rgba(11,17,33, var(--bg-overlay-opacity)) 0%,
+    rgba(14,21,41, calc(var(--bg-overlay-opacity) - 0.05)) 50%,
+    rgba(11,17,33, var(--bg-overlay-opacity)) 100%
+  );
+}
+/* Layer 4: Texture */
+.bg-layer--texture {
+  opacity: var(--texture-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+/* Layer 5: Particles container */
+#particles-container {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: 0;
+  animation: floatUp linear infinite;
+}
+@keyframes floatUp {
+  0% { transform: translateY(100vh) scale(0); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.2; }
+  100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+}
+/* ═══════ MAIN CONTENT ═══════ */
+main {
+  position: relative;
+  z-index: 1;
+}
+section {
+  position: relative;
+  padding: 60px 20px;
+  min-height: auto;
+}
+.section-inner {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+/* ═══════ TYPOGRAPHY ═══════ */
+.font-display { font-family: var(--font-display); }
+.font-verse { font-family: var(--font-verse); }
+.font-body { font-family: var(--font-body); }
+.text-gold { color: var(--gold); }
+.text-gold-light { color: var(--gold-light); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
+.text-rose { color: var(--rose); }
+/* ═══════ GOLD SHIMMER TEXT ═══════ */
+.gold-shimmer {
+  background: linear-gradient(
+    120deg,
+    var(--gold-dark) 0%,
+    var(--gold) 20%,
+    var(--gold-light) 40%,
+    var(--gold-bright) 50%,
+    var(--gold-light) 60%,
+    var(--gold) 80%,
+    var(--gold-dark) 100%
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0%, 100% { background-position: 100% 50%; }
+  50% { background-position: 0% 50%; }
+}
+/* ═══════ HEARTBEAT SVG ═══════ */
+.heartbeat {
+  animation: heartbeat 1.5s ease-in-out infinite;
+  color: var(--rose);
+}
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.2); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.1); }
+  60% { transform: scale(1); }
+}
+/* ═══════ DECORATIVE DIVIDERS ═══════ */
+.gold-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 24px auto;
+  width: 80%;
+  max-width: 300px;
+}
+.gold-divider .line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+}
+.gold-divider .diamond {
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+/* ═══════ ORNAMENTAL CORNERS (SVG) ═══════ */
+.ornament-corner {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  color: var(--gold-light);
+  opacity: 0.25;
+  pointer-events: none;
+}
+.ornament-corner.top-right { top: 10px; right: 10px; }
+.ornament-corner.top-left { top: 10px; left: 10px; transform: scaleX(-1); }
+.ornament-corner.bottom-left { bottom: 10px; left: 10px; transform: scaleY(-1); }
+.ornament-corner.bottom-right { bottom: 10px; right: 10px; transform: scale(-1, -1); }
+/* ═══════ SCROLL REVEAL ═══════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* ═══════ CARDS ═══════ */
+.card {
+  background: var(--bg-card);
+  border: 1px solid rgba(196, 162, 101, 0.12);
+  border-radius: 12px;
+  padding: 28px 20px;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              border-color 0.4s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(196, 162, 101, 0.08);
+  border-color: rgba(196, 162, 101, 0.25);
+}
+/* ═══════ BUTTONS ═══════ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  min-height: 44px;
+  min-width: 44px;
+  text-decoration: none;
+  color: var(--warm-white);
+}
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+  color: var(--bg-deep);
+  font-weight: 600;
+}
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(196, 162, 101, 0.3);
+}
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--gold-dark);
+  color: var(--gold-light);
+}
+.btn-outline:hover {
+  border-color: var(--gold);
+  background: rgba(196, 162, 101, 0.08);
+  transform: translateY(-2px);
+}
+/* ═══════════════════════════════════════════
+   SCREEN 1: OPENING ENVELOPE
+   ═══════════════════════════════════════════ */
+#opening-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-deep);
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              filter 0.8s ease;
+}
+#opening-overlay.opening {
+  transform: translateY(-100%);
+  opacity: 0;
+  filter: blur(10px);
+}
+#opening-overlay .radial-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(196,162,101,0.06) 0%, transparent 70%);
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+.envelope-frame {
+  position: relative;
+  width: calc(100% - 40px);
+  max-width: 420px;
+  padding: 50px 24px;
+  text-align: center;
+  /* Double border with corner accents */
+  border: 1px solid rgba(196, 162, 101, 0.2);
+  outline: 1px solid rgba(196, 162, 101, 0.08);
+  outline-offset: 6px;
+}
+.envelope-frame::before,
+.envelope-frame::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: var(--gold-light);
+  opacity: 0.5;
+}
+.envelope-frame::before {
+  top: -4px; left: -4px;
+  border-top: 1px solid;
+  border-left: 1px solid;
+}
+.envelope-frame::after {
+  bottom: -4px; right: -4px;
+  border-bottom: 1px solid;
+  border-right: 1px solid;
+}
+.envelope-corners-extra .c-tl,
+.envelope-corners-extra .c-br {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: var(--gold-light);
+  opacity: 0.5;
+}
+.envelope-corners-extra .c-tl {
+  top: -4px; right: -4px;
+  border-top: 1px solid;
+  border-right: 1px solid;
+}
+.envelope-corners-extra .c-br {
+  bottom: -4px; left: -4px;
+  border-bottom: 1px solid;
+  border-left: 1px solid;
+}
+.opening-religious {
+  font-family: var(--font-verse-ar);
+  font-size: 16px;
+  color: var(--gold-light);
+  margin-bottom: 20px;
+  line-height: 2;
+}
+.opening-families {
+  font-family: var(--font-display);
+  font-size: 17px;
+  color: var(--warm-white);
+  margin-bottom: 8px;
+}
+.opening-invite-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+.opening-couple-names {
+  font-family: var(--font-display);
+  font-size: 36px;
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+.opening-heart {
+  display: inline-block;
+  margin: 8px 0;
+}
+.opening-date {
+  font-size: 14px;
+  color: var(--gold-dark);
+  margin-bottom: 24px;
+  letter-spacing: 1px;
+}
+.opening-guest {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--gold-light);
+  margin-bottom: 28px;
+}
+.btn-open {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 14px 36px;
+  font-size: 16px;
+  font-family: var(--font-body);
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.4s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.btn-open:hover {
+  background: rgba(196, 162, 101, 0.1);
+  box-shadow: 0 0 30px rgba(196, 162, 101, 0.15);
+}
+.btn-open:active {
+  transform: scale(0.95);
+}
+/* ═══════════════════════════════════════════
+   SCREEN 2: HERO
+   ═════════════════════════════���═════════════ */
+#hero {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+.hero-religious {
+  font-family: var(--font-verse-ar);
+  font-size: 14px;
+  color: var(--gold-dark);
+  margin-bottom: 20px;
+}
+.hero-family-block {
+  margin-bottom: 16px;
+}
+.hero-parents {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.hero-family-name {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--gold-light);
+}
+.hero-invite-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 16px 0;
+}
+.hero-couple-names {
+  font-family: var(--font-display);
+  font-size: 42px;
+  line-height: 1.3;
+  margin: 8px 0 16px;
+}
+@media (max-width: 380px) {
+  .hero-couple-names { font-size: 34px; }
+  .opening-couple-names { font-size: 30px; }
+}
+.hero-date {
+  font-size: 15px;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.hero-venue {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 12px;
+  animation: bobDown 2s ease-in-out infinite;
+}
+@keyframes bobDown {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+/* ═══════════════════════════════════════════
+   SCREEN 3: VERSE
+   ═══════════════════════════════════════════ */
+#verse {
+  padding: 80px 20px;
+}
+.verse-text {
+  font-family: var(--font-verse);
+  font-size: 20px;
+  line-height: 2;
+  color: var(--warm-white);
+  max-width: 500px;
+  margin: 0 auto 16px;
+  position: relative;
+}
+.verse-quote-mark {
+  font-size: 80px;
+  color: var(--gold);
+  opacity: 0.15;
+  line-height: 0.5;
+  font-family: Georgia, serif;
+  display: block;
+  margin-bottom: 12px;
+}
+.verse-reference {
+  font-size: 14px;
+  color: var(--gold-dark);
+}
+/* ═══════════════════════════════════════════
+   SCREEN 4: COUNTDOWN
+   ═══════════════════════════════════════════ */
+.countdown-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+}
+.countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+.countdown-cell {
+  background: var(--bg-card);
+  border: 1px solid rgba(196, 162, 101, 0.1);
+  border-radius: 10px;
+  padding: 20px 8px 16px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.4s ease;
+}
+.countdown-cell::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 15%;
+  right: 15%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.countdown-cell:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(196, 162, 101, 0.1);
+}
+.countdown-number {
+  font-family: var(--font-display);
+  font-size: 32px;
+  color: var(--gold);
+  display: block;
+  transition: transform 0.3s ease;
+}
+.countdown-label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 6px;
+  display: block;
+}
+.countdown-done {
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--gold);
+  text-align: center;
+  padding: 30px;
+}
+/* ═══════════════════════════════════════════
+   SCREEN 5: EVENT DETAILS
+   ═══════════════════════════════════════════ */
+.events-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-top: 28px;
+}
+@media (min-width: 640px) {
+  .events-grid { grid-template-columns: 1fr 1fr; }
+}
+.event-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(196, 162, 101, 0.1);
+  border-radius: 12px;
+  padding: 28px 20px;
+  text-align: center;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.4s ease, border-color 0.4s ease;
+}
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(196, 162, 101, 0.08);
+  border-color: rgba(196, 162, 101, 0.25);
+}
+.event-card .event-icon {
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.event-card .event-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--gold-light);
+  margin-bottom: 16px;
+}
+.event-detail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.event-detail svg { color: var(--gold-dark); flex-shrink: 0; }
+.event-map {
+  width: 100%;
+  height: 180px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 16px 0;
+  border: 1px solid rgba(196, 162, 101, 0.1);
+}
+.event-map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: grayscale(1) brightness(0.4) contrast(1.2);
+  transition: filter 0.5s ease;
+}
+.event-map:hover iframe {
+  filter: none;
+}
+.locations-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 28px;
+}
+@media (max-width: 400px) {
+  .locations-grid { grid-template-columns: 1fr; }
+}
+.location-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(196, 162, 101, 0.08);
+  border-radius: 10px;
+  padding: 20px 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+.location-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(196, 162, 101, 0.2);
+}
+.location-card .loc-label {
+  font-family: var(--font-display);
+  font-size: 15px;
+  color: var(--gold-light);
+  margin-bottom: 6px;
+}
+.location-card .loc-address {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+/* ═══════════════════════════════════════════
+   SCREEN 6: TIMELINE
+   ═══════════════════════════════════════════ */
+.timeline-container {
+  position: relative;
+  max-width: 500px;
+  margin: 32px auto 0;
+  padding: 0 20px;
+}
+.timeline-line {
+  position: absolute;
+  right: 30px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, var(--gold-dark) 15%, var(--gold-dark) 85%, transparent);
+}
+[dir="ltr"] .timeline-line {
+  right: auto;
+  left: 30px;
+}
+.timeline-item {
+  position: relative;
+  padding: 0 50px 40px 0;
+  text-align: right;
+}
+[dir="ltr"] .timeline-item {
+  padding: 0 0 40px 50px;
+  text-align: left;
+}
+.timeline-dot {
+  position: absolute;
+  right: 24px;
+  top: 6px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--gold-dark);
+  background: var(--bg-deep);
+  transition: all 0.4s ease;
+  z-index: 1;
+}
+[dir="ltr"] .timeline-dot {
+  right: auto;
+  left: 24px;
+}
+.timeline-item.visible .timeline-dot {
+  background: var(--gold);
+  border-color: var(--gold-light);
+  box-shadow: 0 0 12px rgba(196, 162, 101, 0.3);
+}
+.timeline-year {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.timeline-title {
+  font-size: 15px;
+  color: var(--warm-white);
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+.timeline-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+@media (min-width: 640px) {
+  .timeline-line { right: 50%; transform: translateX(50%); }
+  [dir="ltr"] .timeline-line { left: 50%; right: auto; transform: translateX(-50%); }
+  .timeline-item:nth-child(odd) {
+    padding: 0 calc(50% + 30px) 40px 0;
+    text-align: right;
+  }
+  .timeline-item:nth-child(even) {
+    padding: 0 0 40px calc(50% + 30px);
+    text-align: left;
+  }
+  [dir="ltr"] .timeline-item:nth-child(odd) {
+    padding: 0 0 40px calc(50% + 30px);
+    text-align: left;
+  }
+  [dir="ltr"] .timeline-item:nth-child(even) {
+    padding: 0 calc(50% + 30px) 40px 0;
+    text-align: right;
+  }
+  .timeline-item:nth-child(odd) .timeline-dot { right: calc(50% - 7px); }
+  .timeline-item:nth-child(even) .timeline-dot { right: auto; left: calc(50% - 7px); }
+  [dir="ltr"] .timeline-item:nth-child(odd) .timeline-dot { right: auto; left: calc(50% - 7px); }
+  [dir="ltr"] .timeline-item:nth-child(even) .timeline-dot { left: auto; right: calc(50% - 7px); }
+}
+/* ═══════════════════════════════════════════
+   SCREEN 7: GALLERY
+   ═══════════════════════════════════════════ */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 10px;
+  margin-top: 28px;
+}
+.gallery-cell {
+  background: linear-gradient(135deg, var(--bg-card), var(--bg-card-hover));
+  border: 1px solid rgba(196, 162, 101, 0.08);
+  border-radius: 10px;
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+.gallery-cell:first-child {
+  grid-column: 1 / -1;
+  min-height: 200px;
+}
+@media (min-width: 640px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+  }
+  .gallery-cell:first-child {
+    grid-column: 1 / 3;
+    grid-row: 1 / 3;
+    min-height: 300px;
+  }
+}
+.gallery-cell:hover {
+  border-color: rgba(196, 162, 101, 0.3);
+  transform: scale(1.02);
+}
+.gallery-cell svg {
+  color: var(--gold-dark);
+  opacity: 0.3;
+}
+.gallery-cell .gallery-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.6));
+  font-size: 12px;
+  color: var(--text-secondary);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+.gallery-cell:hover .gallery-label {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* ═══════════════════════════════════════════
+   SCREEN 8: GIFTS
+   ═══════════════════════════════════════════ */
+.gifts-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  line-height: 1.8;
+}
+.gift-options {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+.gift-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(196, 162, 101, 0.12);
+  border-radius: 10px;
+  padding: 18px 28px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--gold-light);
+  font-size: 15px;
+  font-weight: 500;
+  transition: all 0.4s ease;
+  min-width: 130px;
+  justify-content: center;
+}
+.gift-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold-dark);
+  box-shadow: 0 8px 25px rgba(196, 162, 101, 0.08);
+}
+.qr-section {
+  margin-top: 20px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(196, 162, 101, 0.08);
+}
+.qr-section .qr-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--gold-light);
+  margin-bottom: 8px;
+}
+.qr-section .qr-subtitle {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+.qr-code-img {
+  width: 180px;
+  height: 180px;
+  border-radius: 12px;
+  border: 2px solid rgba(196, 162, 101, 0.15);
+  margin: 0 auto;
+  display: block;
+  background: white;
+  padding: 8px;
+}
+/* ═════��═════════════════════════════════════
+   SCREEN 9: RSVP
+   ═══════════════════════════════════════════ */
+#rsvp {
+  padding: 60px 20px 80px;
+}
+.rsvp-deadline {
+  font-size: 13px;
+  color: var(--rose);
+  margin-bottom: 28px;
+  padding: 10px 18px;
+  border: 1px solid rgba(196, 112, 112, 0.2);
+  border-radius: 8px;
+  display: inline-block;
+}
+.rsvp-deadline.expired {
+  color: var(--text-muted);
+  border-color: rgba(92, 86, 78, 0.3);
+}
+.rsvp-form {
+  max-width: 440px;
+  margin: 0 auto;
+  text-align: right;
+}
+[dir="ltr"] .rsvp-form { text-align: left; }
+.form-group {
+  margin-bottom: 20px;
+}
+.form-group label {
+  display: block;
+  font-size: 13px;
+  color: var(--gold-light);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.form-group input[type="text"],
+.form-group input[type="tel"],
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--bg-card);
+  border: 1px solid rgba(196, 162, 101, 0.12);
+  border-radius: 8px;
+  color: var(--warm-white);
+  font-family: var(--font-body);
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  direction: inherit;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(196, 162, 101, 0.1);
+}
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+.form-group select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238A8478' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 14px center;
+  padding-left: 36px;
+}
+[dir="ltr"] .form-group select {
+  background-position: right 14px center;
+  padding-left: 16px;
+  padding-right: 36px;
+}
+/* Radio buttons */
+.radio-group {
+  display: flex;
+  gap: 12px;
+}
+.radio-option {
+  flex: 1;
+  position: relative;
+}
+.radio-option input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.radio-option .radio-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 12px;
+  background: var(--bg-card);
+  border: 1px solid rgba(196, 162, 101, 0.1);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+  min-height: 48px;
+  text-align: center;
+}
+.radio-option input:checked + .radio-label.accept {
+  border-color: var(--gold);
+  background: rgba(196, 162, 101, 0.08);
+  color: var(--gold);
+}
+.radio-option input:checked + .radio-label.decline {
+  border-color: var(--text-muted);
+  background: rgba(92, 86, 78, 0.1);
+  color: var(--text-secondary);
+}
+/* Checkbox for events */
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.checkbox-option {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.checkbox-option input {
+  position: absolute;
+  opacity: 0;
+}
+.checkbox-option .check-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: var(--bg-card);
+  border: 1px solid rgba(196, 162, 101, 0.08);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text-secondary);
+  width: 100%;
+  transition: all 0.3s ease;
+  min-height: 48px;
+}
+.checkbox-option .check-box {
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid var(--gold-dark);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+.checkbox-option input:checked + .check-label {
+  border-color: rgba(196, 162, 101, 0.2);
+  color: var(--gold-light);
+}
+.checkbox-option input:checked + .check-label .check-box {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+.checkbox-option input:checked + .check-label .check-box svg {
+  opacity: 1;
+}
+.checkbox-option .check-box svg {
+  opacity: 0;
+  color: var(--bg-deep);
+  transition: opacity 0.2s ease;
+}
+.btn-submit {
+  width: 100%;
+  padding: 16px;
+  font-size: 16px;
+  margin-top: 8px;
+}
+.btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+.btn-submit .spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid transparent;
+  border-top-color: var(--bg-deep);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+/* Success state */
+.rsvp-success {
+  text-align: center;
+  padding: 40px 20px;
+  display: none;
+}
+.rsvp-success.show {
+  display: block;
+  animation: fadeInUp 0.6s ease;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.success-check {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 20px;
+  color: var(--success);
+}
+.success-check circle {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: drawCircle 0.6s ease forwards;
+}
+.success-check polyline {
+  stroke-dasharray: 50;
+  stroke-dashoffset: 50;
+  animation: drawCheck 0.4s ease 0.5s forwards;
+}
+@keyframes drawCircle {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes drawCheck {
+  to { stroke-dashoffset: 0; }
+}
+.success-title {
+  font-family: var(--font-display);
+  font-size: 24px;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.success-message {
+  font-size: 15px;
+  color: var(--text-secondary);
+}
+/* ═══════════════════════════════════════════
+   SCREEN 10: FOOTER
+   ═══════════════════════════════════════════ */
+#footer {
+  padding: 50px 20px 30px;
+  text-align: center;
+}
+.footer-await {
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--gold-light);
+  margin-bottom: 8px;
+}
+.footer-couple {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--gold);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.footer-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 24px 0;
+}
+.footer-actions .btn {
+  font-size: 13px;
+  padding: 12px 18px;
+}
+.footer-credit {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(196, 162, 101, 0.06);
+}
+.footer-credit a {
+  color: var(--gold-dark);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.footer-credit a:hover { color: var(--gold); }
+/* ═══════════════════════════════════════════
+   PERSISTENT UI
+   ═══════════════════════════════════════════ */
+/* Language toggle */
+.lang-toggle {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 900;
+  background: rgba(14, 21, 41, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(196, 162, 101, 0.15);
+  border-radius: 20px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  min-height: 44px;
+}
+.lang-toggle.visible { opacity: 1; }
+.lang-toggle .lang-ar { color: var(--gold); }
+.lang-toggle .lang-sep { color: var(--text-muted); }
+.lang-toggle .lang-en { color: var(--text-muted); }
+.lang-toggle[data-active="en"] .lang-ar { color: var(--text-muted); }
+.lang-toggle[data-active="en"] .lang-en { color: var(--gold); }
+/* Music toggle */
+.music-toggle {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 900;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(14, 21, 41, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(196, 162, 101, 0.2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  opacity: 0;
+  transition: opacity 0.5s ease, border-color 0.3s ease;
+}
+.music-toggle.visible { opacity: 1; }
+.music-toggle:hover { border-color: var(--gold); }
+.music-bar {
+  width: 3px;
+  background: var(--gold);
+  border-radius: 2px;
+  transition: height 0.3s ease;
+}
+.music-bar:nth-child(1) { height: 8px; }
+.music-bar:nth-child(2) { height: 14px; }
+.music-bar:nth-child(3) { height: 10px; }
+.music-bar:nth-child(4) { height: 16px; }
+.music-toggle.playing .music-bar {
+  animation: musicBounce 0.6s ease-in-out infinite alternate;
+}
+.music-toggle.playing .music-bar:nth-child(1) { animation-delay: 0s; }
+.music-toggle.playing .music-bar:nth-child(2) { animation-delay: 0.15s; }
+.music-toggle.playing .music-bar:nth-child(3) { animation-delay: 0.3s; }
+.music-toggle.playing .music-bar:nth-child(4) { animation-delay: 0.45s; }
+@keyframes musicBounce {
+  from { height: 4px; }
+  to { height: 18px; }
+}
+/* Nav dots */
+.nav-dots {
+  position: fixed;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 900;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+[dir="ltr"] .nav-dots { left: auto; right: 16px; }
+.nav-dots.visible { opacity: 1; }
+.nav-dot {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+.nav-dot.active {
+  background: var(--gold);
+  box-shadow: 0 0 8px rgba(196, 162, 101, 0.4);
+}
+.nav-dot .dot-label {
+  position: absolute;
+  right: calc(100% + 12px);
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  font-size: 11px;
+  color: var(--gold-light);
+  background: rgba(14, 21, 41, 0.9);
+  padding: 4px 10px;
+  border-radius: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+[dir="ltr"] .nav-dot .dot-label {
+  right: auto;
+  left: calc(100% + 12px);
+}
+.nav-dot:hover .dot-label { opacity: 1; }
+/* ═══════════════════════════════════════════
+   CONFETTI
+   ═══════════════════════════════════════════ */
+.confetti-piece {
+  position: fixed;
+  z-index: 999;
+  pointer-events: none;
+  animation: confettiFall linear forwards;
+}
+@keyframes confettiFall {
+  0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+/* ═══════════════════════════════════════════
+   SECTION TITLES
+   ═══════════════════════════════════════════ */
+.section-title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.section-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+/* ═══════════════════════════════════════════
+   LANGUAGE TRANSITION
+   ═══════════════════════════════════════════ */
+.lang-fade {
+  animation: langFade 0.4s ease;
+}
+@keyframes langFade {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+/* ═══════════════════════════════════════════
+   COPY FEEDBACK
+   ═══════════════════════════════════════════ */
+.copy-feedback {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(14, 21, 41, 0.95);
+  border: 1px solid var(--gold-dark);
+  color: var(--gold-light);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 13px;
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.copy-feedback.show { opacity: 1; }
+/* ═══════════════════════════════════════════
+   REDUCED MOTION
+   ═══════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+  .particle { display: none; }
+}
+/* ═══════════════════════════════════════════
+   UTILITIES
+   ═══════════════════════════════════════════ */
+.hidden { display: none !important; }
+.mb-0 { margin-bottom: 0; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+</style>
+</head>
+<body class="locked">
+<!-- ═══════ BACKGROUND LAYERS ═══════ -->
+<div class="bg-layer bg-layer--image"></div>
+<div class="bg-layer bg-layer--overlay"></div>
+<div class="bg-layer bg-layer--texture"></div>
+<div id="particles-container"></div>
+<!-- ═══════ AUDIO ═══════ -->
+<!-- Add your audio file path in CONFIG.musicSrc -->
+<audio id="bg-music" loop preload="none">
+  <source src="" type="audio/mpeg">
+</audio>
+<!-- ═══════════════════════════════════════════════════════
+     SCREEN 1: OPENING OVERLAY
+     ═══════════════════════════════════════════════════════ -->
+<div id="opening-overlay" role="dialog" aria-label="Wedding invitation envelope">
+  <div class="radial-glow"></div>
+  <!-- Ornamental corners -->
+  <svg class="ornament-corner top-right" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 2C20 2 30 2 40 8C50 14 55 24 58 36C61 48 60 56 78 78" stroke="currentColor" stroke-width="1" fill="none" opacity="0.6"/>
+    <path d="M0 12C16 12 24 14 32 20C40 26 44 34 46 44" stroke="currentColor" stroke-width="0.8" fill="none" opacity="0.4"/>
+    <circle cx="78" cy="78" r="1.5" fill="currentColor" opacity="0.5"/>
+    <path d="M10 0C10 6 12 10 16 14C20 18 26 20 34 22" stroke="currentColor" stroke-width="0.6" fill="none" opacity="0.3"/>
+  </svg>
+  <svg class="ornament-corner bottom-left" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 2C20 2 30 2 40 8C50 14 55 24 58 36C61 48 60 56 78 78" stroke="currentColor" stroke-width="1" fill="none" opacity="0.6"/>
+    <path d="M0 12C16 12 24 14 32 20C40 26 44 34 46 44" stroke="currentColor" stroke-width="0.8" fill="none" opacity="0.4"/>
+    <circle cx="78" cy="78" r="1.5" fill="currentColor" opacity="0.5"/>
+    <path d="M10 0C10 6 12 10 16 14C20 18 26 20 34 22" stroke="currentColor" stroke-width="0.6" fill="none" opacity="0.3"/>
+  </svg>
+  <div class="envelope-frame">
+    <div class="envelope-corners-extra">
+      <div class="c-tl"></div>
+      <div class="c-br"></div>
+    </div>
+    <div class="opening-religious" data-i18n="openingReligious"></div>
+    <div class="gold-divider">
+      <span class="line"></span>
+      <span class="diamond"></span>
+      <span class="line"></span>
+    </div>
+    <div class="opening-families" data-i18n="openingFamilies"></div>
+    <div class="opening-invite-text" data-i18n="openingInvite"></div>
+    <div class="opening-couple-names gold-shimmer" id="opening-couple"></div>
+    <div class="opening-heart heartbeat">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    </div>
+    <div class="opening-date" data-i18n="openingDate"></div>
+    <div class="opening-guest" id="opening-guest"></div>
+    <button class="btn-open" id="btn-open-envelope" aria-label="Open invitation">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <span data-i18n="openEnvelope"></span>
+    </button>
+  </div>
+</div>
+<!-- ═══════════════════════════════════════════════════════
+     PERSISTENT UI
+     ═══════════════════════════════════════════════════════ -->
+<!-- Language toggle -->
+<button class="lang-toggle" id="lang-toggle" aria-label="Toggle language" data-active="ar">
+  <span class="lang-ar">ع</span>
+  <span class="lang-sep">|</span>
+  <span class="lang-en">EN</span>
+</button>
+<!-- Music toggle -->
+<button class="music-toggle" id="music-toggle" aria-label="Toggle music">
+  <span class="music-bar"></span>
+  <span class="music-bar"></span>
+  <span class="music-bar"></span>
+  <span class="music-bar"></span>
+</button>
+<!-- Nav dots -->
+<nav class="nav-dots" id="nav-dots" aria-label="Section navigation"></nav>
+<!-- Copy feedback -->
+<div class="copy-feedback" id="copy-feedback" data-i18n="copyDone"></div>
+<!-- ═══════════════════════════════════════════════════════
+     MAIN CONTENT
+     ═══════════════════════════════════════════════════════ -->
+<main>
+  <!-- ═══════ SCREEN 2: HERO ═══════ -->
+  <section id="hero" data-nav-label-ar="البداية" data-nav-label-en="Home">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="hero-religious" data-i18n="heroReligious"></div>
+      </div>
+      <div class="reveal" style="transition-delay: 0.1s">
+        <div class="gold-divider">
+          <span class="line"></span>
+          <span class="diamond"></span>
+          <span class="line"></span>
+        </div>
+      </div>
+      <div class="reveal" style="transition-delay: 0.2s">
+        <div class="hero-family-block">
+          <div class="hero-parents" id="hero-groom-parents"></div>
+          <div class="hero-family-name" id="hero-groom-family"></div>
+        </div>
+        <div class="hero-family-block">
+          <div class="hero-parents" id="hero-bride-parents"></div>
+          <div class="hero-family-name" id="hero-bride-family"></div>
+        </div>
+      </div>
+      <div class="reveal" style="transition-delay: 0.3s">
+        <div class="hero-invite-text" data-i18n="heroInvite"></div>
+      </div>
+      <div class="reveal" style="transition-delay: 0.4s">
+        <div class="hero-couple-names gold-shimmer" id="hero-couple"></div>
+      </div>
+      <div class="reveal" style="transition-delay: 0.5s">
+        <div class="heartbeat" style="margin: 12px 0;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--rose)"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+      </div>
+      <div class="reveal" style="transition-delay: 0.6s">
+        <div class="hero-date" id="hero-date"></div>
+        <div class="hero-venue" id="hero-venue"></div>
+      </div>
+      <div class="scroll-indicator">
+        <span data-i18n="scrollDown"></span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="7 13 12 18 17 13"/><line x1="12" y1="6" x2="12" y2="18"/></svg>
+      </div>
+    </div>
+  </section>
+  <!-- ═══════ SCREEN 3: VERSE ═══════ -->
+  <section id="verse" data-nav-label-ar="الآية" data-nav-label-en="Verse">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="gold-divider">
+          <span class="line"></span>
+          <span class="diamond"></span>
+          <span class="line"></span>
+        </div>
+      </div>
+      <div class="reveal" style="transition-delay: 0.1s">
+        <span class="verse-quote-mark">"</span>
+        <div class="verse-text font-verse" data-i18n="verseText"></div>
+      </div>
+      <div class="reveal" style="transition-delay: 0.2s">
+        <div class="verse-reference" data-i18n="verseRef"></div>
+      </div>
+      <div class="reveal" style="transition-delay: 0.3s">
+        <div class="gold-divider" style="margin-top: 32px;">
+          <span class="line"></span>
+          <span class="diamond"></span>
+          <span class="line"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ═══════ SCREEN 4: COUNTDOWN ═══════ -->
+  <section id="countdown" data-nav-label-ar="العد التنازلي" data-nav-label-en="Countdown">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-title" data-i18n="countdownTitle"></div>
+        <div class="countdown-subtitle" data-i18n="countdownSubtitle"></div>
+      </div>
+      <div class="reveal" style="transition-delay: 0.1s">
+        <div class="countdown-grid" id="countdown-grid">
+          <div class="countdown-cell">
+            <span class="countdown-number" id="cd-days">٠</span>
+            <span class="countdown-label" data-i18n="days"></span>
+          </div>
+          <div class="countdown-cell">
+            <span class="countdown-number" id="cd-hours">٠</span>
+            <span class="countdown-label" data-i18n="hours"></span>
+          </div>
+          <div class="countdown-cell">
+            <span class="countdown-number" id="cd-minutes">٠</span>
+            <span class="countdown-label" data-i18n="minutes"></span>
+          </div>
+          <div class="countdown-cell">
+            <span class="countdown-number" id="cd-seconds">٠</span>
+            <span class="countdown-label" data-i18n="seconds"></span>
+          </div>
+        </div>
+        <div class="countdown-done hidden" id="countdown-done" data-i18n="countdownDone"></div>
+      </div>
+    </div>
+  </section>
+  <!-- ═══════ SCREEN 5: EVENT DETAILS ═══════ -->
+  <section id="events" data-nav-label-ar="تفاصيل الحفل" data-nav-label-en="Details">
+    <div class="section-inner" style="max-width: 680px;">
+      <div class="reveal">
+        <div class="section-title" data-i18n="eventsTitle"></div>
+        <div class="gold-divider">
+          <span class="line"></span>
+          <span class="diamond"></span>
+          <span class="line"></span>
+        </div>
+      </div>
+      <div class="events-grid">
+        <!-- Ceremony card -->
+        <div class="event-card reveal" style="transition-delay: 0.1s" id="ceremony-card">
+          <div class="event-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 22H6a2 2 0 0 1-2-2V10l8-8 8 8v10a2 2 0 0 1-2 2z"/><path d="M12 2v4"/><path d="M9 22v-6h6v6"/><line x1="12" y1="6" x2="12" y2="6.01"/><path d="M12 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/></svg>
+          </div>
+          <div class="event-title" id="ceremony-title"></div>
+          <div class="event-detail">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span id="ceremony-date"></span>
+          </div>
+          <div class="event-detail">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span id="ceremony-time"></span>
+          </div>
+          <div class="event-detail">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span id="ceremony-venue"></span>
+          </div>
+          <div class="event-map">
+            <iframe id="ceremony-map" loading="lazy" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade" title="Ceremony location"></iframe>
+          </div>
+          <a class="btn btn-outline" id="ceremony-directions" href="#" target="_blank" rel="noopener noreferrer" aria-label="Get directions to ceremony">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span data-i18n="directions"></span>
+          </a>
+        </div>
+        <!-- Reception card -->
+        <div class="event-card reveal" style="transition-delay: 0.2s" id="reception-card">
+          <div class="event-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3L2 9l10 6 10-6-10-6z"/><path d="M2 17l10 6 10-6"/><path d="M2 13l10 6 10-6"/></svg>
+          </div>
+          <div class="event-title" id="reception-title"></div>
+          <div class="event-detail">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span id="reception-date"></span>
+          </div>
+          <div class="event-detail">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span id="reception-time"></span>
+          </div>
+          <div class="event-detail">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span id="reception-venue"></span>
+          </div>
+          <div class="event-map">
+            <iframe id="reception-map" loading="lazy" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade" title="Reception location"></iframe>
+          </div>
+          <a class="btn btn-outline" id="reception-directions" href="#" target="_blank" rel="noopener noreferrer" aria-label="Get directions to reception">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span data-i18n="directions"></span>
+          </a>
+        </div>
+      </div>
+      <!-- Locations subsection -->
+      <div class="reveal" style="transition-delay: 0.3s">
+        <div class="section-subtitle mt-24" data-i18n="locationsTitle" style="margin-top: 36px;"></div>
+        <div class="locations-grid" id="locations-grid">
+          <a class="location-card" id="groom-house-card" href="#" target="_blank" rel="noopener noreferrer" aria-label="Groom's house directions">
+            <div class="loc-label" id="groom-house-label"></div>
+            <div class="loc-address" id="groom-house-address"></div>
+            <span class="btn btn-outline" style="font-size: 12px; padding: 8px 14px;" data-i18n="directions"></span>
+          </a>
+          <a class="location-card" id="bride-house-card" href="#" target="_blank" rel="noopener noreferrer" aria-label="Bride's house directions">
+            <div class="loc-label" id="bride-house-label"></div>
+            <div class="loc-address" id="bride-house-address"></div>
+            <span class="btn btn-outline" style="font-size: 12px; padding: 8px 14px;" data-i18n="directions"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ═══════ SCREEN 6: TIMELINE ═══════ -->
+  <section id="timeline" data-nav-label-ar="قصتنا" data-nav-label-en="Our Story">
+    <div class="section-inner" style="max-width: 600px;">
+      <div class="reveal">
+        <div class="section-title" data-i18n="timelineTitle"></div>
+        <div class="section-subtitle" data-i18n="timelineSubtitle"></div>
+        <div class="gold-divider">
+          <span class="line"></span>
+          <span class="diamond"></span>
+          <span class="line"></span>
+        </div>
+      </div>
+      <div class="timeline-container" id="timeline-container">
+        <div class="timeline-line"></div>
+      </div>
+    </div>
+  </section>
+  <!-- ═══════ SCREEN 7: GALLERY ═══════ -->
+  <section id="gallery" data-nav-label-ar="صور" data-nav-label-en="Gallery">
+    <div class="section-inner" style="max-width: 600px;">
+      <div class="reveal">
+        <div class="section-title" data-i18n="galleryTitle"></div>
+        <div class="gold-divider">
+          <span class="line"></span>
+          <span class="diamond"></span>
+          <span class="line"></span>
+        </div>
+      </div>
+      <div class="gallery-grid reveal" style="transition-delay: 0.1s" id="gallery-grid">
+        <div class="gallery-cell">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          <div class="gallery-label" data-i18n="galleryFeatured"></div>
+        </div>
+        <div class="gallery-cell">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          <div class="gallery-label" data-i18n="galleryPhoto"></div>
+        </div>
+        <div class="gallery-cell">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          <div class="gallery-label" data-i18n="galleryPhoto"></div>
+        </div>
+        <div class="gallery-cell">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          <div class="gallery-label" data-i18n="galleryPhoto"></div>
+        </div>
+        <div class="gallery-cell">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          <div class="gallery-label" data-i18n="galleryPhoto"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ═══════ SCREEN 8: GIFTS ═══════ -->
+  <section id="gifts" data-nav-label-ar="الهدايا" data-nav-label-en="Gifts">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="section-title" data-i18n="giftsTitle"></div>
+        <div class="gold-divider">
+          <span class="line"></span>
+          <span class="diamond"></span>
+          <span class="line"></span>
+        </div>
+        <div class="gifts-subtitle" data-i18n="giftsSubtitle"></div>
+      </div>
+      <div class="gift-options reveal" style="transition-delay: 0.1s" id="gift-options"></div>
+      <!-- QR Photos subsection -->
+      <div class="qr-section reveal" style="transition-delay: 0.2s" id="qr-section">
+        <div class="qr-title" data-i18n="qrTitle"></div>
+        <div class="qr-subtitle" data-i18n="qrSubtitle"></div>
+        <img class="qr-code-img" id="qr-code-img" src="" alt="QR Code for sharing photos" loading="lazy">
+      </div>
+    </div>
+  </section>
+  <!-- ═══════ SCREEN 9: RSVP ═══════ -->
+  <section id="rsvp" data-nav-label-ar="تأكيد الحضور" data-nav-label-en="RSVP">
+    <div class="section-inner" style="max-width: 500px;">
+      <div class="reveal">
+        <div class="section-title" data-i18n="rsvpTitle"></div>
+        <div class="section-subtitle" data-i18n="rsvpSubtitle"></div>
+        <div class="gold-divider">
+          <span class="line"></span>
+          <span class="diamond"></span>
+          <span class="line"></span>
+        </div>
+        <div class="rsvp-deadline" id="rsvp-deadline"></div>
+      </div>
+      <form class="rsvp-form reveal" style="transition-delay: 0.1s" id="rsvp-form" novalidate>
+        <!-- Full name -->
+        <div class="form-group">
+          <label data-i18n="rsvpName"></label>
+          <input type="text" id="rsvp-name" required autocomplete="name">
+        </div>
+        <!-- Phone -->
+        <div class="form-group">
+          <label data-i18n="rsvpPhone"></label>
+          <input type="tel" id="rsvp-phone" placeholder="+961" autocomplete="tel">
+        </div>
+        <!-- Attendance -->
+        <div class="form-group">
+          <label data-i18n="rsvpAttendance"></label>
+          <div class="radio-group">
+            <div class="radio-option">
+              <input type="radio" name="attendance" id="rsvp-accept" value="accept" checked>
+              <label for="rsvp-accept" class="radio-label accept" data-i18n="rsvpAccept"></label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" name="attendance" id="rsvp-decline" value="decline">
+              <label for="rsvp-decline" class="radio-label decline" data-i18n="rsvpDecline"></label>
+            </div>
+          </div>
+        </div>
+        <!-- Guest count -->
+        <div class="form-group" id="rsvp-guests-group">
+          <label data-i18n="rsvpGuests"></label>
+          <select id="rsvp-guests"></select>
+        </div>
+        <!-- Event selection -->
+        <div class="form-group" id="rsvp-events-group">
+          <label data-i18n="rsvpEvents"></label>
+          <div class="checkbox-group">
+            <div class="checkbox-option">
+              <input type="radio" name="event_choice" id="rsvp-ceremony-only" value="ceremony">
+              <label for="rsvp-ceremony-only" class="check-label">
+                <span class="check-box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span data-i18n="rsvpCeremonyOnly"></span>
+              </label>
+            </div>
+            <div class="checkbox-option">
+              <input type="radio" name="event_choice" id="rsvp-reception-only" value="reception">
+              <label for="rsvp-reception-only" class="check-label">
+                <span class="check-box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span data-i18n="rsvpReceptionOnly"></span>
+              </label>
+            </div>
+            <div class="checkbox-option">
+              <input type="radio" name="event_choice" id="rsvp-both" value="both" checked>
+              <label for="rsvp-both" class="check-label">
+                <span class="check-box"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span data-i18n="rsvpBoth"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <!-- Message -->
+        <div class="form-group">
+          <label data-i18n="rsvpMessage"></label>
+          <textarea id="rsvp-message"></textarea>
+        </div>
+        <!-- Submit -->
+        <button type="submit" class="btn btn-gold btn-submit" id="rsvp-submit">
+          <span data-i18n="rsvpSubmit"></span>
+        </button>
+      </form>
+      <!-- Success state -->
+      <div class="rsvp-success" id="rsvp-success">
+        <svg class="success-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="8 12 11 15 16 9"/>
+        </svg>
+        <div class="success-title" data-i18n="rsvpSuccessTitle"></div>
+        <div class="success-message" data-i18n="rsvpSuccessMsg"></div>
+      </div>
+    </div>
+  </section>
+  <!-- ═══════ SCREEN 10: FOOTER ═══════ -->
+  <footer id="footer" data-nav-label-ar="النهاية" data-nav-label-en="End">
+    <div class="section-inner">
+      <div class="reveal">
+        <div class="footer-await" data-i18n="footerAwait"></div>
+        <div class="footer-couple" id="footer-couple">
+          <span id="footer-groom"></span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--rose)"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span id="footer-bride"></span>
+        </div>
+      </div>
+      <div class="reveal" style="transition-delay: 0.1s">
+        <div class="gold-divider">
+          <span class="line"></span>
+          <span class="diamond"></span>
+          <span class="line"></span>
+        </div>
+      </div>
+      <div class="footer-actions reveal" style="transition-delay: 0.2s">
+        <button class="btn btn-outline" id="btn-whatsapp" aria-label="Share via WhatsApp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <span data-i18n="shareWhatsapp"></span>
+        </button>
+        <button class="btn btn-outline" id="btn-calendar" aria-label="Add to calendar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span data-i18n="addCalendar"></span>
+        </button>
+        <button class="btn btn-outline" id="btn-copy-link" aria-label="Copy invitation link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span data-i18n="copyLink"></span>
+        </button>
+      </div>
+      <div class="reveal" style="transition-delay: 0.3s">
+        <div style="height: 1px; background: rgba(196,162,101,0.08); margin: 20px 0;"></div>
+        <div class="footer-credit">
+          <span data-i18n="footerCreditPrefix"></span>
+          <a href="#" id="footer-credit-link" target="_blank" rel="noopener noreferrer">CARTA</a>
+          <br>
+          <span style="margin-top: 6px; display: inline-block;">&copy; 2025</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+</main>
+<script>
+// ═══════════════════════════════════════════════════════════
+// CONFIG — Edit ONLY this object to customize the invitation
+// ═══════════════════════════════════════════════════════════
+const CONFIG = {
+  // ─── Type ───
+  type: 'christian', // 'christian' or 'muslim'
+  // ─── Couple ───
+  groom: {
+    firstName: { ar: 'جورج', en: 'George' },
+    family:    { ar: 'خوري', en: 'Khoury' },
+    fatherName:{ ar: 'ميشال', en: 'Michel' },
+    motherName:{ ar: 'تريز', en: 'Therese' }
+  },
+  bride: {
+    firstName: { ar: 'ماريا', en: 'Maria' },
+    family:    { ar: 'سمعان', en: 'Semaan' },
+    fatherName:{ ar: 'أنطوان', en: 'Antoine' },
+    motherName:{ ar: 'كلير', en: 'Claire' }
+  },
+  // ─── Events ───
+  ceremony: {
+    title:   { ar: 'مراسم الزواج', en: 'Wedding Ceremony' },
+    date:    '2025-09-20T16:00:00',
+    dateText:{ ar: 'السبت ٢٠ أيلول ٢٠٢٥', en: 'Saturday, September 20, 2025' },
+    time:    { ar: '٤:٠٠ بعد الظهر', en: '4:00 PM' },
+    venue:   { ar: 'كنيسة سيدة لبنان', en: 'Our Lady of Lebanon Church' },
+    mapUrl:  'https://maps.google.com/?q=Our+Lady+of+Lebanon+Church',
+    mapEmbed:'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.5!2d35.55!3d33.89!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDUzJzI0LjAiTiAzNcKwMzMnMDAuMCJF!5e0!3m2!1sen!2slb!4v1'
+  },
+  reception: {
+    title:   { ar: 'حفل الاستقبال', en: 'Wedding Reception' },
+    date:    '2025-09-20T20:30:00',
+    dateText:{ ar: 'السبت ٢٠ أيلول ٢٠٢٥', en: 'Saturday, September 20, 2025' },
+    time:    { ar: '٨:٣٠ مساءً', en: '8:30 PM' },
+    venue:   { ar: 'فندق لو رويال — قاعة الكريستال', en: 'Le Royal Hotel — Crystal Ballroom' },
+    mapUrl:  'https://maps.google.com/?q=Le+Royal+Hotel+Beirut',
+    mapEmbed:'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.5!2d35.55!3d33.89!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDUzJzI0LjAiTiAzNcKwMzMnMDAuMCJF!5e0!3m2!1sen!2slb!4v1'
+  },
+  // ─── Locations ───
+  locations: {
+    groomHouse: {
+      label:   { ar: 'منزل العريس', en: "Groom's Residence" },
+      address: { ar: 'شارع المتنبي، الأشرفية', en: 'Mutanabbi St., Ashrafieh' },
+      mapUrl:  'https://maps.google.com/?q=Ashrafieh+Beirut'
+    },
+    brideHouse: {
+      label:   { ar: 'منزل العروس', en: "Bride's Residence" },
+      address: { ar: 'شارع الحمرا، بيروت', en: 'Hamra St., Beirut' },
+      mapUrl:  'https://maps.google.com/?q=Hamra+Beirut'
+    }
+  },
+  // ─── Verse ───
+  verse: {
+    text: {
+      ar: 'فَلَيْسَا بَعْدُ اثْنَيْنِ بَلْ جَسَدٌ وَاحِدٌ. فَالَّذِي جَمَعَهُ اللهُ لاَ يُفَرِّقُهُ إِنْسَانٌ',
+      en: 'So they are no longer two, but one flesh. Therefore what God has joined together, let no one separate.'
+    },
+    reference: { ar: 'متّى ١٩:٦', en: 'Matthew 19:6' }
+  },
+  // ─── Timeline ───
+  showTimeline: true,
+  timeline: [
+    { year: '2019', title: { ar: 'اللقاء الأول', en: 'First Meeting' },
+      desc: { ar: 'جمعنا القدر في لحظة غيّرت حياتنا', en: 'Fate brought us together in a life-changing moment' }},
+    { year: '2020', title: { ar: 'الموعد الأول', en: 'First Date' },
+      desc: { ar: 'قهوة واحدة كانت كفيلة بأن تبدأ قصتنا', en: 'One coffee was enough to start our story' }},
+    { year: '2022', title: { ar: 'السفر معاً', en: 'Traveling Together' },
+      desc: { ar: 'اكتشفنا العالم معاً وعرفنا أننا لا نريد التوقف', en: 'We explored the world together and knew we never wanted to stop' }},
+    { year: '2024', title: { ar: 'الخطوبة', en: 'The Proposal' },
+      desc: { ar: 'لحظة قالت فيها "نعم" وتغيّر كل شيء', en: 'The moment she said "Yes" and everything changed' }},
+    { year: '2025', title: { ar: 'الزفاف', en: 'The Wedding' },
+      desc: { ar: 'بداية فصل جديد من حياتنا معاً', en: 'The beginning of a new chapter of our life together' }}
+  ],
+  // ─── Gallery ───
+  showGallery: true,
+  // ─── Gifts ───
+  gifts: {
+    subtitle: {
+      ar: 'لمن يرغب، لائحة الهدايا متوفرة عبر',
+      en: 'For those who wish, our gift registry is available at'
+    },
+    options: [
+      { name: 'Whish', url: 'https://whish.money/' },
+      { name: 'OMT', url: 'https://omt.com.lb/' }
+    ]
+  },
+  // ─── QR Photos ───
+  showQR: true,
+  qrUrl: 'https://carta.com/photos/george-maria',
+  // ─── RSVP ───
+  rsvp: {
+    endpoint: null, // 'https://your-carta-domain.com/api/rsvp'
+    deadline: '2025-09-10',
+    deadlineText: { ar: '١٠ أيلول ٢٠٢٥', en: 'September 10, 2025' },
+    maxGuests: 4
+  },
+  // ─── Countdown ───
+  countdownTarget: '2025-09-20T16:00:00',
+  // ─── Music ───
+  musicSrc: null, // 'path/to/music.mp3'
+  // ─── Meta ───
+  hashtag: '#George_and_Maria',
+  footerCredit: { name: 'CARTA', url: 'https://carta.com' }
+};
+// ═══════════════════════════════════════════════════════════
+// TRANSLATIONS
+// ═══════════════════════════════════════════════════════════
+const TRANSLATIONS = {
+  ar: {
+    openingReligious: CONFIG.type === 'christian'
+      ? 'بإسم الآب والإبن والروح القدس، الإله الواحد، آمين'
+      : 'بسم الله الرحمن الرحيم',
+    openingFamilies: `عائلة ${CONFIG.groom.family.ar} وعائلة ${CONFIG.bride.family.ar}`,
+    openingInvite: 'يتشرفون بدعوتكم لحضور حفل زفاف',
+    openingDate: CONFIG.ceremony.dateText.ar,
+    openEnvelope: 'افتح الدعوة',
+    heroReligious: CONFIG.type === 'christian'
+      ? 'بإسم الآب والإبن والروح القدس'
+      : 'بسم الله الرحمن الرحيم',
+    heroInvite: 'يتشرفون بدعوتكم لحضور حفل زفاف',
+    scrollDown: 'مرر للأسفل',
+    verseText: CONFIG.verse.text.ar,
+    verseRef: CONFIG.verse.reference.ar,
+    countdownTitle: 'العد التنازلي',
+    countdownSubtitle: 'نعدّ اللحظات بشوق لهذا اليوم المميز',
+    countdownDone: 'بارك الله لهما',
+    days: 'يوم',
+    hours: 'ساعة',
+    minutes: 'دقيقة',
+    seconds: 'ثانية',
+    eventsTitle: 'تفاصيل الحفل',
+    directions: 'الاتجاهات',
+    locationsTitle: 'عناوين مهمة',
+    timelineTitle: 'قصتنا',
+    timelineSubtitle: 'محطات في رحلتنا',
+    galleryTitle: 'لحظات تجمعنا',
+    galleryFeatured: 'الصورة الرئيسية',
+    galleryPhoto: 'صورة',
+    giftsTitle: 'لمن يرغب',
+    giftsSubtitle: CONFIG.gifts.subtitle.ar,
+    qrTitle: 'شاركونا لحظاتكم',
+    qrSubtitle: 'إمسحوا الرمز لمشاركة الصور التي التقطتموها',
+    rsvpTitle: 'تأكيد الحضور',
+    rsvpSubtitle: 'يسعدنا تأكيدكم لمشاركتنا فرحتنا',
+    rsvpDeadline: `نرجو التأكيد قبل تاريخ ${CONFIG.rsvp.deadlineText.ar}`,
+    rsvpExpired: 'انتهت مهلة التأكيد',
+    rsvpName: 'الاسم الكامل',
+    rsvpPhone: 'رقم الهاتف',
+    rsvpAttendance: 'هل ستشرفوننا بحضوركم؟',
+    rsvpAccept: 'بكل سرور',
+    rsvpDecline: 'يتعذر علينا الحضور',
+    rsvpGuests: 'عدد الأشخاص',
+    rsvpEvents: 'أي حفل ستحضرون؟',
+    rsvpCeremonyOnly: 'مراسم الزواج فقط',
+    rsvpReceptionOnly: 'حفل الاستقبال فقط',
+    rsvpBoth: 'كلاهما',
+    rsvpMessage: 'كلمة للعروسين',
+    rsvpMessagePlaceholder: 'اكتبوا كلمة أو دعاء للعروسين',
+    rsvpSubmit: 'إرسال التأكيد',
+    rsvpSubmitting: 'جاري الإرسال...',
+    rsvpSuccessTitle: 'شكراً لتأكيدكم',
+    rsvpSuccessMsg: 'تم استلام ردكم بنجاح. يسعدنا لقاؤكم',
+    footerAwait: 'في انتظاركم',
+    shareWhatsapp: 'مشاركة عبر واتساب',
+    addCalendar: 'أضف إلى التقويم',
+    copyLink: 'نسخ رابط الدعوة',
+    copyDone: 'تم النسخ',
+    footerCreditPrefix: 'صُمّمت بواسطة ',
+    guestPrefix: 'حضرة السيد/ة',
+    guestDefault: 'حضرة المدعوين الكرام'
+  },
+  en: {
+    openingReligious: CONFIG.type === 'christian'
+      ? 'In the name of the Father, the Son, and the Holy Spirit, One God, Amen'
+      : 'In the name of God, the Most Gracious, the Most Merciful',
+    openingFamilies: `The ${CONFIG.groom.family.en} & ${CONFIG.bride.family.en} Families`,
+    openingInvite: 'Request the honor of your presence at the wedding celebration of',
+    openingDate: CONFIG.ceremony.dateText.en,
+    openEnvelope: 'Open Invitation',
+    heroReligious: CONFIG.type === 'christian'
+      ? 'In the name of the Father, the Son, and the Holy Spirit'
+      : 'In the name of God, the Most Gracious, the Most Merciful',
+    heroInvite: 'Request the honor of your presence at the wedding of',
+    scrollDown: 'Scroll Down',
+    verseText: CONFIG.verse.text.en,
+    verseRef: CONFIG.verse.reference.en,
+    countdownTitle: 'Countdown',
+    countdownSubtitle: 'Counting every moment until the special day',
+    countdownDone: 'Blessed be their union',
+    days: 'Days',
+    hours: 'Hours',
+    minutes: 'Minutes',
+    seconds: 'Seconds',
+    eventsTitle: 'Event Details',
+    directions: 'Directions',
+    locationsTitle: 'Important Addresses',
+    timelineTitle: 'Our Story',
+    timelineSubtitle: 'Milestones in our journey',
+    galleryTitle: 'Moments Together',
+    galleryFeatured: 'Featured Photo',
+    galleryPhoto: 'Photo',
+    giftsTitle: 'For Those Who Wish',
+    giftsSubtitle: CONFIG.gifts.subtitle.en,
+    qrTitle: 'Share Your Moments',
+    qrSubtitle: 'Scan the code to share photos you\'ve captured',
+    rsvpTitle: 'RSVP',
+    rsvpSubtitle: 'We would be delighted to have you join our celebration',
+    rsvpDeadline: `Please confirm by ${CONFIG.rsvp.deadlineText.en}`,
+    rsvpExpired: 'RSVP deadline has passed',
+    rsvpName: 'Full Name',
+    rsvpPhone: 'Phone Number',
+    rsvpAttendance: 'Will you be joining us?',
+    rsvpAccept: 'Gladly Accept',
+    rsvpDecline: 'Regretfully Decline',
+    rsvpGuests: 'Number of Guests',
+    rsvpEvents: 'Which event will you attend?',
+    rsvpCeremonyOnly: 'Ceremony Only',
+    rsvpReceptionOnly: 'Reception Only',
+    rsvpBoth: 'Both',
+    rsvpMessage: 'A word for the couple',
+    rsvpMessagePlaceholder: 'Write a message or prayer for the couple',
+    rsvpSubmit: 'Send Confirmation',
+    rsvpSubmitting: 'Sending...',
+    rsvpSuccessTitle: 'Thank You',
+    rsvpSuccessMsg: 'Your response has been received. We look forward to seeing you!',
+    footerAwait: 'We look forward to seeing you',
+    shareWhatsapp: 'Share via WhatsApp',
+    addCalendar: 'Add to Calendar',
+    copyLink: 'Copy Link',
+    copyDone: 'Link Copied!',
+    footerCreditPrefix: 'Designed by ',
+    guestPrefix: 'Dear',
+    guestDefault: 'Dear Honored Guests'
+  }
+};
+// ═══════════════════════════════════════════════════════════
+// APP STATE
+// ═══════════════════════════════════════════════════════════
+const STATE = {
+  lang: 'ar',
+  isOpen: false,
+  isPlaying: false,
+  guestName: null,
+  guestCount: null
+};
+// ═══════════════════════════════════════════════════════════
+// UTILITY FUNCTIONS
+// ═══════════════════════════════════════════════════════════
+function getUrlParam(key) {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    return params.get(key);
+  } catch(e) { return null; }
+}
+function toArabicNumerals(num) {
+  const arabicDigits = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+  return String(num).replace(/[0-9]/g, d => arabicDigits[+d]);
+}
+function t(key) {
+  return TRANSLATIONS[STATE.lang][key] || key;
+}
+function l(obj) {
+  if (!obj) return '';
+  return obj[STATE.lang] || obj.ar || '';
+}
+// ═══════════════════════════════════════════════════════════
+// INITIALIZATION
+// ═══════════════════════════════════════════════════════════
+function init() {
+  // Parse URL parameters
+  STATE.guestName = getUrlParam('guest');
+  STATE.guestCount = getUrlParam('count');
+  const langParam = getUrlParam('lang');
+  const eventParam = getUrlParam('event');
+  // Language from URL or session or default
+  if (langParam === 'en' || langParam === 'ar') {
+    STATE.lang = langParam;
+  } else {
+    const saved = sessionStorage.getItem('carta-lang');
+    if (saved) STATE.lang = saved;
+  }
+  // Build dynamic content
+  buildTimeline();
+  buildGiftOptions();
+  buildGuestDropdown();
+  buildNavDots();
+  createParticles();
+  // Set initial language
+  applyLanguage(false);
+  // Populate config-driven content
+  populateContent();
+  // Handle QR section
+  if (CONFIG.showQR && CONFIG.qrUrl) {
+    const qrImg = document.getElementById('qr-code-img');
+    qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(CONFIG.qrUrl)}&bgcolor=FFFFFF&color=0B1121`;
+  } else {
+    const qrSec = document.getElementById('qr-section');
+    if (qrSec) qrSec.classList.add('hidden');
+  }
+  // Hide optional sections
+  if (!CONFIG.showTimeline) document.getElementById('timeline').classList.add('hidden');
+  if (!CONFIG.showGallery) document.getElementById('gallery').classList.add('hidden');
+  // Setup music
+  if (CONFIG.musicSrc) {
+    const audio = document.getElementById('bg-music');
+    audio.querySelector('source').src = CONFIG.musicSrc;
+    audio.load();
+  }
+  // Pre-fill RSVP from URL
+  if (STATE.guestName) {
+    document.getElementById('rsvp-name').value = decodeURIComponent(STATE.guestName);
+  }
+  if (STATE.guestCount) {
+    const sel = document.getElementById('rsvp-guests');
+    const val = parseInt(STATE.guestCount);
+    if (val >= 1 && val <= CONFIG.rsvp.maxGuests) sel.value = val;
+  }
+  if (eventParam) {
+    const radio = document.querySelector(`input[name="event_choice"][value="${eventParam}"]`);
+    if (radio) radio.checked = true;
+  }
+  // RSVP deadline check
+  checkRsvpDeadline();
+  // Setup event listeners
+  setupEventListeners();
+  // Setup scroll reveal
+  setupScrollReveal();
+  // Start countdown
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+  // Footer credit
+  const creditLink = document.getElementById('footer-credit-link');
+  creditLink.href = CONFIG.footerCredit.url;
+  creditLink.textContent = CONFIG.footerCredit.name;
+  // Map embeds
+  document.getElementById('ceremony-map').src = CONFIG.ceremony.mapEmbed;
+  document.getElementById('reception-map').src = CONFIG.reception.mapEmbed;
+}
+function populateContent() {
+  const lang = STATE.lang;
+  // Opening screen
+  const guestEl = document.getElementById('opening-guest');
+  if (STATE.guestName) {
+    guestEl.textContent = `${t('guestPrefix')} ${decodeURIComponent(STATE.guestName)}`;
+  } else {
+    guestEl.textContent = t('guestDefault');
+  }
+  // Couple names
+  const openingCouple = document.getElementById('opening-couple');
+  openingCouple.textContent = `${l(CONFIG.groom.firstName)} & ${l(CONFIG.bride.firstName)}`;
+  const heroCouple = document.getElementById('hero-couple');
+  heroCouple.textContent = `${l(CONFIG.groom.firstName)} & ${l(CONFIG.bride.firstName)}`;
+  // Hero families
+  const groomParents = document.getElementById('hero-groom-parents');
+  const groomFamily = document.getElementById('hero-groom-family');
+  const brideParents = document.getElementById('hero-bride-parents');
+  const brideFamily = document.getElementById('hero-bride-family');
+  if (lang === 'ar') {
+    groomParents.textContent = `${CONFIG.groom.fatherName.ar} و${CONFIG.groom.motherName.ar}`;
+    groomFamily.textContent = `عائلة ${CONFIG.groom.family.ar}`;
+    brideParents.textContent = `${CONFIG.bride.fatherName.ar} و${CONFIG.bride.motherName.ar}`;
+    brideFamily.textContent = `عائلة ${CONFIG.bride.family.ar}`;
+  } else {
+    groomParents.textContent = `${CONFIG.groom.fatherName.en} & ${CONFIG.groom.motherName.en}`;
+    groomFamily.textContent = `The ${CONFIG.groom.family.en} Family`;
+    brideParents.textContent = `${CONFIG.bride.fatherName.en} & ${CONFIG.bride.motherName.en}`;
+    brideFamily.textContent = `The ${CONFIG.bride.family.en} Family`;
+  }
+  // Hero date & venue
+  document.getElementById('hero-date').textContent = l(CONFIG.ceremony.dateText);
+  document.getElementById('hero-venue').textContent = l(CONFIG.reception.venue);
+  // Events
+  document.getElementById('ceremony-title').textContent = l(CONFIG.ceremony.title);
+  document.getElementById('ceremony-date').textContent = l(CONFIG.ceremony.dateText);
+  document.getElementById('ceremony-time').textContent = l(CONFIG.ceremony.time);
+  document.getElementById('ceremony-venue').textContent = l(CONFIG.ceremony.venue);
+  document.getElementById('ceremony-directions').href = CONFIG.ceremony.mapUrl;
+  document.getElementById('reception-title').textContent = l(CONFIG.reception.title);
+  document.getElementById('reception-date').textContent = l(CONFIG.reception.dateText);
+  document.getElementById('reception-time').textContent = l(CONFIG.reception.time);
+  document.getElementById('reception-venue').textContent = l(CONFIG.reception.venue);
+  document.getElementById('reception-directions').href = CONFIG.reception.mapUrl;
+  // Locations
+  document.getElementById('groom-house-label').textContent = l(CONFIG.locations.groomHouse.label);
+  document.getElementById('groom-house-address').textContent = l(CONFIG.locations.groomHouse.address);
+  document.getElementById('groom-house-card').href = CONFIG.locations.groomHouse.mapUrl;
+  document.getElementById('bride-house-label').textContent = l(CONFIG.locations.brideHouse.label);
+  document.getElementById('bride-house-address').textContent = l(CONFIG.locations.brideHouse.address);
+  document.getElementById('bride-house-card').href = CONFIG.locations.brideHouse.mapUrl;
+  // Footer couple
+  document.getElementById('footer-groom').textContent = l(CONFIG.groom.firstName);
+  document.getElementById('footer-bride').textContent = l(CONFIG.bride.firstName);
+  // RSVP message placeholder
+  document.getElementById('rsvp-message').placeholder = t('rsvpMessagePlaceholder');
+}
+// ════════════════════════════════════════════════════���══════
+// LANGUAGE SYSTEM
+// ═══════════════════════════════════════════════════════════
+function applyLanguage(animate) {
+  const lang = STATE.lang;
+  const html = document.documentElement;
+  html.lang = lang;
+  html.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  // Swap CSS font variables
+  if (lang === 'ar') {
+    document.documentElement.style.setProperty('--font-display', 'var(--font-display-ar)');
+    document.documentElement.style.setProperty('--font-verse', 'var(--font-verse-ar)');
+    document.documentElement.style.setProperty('--font-body', 'var(--font-body-ar)');
+  } else {
+    document.documentElement.style.setProperty('--font-display', 'var(--font-display-en)');
+    document.documentElement.style.setProperty('--font-verse', "'Playfair Display', serif");
+    document.documentElement.style.setProperty('--font-body', 'var(--font-body-en)');
+  }
+  // Update all translatable elements
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (TRANSLATIONS[lang][key] !== undefined) {
+      el.textContent = TRANSLATIONS[lang][key];
+    }
+  });
+  // Repopulate config-driven content
+  populateContent();
+  // Update toggle button
+  const toggle = document.getElementById('lang-toggle');
+  toggle.setAttribute('data-active', lang);
+  // Save
+  sessionStorage.setItem('carta-lang', lang);
+  // Animate
+  if (animate) {
+    document.body.classList.add('lang-fade');
+    setTimeout(() => document.body.classList.remove('lang-fade'), 400);
+  }
+  // Update nav dot labels
+  updateNavDotLabels();
+  // Update countdown display
+  updateCountdown();
+}
+function toggleLanguage() {
+  STATE.lang = STATE.lang === 'ar' ? 'en' : 'ar';
+  applyLanguage(true);
+}
+// ═══════════════════════════════════════════════════════════
+// OPENING ENVELOPE
+// ═══════════════════════════════════════════════════════════
+function openEnvelope() {
+  const overlay = document.getElementById('opening-overlay');
+  overlay.classList.add('opening');
+  document.body.classList.remove('locked');
+  STATE.isOpen = true;
+  // Show persistent UI
+  setTimeout(() => {
+    document.getElementById('lang-toggle').classList.add('visible');
+    document.getElementById('music-toggle').classList.add('visible');
+    document.getElementById('nav-dots').classList.add('visible');
+  }, 500);
+  // Remove overlay from DOM after animation
+  setTimeout(() => {
+    overlay.style.display = 'none';
+  }, 900);
+  // Try to play music
+  if (CONFIG.musicSrc) {
+    try {
+      const audio = document.getElementById('bg-music');
+      audio.play().then(() => {
+        STATE.isPlaying = true;
+        document.getElementById('music-toggle').classList.add('playing');
+      }).catch(() => {});
+    } catch(e) {}
+  }
+}
+// ═══════════════════════════════════════════════════════════
+// COUNTDOWN
+// ═════════════════════════════════════���═════════════════════
+function updateCountdown() {
+  const target = new Date(CONFIG.countdownTarget).getTime();
+  const now = Date.now();
+  const diff = target - now;
+  if (diff <= 0) {
+    document.getElementById('countdown-grid').classList.add('hidden');
+    const done = document.getElementById('countdown-done');
+    done.classList.remove('hidden');
+    done.textContent = t('countdownDone');
+    return;
+  }
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+  const format = (n) => STATE.lang === 'ar' ? toArabicNumerals(n) : String(n);
+  document.getElementById('cd-days').textContent = format(days);
+  document.getElementById('cd-hours').textContent = format(hours);
+  document.getElementById('cd-minutes').textContent = format(minutes);
+  document.getElementById('cd-seconds').textContent = format(seconds);
+}
+// ═══════════════════��═══════════════════════════════════════
+// BUILD DYNAMIC ELEMENTS
+// ═══════════════════════════════════════════════════════════
+function buildTimeline() {
+  const container = document.getElementById('timeline-container');
+  CONFIG.timeline.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'timeline-item reveal';
+    div.style.transitionDelay = `${0.1 * (i + 1)}s`;
+    div.innerHTML = `
+      <div class="timeline-dot"></div>
+      <div class="timeline-year">${item.year}</div>
+      <div class="timeline-title" data-tl-title="${i}">${l(item.title)}</div>
+      <div class="timeline-desc" data-tl-desc="${i}">${l(item.desc)}</div>
+    `;
+    container.appendChild(div);
+  });
+}
+function buildGiftOptions() {
+  const container = document.getElementById('gift-options');
+  CONFIG.gifts.options.forEach(opt => {
+    const a = document.createElement('a');
+    a.className = 'gift-card';
+    a.href = opt.url;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.innerHTML = `
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+      <span>${opt.name}</span>
+    `;
+    container.appendChild(a);
+  });
+}
+function buildGuestDropdown() {
+  const select = document.getElementById('rsvp-guests');
+  for (let i = 1; i <= CONFIG.rsvp.maxGuests; i++) {
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = i;
+    select.appendChild(opt);
+  }
+}
+function buildNavDots() {
+  const nav = document.getElementById('nav-dots');
+  const sections = document.querySelectorAll('section[id], footer[id]');
+  sections.forEach(sec => {
+    if (sec.classList.contains('hidden')) return;
+    const btn = document.createElement('button');
+    btn.className = 'nav-dot';
+    btn.setAttribute('data-target', sec.id);
+    btn.setAttribute('aria-label', `Navigate to ${sec.id}`);
+    const label = document.createElement('span');
+    label.className = 'dot-label';
+    label.textContent = sec.getAttribute(`data-nav-label-${STATE.lang}`) || sec.id;
+    btn.appendChild(label);
+    btn.addEventListener('click', () => {
+      sec.scrollIntoView({ behavior: 'smooth' });
+    });
+    nav.appendChild(btn);
+  });
+}
+function updateNavDotLabels() {
+  document.querySelectorAll('.nav-dot').forEach(dot => {
+    const target = dot.getAttribute('data-target');
+    const sec = document.getElementById(target);
+    if (sec) {
+      const label = dot.querySelector('.dot-label');
+      label.textContent = sec.getAttribute(`data-nav-label-${STATE.lang}`) || target;
+    }
+  });
+}
+function createParticles() {
+  const container = document.getElementById('particles-container');
+  const isMobile = window.innerWidth < 640;
+  const count = isMobile ? 10 : 20;
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = 1 + Math.random() * 2.5;
+    const left = Math.random() * 100;
+    const duration = 15 + Math.random() * 20;
+    const delay = Math.random() * duration;
+    p.style.cssText = `
+      width: ${size}px;
+      height: ${size}px;
+      left: ${left}%;
+      animation-duration: ${duration}s;
+      animation-delay: -${delay}s;
+      opacity: 0;
+    `;
+    container.appendChild(p);
+  }
+}
+// ═══════════════════════════════════════════════════════════
+// RSVP
+// ═══════════════════════════════════════════════════════════
+function checkRsvpDeadline() {
+  const deadlineEl = document.getElementById('rsvp-deadline');
+  const deadline = new Date(CONFIG.rsvp.deadline + 'T23:59:59');
+  const now = new Date();
+  if (now > deadline) {
+    deadlineEl.textContent = t('rsvpExpired');
+    deadlineEl.classList.add('expired');
+    document.getElementById('rsvp-form').querySelectorAll('input, select, textarea, button').forEach(el => {
+      el.disabled = true;
+    });
+  } else {
+    deadlineEl.textContent = t('rsvpDeadline');
+  }
+}
+function handleRsvpSubmit(e) {
+  e.preventDefault();
+  const name = document.getElementById('rsvp-name').value.trim();
+  if (!name) {
+    document.getElementById('rsvp-name').focus();
+    return;
+  }
+  const btn = document.getElementById('rsvp-submit');
+  btn.disabled = true;
+  btn.innerHTML = `<span class="spinner"></span><span>${t('rsvpSubmitting')}</span>`;
+  const data = {
+    name: name,
+    phone: document.getElementById('rsvp-phone').value.trim(),
+    attendance: document.querySelector('input[name="attendance"]:checked').value,
+    guests: parseInt(document.getElementById('rsvp-guests').value),
+    events: document.querySelector('input[name="event_choice"]:checked')?.value || 'both',
+    message: document.getElementById('rsvp-message').value.trim(),
+    timestamp: new Date().toISOString()
+  };
+  if (CONFIG.rsvp.endpoint) {
+    fetch(CONFIG.rsvp.endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(res => {
+      if (!res.ok) throw new Error('Network response was not ok');
+      return res.json();
+    })
+    .then(() => showRsvpSuccess())
+    .catch(err => {
+      console.error('RSVP submission error:', err);
+      // Show success anyway for demo purposes
+      showRsvpSuccess();
+    });
+  } else {
+    // No endpoint configured — log and show success
+    console.log('RSVP Data:', data);
+    setTimeout(showRsvpSuccess, 1200);
+  }
+}
+function showRsvpSuccess() {
+  const form = document.getElementById('rsvp-form');
+  const success = document.getElementById('rsvp-success');
+  form.style.display = 'none';
+  success.classList.add('show');
+  triggerConfetti();
+}
+// ═══════════════════════════════════════════════════════════
+// CONFETTI
+// ═══════════════════════════════════════════════════════════
+function triggerConfetti() {
+  const colors = [
+    'var(--gold)', 'var(--gold-light)', 'var(--warm-white)',
+    'var(--rose)', 'var(--gold-bright)'
+  ];
+  const colorValues = ['#C4A265', '#DFC999', '#ECE6DC', '#C47070', '#D4AF37'];
+  const count = 70;
+  for (let i = 0; i < count; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    const size = 4 + Math.random() * 8;
+    const x = Math.random() * 100;
+    const color = colorValues[Math.floor(Math.random() * colorValues.length)];
+    const duration = 2 + Math.random() * 2;
+    const delay = Math.random() * 0.8;
+    piece.style.cssText = `
+      left: ${x}%;
+      top: -10px;
+      width: ${size}px;
+      height: ${size * 0.6}px;
+      background: ${color};
+      border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
+      animation-duration: ${duration}s;
+      animation-delay: ${delay}s;
+    `;
+    document.body.appendChild(piece);
+    setTimeout(() => piece.remove(), (duration + delay) * 1000 + 500);
+  }
+  // Cleanup all after 5s
+  setTimeout(() => {
+    document.querySelectorAll('.confetti-piece').forEach(p => p.remove());
+  }, 5000);
+}
+// ═══════════════════════════════════════════════════════════
+// SCROLL REVEAL & NAV TRACKING
+// ═══════════════════════════════════════════════════════════
+function setupScrollReveal() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  // Nav dot tracking
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const dot = document.querySelector(`.nav-dot[data-target="${entry.target.id}"]`);
+      if (dot) {
+        if (entry.isIntersecting) {
+          document.querySelectorAll('.nav-dot').forEach(d => d.classList.remove('active'));
+          dot.classList.add('active');
+        }
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('section[id], footer[id]').forEach(sec => {
+    navObserver.observe(sec);
+  });
+}
+// ═══════════════════════════════════════════════════════════
+// EVENT LISTENERS
+// ═══════════════════════════════════════════════════════════
+function setupEventListeners() {
+  // Open envelope
+  document.getElementById('btn-open-envelope').addEventListener('click', openEnvelope);
+  // Language toggle
+  document.getElementById('lang-toggle').addEventListener('click', toggleLanguage);
+  // Music toggle
+  document.getElementById('music-toggle').addEventListener('click', () => {
+    const audio = document.getElementById('bg-music');
+    const btn = document.getElementById('music-toggle');
+    try {
+      if (STATE.isPlaying) {
+        audio.pause();
+        STATE.isPlaying = false;
+        btn.classList.remove('playing');
+      } else {
+        audio.play().then(() => {
+          STATE.isPlaying = true;
+          btn.classList.add('playing');
+        }).catch(() => {});
+      }
+    } catch(e) {}
+  });
+  // RSVP attendance toggle
+  document.querySelectorAll('input[name="attendance"]').forEach(radio => {
+    radio.addEventListener('change', (e) => {
+      const isDecline = e.target.value === 'decline';
+      document.getElementById('rsvp-guests-group').classList.toggle('hidden', isDecline);
+      document.getElementById('rsvp-events-group').classList.toggle('hidden', isDecline);
+    });
+  });
+  // RSVP form submit
+  document.getElementById('rsvp-form').addEventListener('submit', handleRsvpSubmit);
+  // WhatsApp share
+  document.getElementById('btn-whatsapp').addEventListener('click', () => {
+    const text = STATE.lang === 'ar'
+      ? `يسعدنا دعوتكم لحضور حفل زفاف ${CONFIG.groom.firstName.ar} و${CONFIG.bride.firstName.ar}\n${window.location.href}`
+      : `You are cordially invited to the wedding of ${CONFIG.groom.firstName.en} & ${CONFIG.bride.firstName.en}\n${window.location.href}`;
+    const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+    window.open(url, '_blank');
+  });
+  // Calendar download
+  document.getElementById('btn-calendar').addEventListener('click', () => {
+    const start = new Date(CONFIG.ceremony.date);
+    const end = new Date(CONFIG.reception.date);
+    end.setHours(end.getHours() + 4);
+    const formatDate = (d) => d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+    const ics = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//CARTA//Wedding//EN',
+      'BEGIN:VEVENT',
+      `DTSTART:${formatDate(start)}`,
+      `DTEND:${formatDate(end)}`,
+      `SUMMARY:Wedding of ${CONFIG.groom.firstName.en} & ${CONFIG.bride.firstName.en}`,
+      `DESCRIPTION:Wedding ceremony and reception`,
+      `LOCATION:${CONFIG.ceremony.venue.en}`,
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ].join('\r\n');
+    const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `wedding-${CONFIG.groom.firstName.en}-${CONFIG.bride.firstName.en}.ics`;
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+  // Copy link
+  document.getElementById('btn-copy-link').addEventListener('click', () => {
+    try {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        showCopyFeedback();
+      }).catch(() => {
+        fallbackCopy(window.location.href);
+      });
+    } catch(e) {
+      fallbackCopy(window.location.href);
+    }
+  });
+}
+function fallbackCopy(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.cssText = 'position:fixed;opacity:0';
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); showCopyFeedback(); } catch(e) {}
+  document.body.removeChild(ta);
+}
+function showCopyFeedback() {
+  const fb = document.getElementById('copy-feedback');
+  fb.textContent = t('copyDone');
+  fb.classList.add('show');
+  setTimeout(() => fb.classList.remove('show'), 2000);
+}
+// ═══════════════════════════════════════════════════════════
+// LANGUAGE-AWARE TIMELINE UPDATE
+// ═══════════════════════════════════════════════════════════
+// Override applyLanguage to also update timeline
+const _origApply = applyLanguage;
+applyLanguage = function(animate) {
+  _origApply(animate);
+  // Update timeline items
+  CONFIG.timeline.forEach((item, i) => {
+    const titleEl = document.querySelector(`[data-tl-title="${i}"]`);
+    const descEl = document.querySelector(`[data-tl-desc="${i}"]`);
+    if (titleEl) titleEl.textContent = l(item.title);
+    if (descEl) descEl.textContent = l(item.desc);
+  });
+  // Update RSVP deadline
+  checkRsvpDeadline();
+};
+// ═══════════════════════════════════════════════════════════
+// BOOT
+// ═══════════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>

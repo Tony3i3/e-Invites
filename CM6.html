@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Wedding Invitation | Carta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================
+   CARTA THEME & VARIABLES
+   ============================================ */
+:root {
+  /* Colors */
+  --bg-primary: #FAF8F5; /* Soft Cream */
+  --bg-secondary: #F0EBE1;
+  --text-main: #2A2A2A; /* Deep Charcoal */
+  --text-muted: #666666;
+  --gold: #B89C6D;
+  --gold-light: #DFCDAA;
+  
+  /* Fonts */
+  --font-ar-title: 'Aref Ruqaa', serif;
+  --font-ar-body: 'Tajawal', sans-serif;
+  --font-ar-verse: 'Amiri', serif;
+  
+  --font-en-title: 'Cormorant Garamond', serif;
+  --font-en-body: 'Montserrat', sans-serif;
+
+  /* Background Images (Easy to swap) */
+  --bg-hero: url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=2070&auto=format&fit=crop');
+  --bg-texture: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+/* Base Reset */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  overflow-x: hidden;
+  background-image: var(--bg-texture);
+}
+
+/* Typography Rules */
+html[lang="ar"] { font-family: var(--font-ar-body); }
+html[lang="en"] { font-family: var(--font-en-body); }
+html[lang="ar"] .title { font-family: var(--font-ar-title); font-style: normal !important; }
+html[lang="en"] .title { font-family: var(--font-en-title); }
+html[lang="ar"] .verse { font-family: var(--font-ar-verse); font-style: normal !important; }
+html[lang="en"] .verse { font-family: var(--font-en-title); font-style: italic; }
+
+/* Global UI */
+.svg-icon { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.divider { width: 1px; height: 60px; background: linear-gradient(to bottom, transparent, var(--gold), transparent); margin: 30px auto; }
+.section { padding: 80px 20px; text-align: center; position: relative; }
+.container { max-width: 600px; margin: 0 auto; }
+
+/* Scroll Reveals */
+.reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* Language & Music Toggles */
+.controls-bar { position: fixed; top: 20px; left: 20px; right: 20px; display: flex; justify-content: space-between; z-index: 100; pointer-events: none; }
+.btn-control { pointer-events: auto; background: rgba(250, 248, 245, 0.9); border: 1px solid var(--gold-light); padding: 8px 16px; border-radius: 30px; color: var(--gold); cursor: pointer; font-size: 14px; backdrop-filter: blur(5px); display: flex; align-items: center; gap: 8px; transition: 0.3s; }
+.btn-control:hover { background: var(--bg-primary); border-color: var(--gold); }
+
+/* Hero Section (Image Background) */
+.hero { height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; background-image: var(--bg-hero); background-size: cover; background-position: center; background-attachment: fixed; }
+.hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(250, 248, 245, 0.3), rgba(250, 248, 245, 1)); }
+.hero-content { position: relative; z-index: 2; padding: 40px; background: rgba(250,248,245,0.85); backdrop-filter: blur(10px); border: 1px solid var(--gold-light); max-width: 90%; width: 400px; border-radius: 4px; }
+.hero-subtitle { font-size: 14px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 20px; }
+.hero-names { font-size: 3.5rem; color: var(--gold); margin: 10px 0; line-height: 1.2; }
+.hero-date { margin-top: 20px; font-size: 16px; color: var(--text-main); }
+
+/* Countdown */
+.countdown { display: flex; justify-content: center; gap: 15px; margin-top: 40px; }
+.cd-box { border: 1px solid var(--gold-light); padding: 15px; width: 70px; background: var(--bg-primary); }
+.cd-num { font-size: 24px; color: var(--gold); display: block; margin-bottom: 5px; }
+.cd-label { font-size: 11px; text-transform: uppercase; color: var(--text-muted); }
+
+/* Details & Cards */
+.cards-grid { display: grid; gap: 20px; margin-top: 40px; }
+.detail-card { border: 1px solid var(--gold-light); padding: 30px 20px; background: var(--bg-primary); transition: 0.3s; }
+.detail-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+.card-icon { margin-bottom: 15px; display: inline-block; }
+.card-title { font-size: 22px; color: var(--gold); margin-bottom: 10px; }
+.card-text { font-size: 14px; color: var(--text-muted); line-height: 1.8; margin-bottom: 15px; }
+.btn-map { display: inline-flex; align-items: center; gap: 8px; color: var(--gold); text-decoration: none; font-size: 13px; border-bottom: 1px solid var(--gold-light); padding-bottom: 3px; transition: 0.3s; }
+.btn-map:hover { border-bottom-color: var(--gold); }
+
+/* Registry & QR */
+.registry-box { padding: 40px 20px; background: var(--bg-secondary); border: 1px solid var(--gold-light); margin-top: 30px; }
+.qr-code { width: 120px; height: 120px; margin: 20px auto; border: 5px solid var(--bg-primary); box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+
+/* RSVP Form */
+.rsvp-form { text-align: left; }
+html[lang="ar"] .rsvp-form { text-align: right; }
+.form-group { margin-bottom: 20px; }
+.form-label { display: block; font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+.form-input, .form-select, .form-textarea { width: 100%; padding: 15px; border: 1px solid var(--gold-light); background: transparent; font-family: inherit; font-size: 14px; color: var(--text-main); outline: none; transition: 0.3s; }
+.form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--gold); }
+.form-textarea { height: 100px; resize: none; }
+.btn-submit { width: 100%; padding: 16px; background: var(--gold); color: #fff; border: none; font-family: inherit; font-size: 15px; cursor: pointer; transition: 0.3s; letter-spacing: 1px; }
+.btn-submit:hover { background: #A38A5A; }
+.rsvp-deadline { font-size: 12px; color: var(--gold); margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px; }
+
+/* Interleaved Image Section */
+.image-break { height: 60vh; background-image: url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=2069&auto=format&fit=crop'); background-size: cover; background-position: center; background-attachment: fixed; position: relative; }
+</style>
+</head>
+<body>
+
+<!-- MUSIC & LANGUAGE CONTROLS -->
+<div class="controls-bar">
+  <button class="btn-control" id="langToggle">English</button>
+  <button class="btn-control" id="musicToggle">
+    <svg class="svg-icon" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+  </button>
+</div>
+
+<!-- AUDIO (Hidden) -->
+<audio id="bgMusic" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<!-- HERO SECTION -->
+<section class="hero" id="hero">
+  <div class="hero-content reveal">
+    <p class="hero-subtitle" data-i18n="hostFamilies">آل خوري & آل حداد</p>
+    <p class="hero-subtitle" data-i18n="inviteText">يتشرفون بدعوتكم لحضور حفل زفاف ابنيهما</p>
+    <h1 class="title hero-names" data-i18n="groomName">ميشال</h1>
+    <h1 class="title hero-names">&amp;</h1>
+    <h1 class="title hero-names" data-i18n="brideName">ماريام</h1>
+    <div class="divider" style="height: 30px; margin: 15px auto;"></div>
+    <p class="hero-date title" data-i18n="weddingDate">السبت ٢٣ أيلول ٢٠٢٥</p>
+  </div>
+</section>
+
+<!-- VERSE SECTION -->
+<section class="section container">
+  <svg class="svg-icon" viewBox="0 0 24 24" style="margin-bottom: 20px;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+  <h2 class="verse reveal" data-i18n="verse">"لِتَصِرْ كُلُّ أُمُورِكُمْ فِي الْمَحَبَّةِ"</h2>
+  <p class="hero-subtitle reveal" style="margin-top: 15px;" data-i18n="verseRef">كورنثوس الأولى 16: 14</p>
+  <div class="divider"></div>
+</section>
+
+<!-- COUNTDOWN SECTION -->
+<section class="section container">
+  <h2 class="title reveal" data-i18n="countdownTitle">العد التنازلي</h2>
+  <div class="countdown reveal">
+    <div class="cd-box"><span class="cd-num" id="cd-days">00</span><span class="cd-label" data-i18n="cdDays">يوم</span></div>
+    <div class="cd-box"><span class="cd-num" id="cd-hours">00</span><span class="cd-label" data-i18n="cdHours">ساعة</span></div>
+    <div class="cd-box"><span class="cd-num" id="cd-mins">00</span><span class="cd-label" data-i18n="cdMins">دقيقة</span></div>
+  </div>
+</section>
+
+<!-- PARALLAX IMAGE BREAK -->
+<div class="image-break"></div>
+
+<!-- LOCATIONS & DETAILS -->
+<section class="section container">
+  <h2 class="title reveal" data-i18n="detailsTitle">تفاصيل اليوم</h2>
+  
+  <div class="cards-grid">
+    <!-- Church -->
+    <div class="detail-card reveal">
+      <div class="card-icon"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M12 2v20M8 6h8M6 22h12"></path></svg></div>
+      <h3 class="title card-title" data-i18n="churchTitle">الإكليل</h3>
+      <p class="card-text">
+        <strong data-i18n="churchTime">الساعة ٣:٣٠ عصراً</strong><br>
+        <span data-i18n="churchName">كنيسة مار جرجس، بيروت</span>
+      </p>
+      <a href="javascript:void(0)" class="btn-map">
+        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        <span data-i18n="mapBtn">عرض الموقع</span>
+      </a>
+    </div>
+
+    <!-- Venue -->
+    <div class="detail-card reveal">
+      <div class="card-icon"><svg class="svg-icon" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg></div>
+      <h3 class="title card-title" data-i18n="venueTitle">حفل العشاء</h3>
+      <p class="card-text">
+        <strong data-i18n="venueTime">الساعة ٨:٠٠ مساءً</strong><br>
+        <span data-i18n="venueName">فندق فينيسيا، قاعة الاحتفالات</span>
+      </p>
+      <a href="javascript:void(0)" class="btn-map">
+        <svg class="svg-icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        <span data-i18n="mapBtn">عرض الموقع</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- REGISTRY & PHOTOS -->
+<section class="section container">
+  <div class="divider"></div>
+  <h2 class="title reveal" data-i18n="registryTitle">لائحة الهدايا والذكريات</h2>
+  
+  <div class="registry-box reveal">
+    <svg class="svg-icon" viewBox="0 0 24 24" style="margin-bottom: 15px;"><rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+    <p class="card-text" data-i18n="registryText">لمن يرغب، لائحة الهدايا متوفرة في</p>
+    <h3 class="title card-title">Whish Money / OMT</h3>
+    <p class="card-text">03 123 456</p>
+  </div>
+
+  <div class="registry-box reveal">
+    <svg class="svg-icon" viewBox="0 0 24 24" style="margin-bottom: 15px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+    <p class="card-text" data-i18n="photoText">شاركونا اللحظات الجميلة عبر مسح الرمز أدناه</p>
+    <div class="qr-code">
+      <!-- Placeholder QR Image -->
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://carta.com/upload" alt="QR Code" width="100%">
+    </div>
+  </div>
+</section>
+
+<!-- RSVP FORM -->
+<section class="section container" id="rsvp">
+  <div class="divider"></div>
+  <h2 class="title reveal" data-i18n="rsvpTitle">تأكيد الحضور</h2>
+  <p class="rsvp-deadline reveal" data-i18n="rsvpDeadline">الرجاء الرد قبل ١ أيلول ٢٠٢٥</p>
+  
+  <form class="rsvp-form reveal" id="cartaRsvpForm">
+    <div class="form-group">
+      <label class="form-label" data-i18n="lblName">الاسم الكامل</label>
+      <input type="text" class="form-input" required>
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label" data-i18n="lblAttend">هل ستحضر؟</label>
+      <select class="form-select" required>
+        <option value="yes" data-i18n="optYes">بكل سرور، سأحضر</option>
+        <option value="no" data-i18n="optNo">أعتذر، لن أتمكن من الحضور</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" data-i18n="lblGuests">عدد الأشخاص</label>
+      <select class="form-select">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" data-i18n="lblMsg">رسالة للعروسين (اختياري)</label>
+      <textarea class="form-textarea"></textarea>
+    </div>
+
+    <button type="submit" class="btn-submit title" data-i18n="btnSubmit">إرسال التأكيد</button>
+  </form>
+</section>
+
+<section class="section container">
+  <p style="font-size: 12px; color: var(--text-muted);">
+    <span data-i18n="footerText">صُممت بكل حب عبر</span> <a href="#" style="color: var(--gold); text-decoration: none;">CARTA</a>
+  </p>
+</section>
+
+<script>
+/* ============================================
+   1. CARTA CONFIGURATION (Editable)
+   ============================================ */
+const CONFIG = {
+  date: "Sep 23, 2025 15:30:00", // Format for Countdown
+  musicPlay: false
+};
+
+/* ============================================
+   2. TRANSLATIONS DICTIONARY
+   ============================================ */
+const TRANSLATIONS = {
+  ar: {
+    hostFamilies: "آل خوري & آل حداد",
+    inviteText: "يتشرفون بدعوتكم لحضور حفل زفاف ابنيهما",
+    groomName: "ميشال",
+    brideName: "ماريام",
+    weddingDate: "السبت ٢٣ أيلول ٢٠٢٥",
+    verse: "«لِتَصِرْ كُلُّ أُمُورِكُمْ فِي الْمَحَبَّةِ»",
+    verseRef: "كورنثوس الأولى ١٦: ١٤",
+    countdownTitle: "العد التنازلي",
+    cdDays: "يوم", cdHours: "ساعة", cdMins: "دقيقة",
+    detailsTitle: "تفاصيل اليوم",
+    churchTitle: "الإكليل",
+    churchTime: "الساعة ٣:٣٠ عصراً",
+    churchName: "كنيسة مار جرجس، بيروت",
+    venueTitle: "حفل العشاء",
+    venueTime: "الساعة ٨:٠٠ مساءً",
+    venueName: "فندق فينيسيا، قاعة الاحتفالات",
+    mapBtn: "عرض الموقع",
+    registryTitle: "لائحة الهدايا والذكريات",
+    registryText: "لمن يرغب، لائحة الهدايا متوفرة في",
+    photoText: "شاركونا اللحظات الجميلة عبر مسح الرمز",
+    rsvpTitle: "تأكيد الحضور",
+    rsvpDeadline: "الرجاء الرد قبل ١ أيلول ٢٠٢٥",
+    lblName: "الاسم الكامل",
+    lblAttend: "هل ستحضر؟",
+    optYes: "بكل سرور، سأحضر",
+    optNo: "أعتذر، لن أتمكن من الحضور",
+    lblGuests: "عدد الأشخاص",
+    lblMsg: "رسالة للعروسين (اختياري)",
+    btnSubmit: "إرسال التأكيد",
+    footerText: "صُممت بكل حب عبر"
+  },
+  en: {
+    hostFamilies: "Khoury & Haddad Families",
+    inviteText: "Joyfully invite you to the wedding of",
+    groomName: "Michel",
+    brideName: "Mariam",
+    weddingDate: "Saturday, Sep 23, 2025",
+    verse: "\"Let all that you do be done in love.\"",
+    verseRef: "1 Corinthians 16:14",
+    countdownTitle: "Countdown",
+    cdDays: "Days", cdHours: "Hours", cdMins: "Mins",
+    detailsTitle: "Wedding Details",
+    churchTitle: "The Ceremony",
+    churchTime: "3:30 PM",
+    churchName: "St. George Church, Beirut",
+    venueTitle: "The Reception",
+    venueTime: "8:00 PM",
+    venueName: "Phoenicia Hotel, Ballroom",
+    mapBtn: "View on Map",
+    registryTitle: "Registry & Memories",
+    registryText: "For those who wish, the gift registry is available at",
+    photoText: "Scan the QR to share your photos with us",
+    rsvpTitle: "RSVP",
+    rsvpDeadline: "Kindly RSVP by Sep 1, 2025",
+    lblName: "Full Name",
+    lblAttend: "Will you attend?",
+    optYes: "Joyfully Accept",
+    optNo: "Respectfully Decline",
+    lblGuests: "Number of Guests",
+    lblMsg: "Message to the couple (Optional)",
+    btnSubmit: "Send RSVP",
+    footerText: "Made with love by"
+  }
+};
+
+/* ============================================
+   3. LANGUAGE SWITCHER
+   ============================================ */
+let currentLang = 'ar';
+const langBtn = document.getElementById('langToggle');
+
+langBtn.addEventListener('click', () => {
+  currentLang = currentLang === 'ar' ? 'en' : 'ar';
+  document.documentElement.lang = currentLang;
+  document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+  langBtn.innerText = currentLang === 'ar' ? 'English' : 'عربي';
+  
+  // Update all translation strings
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (TRANSLATIONS[currentLang][key]) {
+      el.innerText = TRANSLATIONS[currentLang][key];
+    }
+  });
+});
+
+/* ============================================
+   4. SCROLL ANIMATIONS (Intersection Observer)
+   ============================================ */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* ============================================
+   5. COUNTDOWN LOGIC
+   ============================================ */
+const countDownDate = new Date(CONFIG.date).getTime();
+setInterval(() => {
+  const now = new Date().getTime();
+  const distance = countDownDate - now;
+  
+  if (distance < 0) return; // Event passed
+
+  document.getElementById("cd-days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
+  document.getElementById("cd-hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  document.getElementById("cd-mins").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+}, 1000);
+
+/* ============================================
+   6. MUSIC TOGGLE
+   ============================================ */
+const musicBtn = document.getElementById('musicToggle');
+const audio = document.getElementById('bgMusic');
+
+musicBtn.addEventListener('click', () => {
+  if (audio.paused) {
+    audio.play();
+    musicBtn.style.background = 'var(--gold)';
+    musicBtn.querySelector('svg').style.stroke = '#fff';
+  } else {
+    audio.pause();
+    musicBtn.style.background = 'rgba(250, 248, 245, 0.9)';
+    musicBtn.querySelector('svg').style.stroke = 'var(--gold)';
+  }
+});
+
+/* ============================================
+   7. RSVP FORM SUBMISSION (Mockup)
+   ============================================ */
+document.getElementById('cartaRsvpForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const btn = e.target.querySelector('.btn-submit');
+  const originalText = btn.innerText;
+  
+  btn.innerText = currentLang === 'ar' ? "جاري الإرسال..." : "Sending...";
+  btn.style.opacity = "0.7";
+  
+  // Simulate API call to Carta DB
+  setTimeout(() => {
+    btn.innerText = currentLang === 'ar' ? "تم التأكيد، شكراً لك!" : "Confirmed, Thank You!";
+    btn.style.background = "#4CAF50"; // Success Green
+    btn.style.opacity = "1";
+  }, 1500);
+});
+</script>
+</body>
+</html>
