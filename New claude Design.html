@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scripta — Digital Invitations, Reimagined</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ═══════════ TOKENS ═══════════ */
+:root {
+  --bg: #0C0A09;
+  --bg2: #110E0B;
+  --gold: #C8A96E;
+  --gold-light: #E2D0A8;
+  --gold-dim: #8B7245;
+  --cream: #F0EBE3;
+  --muted: #7A7067;
+  --faint: #3E3830;
+  --envelope: #C9B99A;
+  --envelope-dark: #A8956F;
+  --envelope-inside: #EDE4D6;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+}
+
+/* ═══════════ RESET ═══════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { overflow-x: hidden; }
+body {
+  background: var(--bg);
+  color: var(--cream);
+  font-family: var(--sans);
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+::selection { background: var(--gold); color: var(--bg); }
+a { color: inherit; text-decoration: none; }
+
+/* ═══════════ NAV ═══════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 24px 48px;
+  transition: background 0.5s, padding 0.4s;
+}
+nav.scrolled {
+  background: rgba(12,10,9,0.94);
+  backdrop-filter: blur(16px);
+  padding: 16px 48px;
+  border-bottom: 1px solid rgba(200,169,110,0.08);
+}
+.nav-logo {
+  font-family: var(--serif); font-size: 1.6rem;
+  font-weight: 400; color: var(--gold); letter-spacing: 0.06em;
+}
+.nav-logo span { font-style: italic; font-weight: 300; }
+.nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+.nav-links a {
+  font-size: 0.72rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--muted); transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-cta {
+  padding: 9px 22px; border: 1px solid rgba(200,169,110,0.35);
+  color: var(--gold) !important;
+}
+.nav-cta:hover { background: rgba(200,169,110,0.1) !important; border-color: var(--gold) !important; }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+.nav-hamburger span { display: block; width: 24px; height: 1px; background: var(--gold); }
+
+/* ═══════════════════════════════
+   ENVELOPE HERO TRACK
+═══════════════════════════════ */
+.envelope-track {
+  height: 500vh;
+  position: relative;
+}
+.envelope-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Ambient background — shifts from cold to warm as envelope opens */
+.env-ambient {
+  position: absolute; inset: 0; pointer-events: none;
+  transition: none;
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(180,120,40,0) 0%, transparent 70%);
+}
+
+/* Noise texture */
+.envelope-sticky::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.025'/%3E%3C/svg%3E") repeat;
+  pointer-events: none; z-index: 0;
+}
+
+/* ── Eyebrow above envelope ── */
+.env-eyebrow {
+  position: absolute;
+  top: calc(50% - min(240px, 44vw) - 48px);
+  left: 50%; transform: translateX(-50%);
+  text-align: center; z-index: 10; white-space: nowrap;
+  transition: none;
+}
+.env-eyebrow-text {
+  font-size: 0.6rem; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--gold-dim);
+}
+
+/* ── Main envelope scene ── */
+.envelope-scene {
+  position: relative;
+  width: min(480px, 86vw);
+  perspective: 1400px;
+  z-index: 5;
+}
+
+/* Wrapper rotates on Y axis (beat 2) */
+.env-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.618 / 1;
+  transform-style: preserve-3d;
+}
+
+/* FRONT FACE */
+.env-front {
+  position: absolute; inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.env-body {
+  position: relative;
+  width: 100%; height: 100%;
+  background: var(--envelope);
+  box-shadow:
+    0 48px 96px rgba(0,0,0,0.7),
+    0 0 0 1px rgba(200,169,110,0.18),
+    inset 0 0 60px rgba(0,0,0,0.08);
+  transform-style: preserve-3d;
+  overflow: visible;
+}
+/* Linen texture */
+.env-body::after {
+  content: ''; position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+/* Diagonal fold lines */
+.env-body::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    linear-gradient(135deg, transparent 49.5%, rgba(160,140,100,0.35) 50%, transparent 50.5%),
+    linear-gradient(225deg, transparent 49.5%, rgba(160,140,100,0.35) 50%, transparent 50.5%);
+  pointer-events: none;
+}
+
+/* Inner golden glow — bleeds out when flap opens */
+.env-inner-light {
+  position: absolute;
+  top: 30%; left: 10%; right: 10%; bottom: 0;
+  background: radial-gradient(ellipse 80% 80% at 50% 40%, rgba(200,160,80,0.9) 0%, rgba(180,130,50,0.4) 40%, transparent 75%);
+  opacity: 0;
+  filter: blur(18px);
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 50%;
+}
+
+/* Bottom V fold */
+.env-bottom {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 0;
+  border-left: calc(min(480px, 86vw) / 2) solid transparent;
+  border-right: calc(min(480px, 86vw) / 2) solid transparent;
+  border-bottom: calc(min(480px, 86vw) * 0.30) solid #B4A07C;
+  z-index: 2;
+}
+
+/* Card / inside surface visible when flap opens */
+.env-inside-surface {
+  position: absolute;
+  top: 5%; left: 5%; right: 5%; bottom: 5%;
+  background: var(--envelope-inside);
+  z-index: 1;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.08);
+}
+.env-inside-scripta {
+  font-family: var(--serif); font-size: 1.2rem; font-style: italic;
+  color: rgba(140,110,60,0.25); letter-spacing: 0.08em;
+}
+
+/* Wax seal */
+.env-seal {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 76px; height: 76px; z-index: 20;
+}
+.env-seal circle.bg { fill: #1A1208; stroke: var(--gold); stroke-width: 1.5; }
+.env-seal circle.ring { fill: none; stroke: var(--gold-dim); stroke-width: 0.7; stroke-dasharray: 2.5 2; }
+.env-seal text { fill: var(--gold); font-family: var(--serif); font-size: 24px; text-anchor: middle; dominant-baseline: central; font-style: italic; }
+
+/* Seal crack lines — appear as seal fades */
+.env-seal-cracks {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 86px; height: 86px; z-index: 21; opacity: 0;
+  pointer-events: none;
+}
+
+/* The flap (rotates on X axis — beat 1) */
+.env-flap {
+  position: absolute; top: 0; left: 0; right: 0; height: 0;
+  border-left: calc(min(480px, 86vw) / 2) solid transparent;
+  border-right: calc(min(480px, 86vw) / 2) solid transparent;
+  border-top: calc(min(480px, 86vw) * 0.37) solid #BEAA85;
+  transform-origin: top center;
+  transform-style: preserve-3d;
+  z-index: 15;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.25));
+}
+/* Flap underside (warm amber inside) */
+.env-flap::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 0;
+  border-left: calc(min(480px, 86vw) / 2) solid transparent;
+  border-right: calc(min(480px, 86vw) / 2) solid transparent;
+  border-top: calc(min(480px, 86vw) * 0.37) solid rgba(200,160,80,0.25);
+  transform: rotateX(180deg);
+  transform-origin: top center;
+  backface-visibility: hidden;
+}
+
+/* BACK FACE */
+.env-back {
+  position: absolute; inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: rotateY(180deg);
+  background: #B8A47A;
+  box-shadow:
+    0 48px 96px rgba(0,0,0,0.7),
+    0 0 0 1px rgba(200,169,110,0.15);
+  display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px;
+}
+.env-back::before {
+  content: ''; position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+}
+.env-back-wordmark {
+  font-family: var(--serif); font-size: 2.4rem; font-style: italic;
+  font-weight: 300; letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.08);
+  text-shadow: 1px 1px 0 rgba(255,255,255,0.06), -1px -1px 0 rgba(0,0,0,0.15);
+  position: relative; z-index: 1;
+}
+.env-back-line {
+  width: 60px; height: 0.5px;
+  background: rgba(255,255,255,0.12);
+  position: relative; z-index: 1;
+}
+.env-back-seal {
+  width: 32px; height: 32px; position: relative; z-index: 1;
+  border: 0.5px solid rgba(255,255,255,0.1);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.12);
+  font-family: var(--serif); font-size: 14px; font-style: italic;
+}
+/* Back envelope V-flap at top (when looking at back, it's at bottom) */
+.env-back-flap {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 0;
+  border-left: calc(min(480px, 86vw) / 2) solid transparent;
+  border-right: calc(min(480px, 86vw) / 2) solid transparent;
+  border-bottom: calc(min(480px, 86vw) * 0.32) solid rgba(0,0,0,0.08);
+}
+
+/* ── PHONE HERO ── */
+.phone-hero {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 230px; height: 470px;
+  transform: translate(-50%, 55%);
+  opacity: 0;
+  z-index: 25;
+  pointer-events: none;
+}
+.phone-hero-frame {
+  width: 100%; height: 100%;
+  background: #080808;
+  border-radius: 38px;
+  border: 1.5px solid rgba(200,169,110,0.22);
+  box-shadow:
+    0 60px 120px rgba(0,0,0,0.8),
+    0 0 0 1px rgba(255,255,255,0.025),
+    0 0 60px rgba(200,169,110,0.06);
+  overflow: hidden; position: relative;
+}
+.phone-hero-frame::before {
+  content: ''; position: absolute; top: 13px; left: 50%;
+  transform: translateX(-50%);
+  width: 52px; height: 4px; background: #181818;
+  border-radius: 2px; z-index: 10;
+}
+/* Phone screen invitation content */
+.phone-screen {
+  position: absolute; inset: 0;
+  background: #0B0B1A;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 48px 18px 18px;
+  overflow: hidden;
+}
+.phone-screen::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 30%, rgba(200,169,110,0.07) 0%, transparent 60%);
+}
+.ps-blessing {
+  font-family: var(--serif); font-style: italic;
+  font-size: 0.65rem; color: var(--gold);
+  margin-bottom: 8px; position: relative; z-index: 1;
+  opacity: 0; transform: translateY(6px);
+  transition: opacity 0.8s 0.2s ease, transform 0.8s 0.2s ease;
+}
+.ps-orn {
+  width: 55px; height: 0.5px;
+  background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+  margin: 6px auto; position: relative; z-index: 1;
+  opacity: 0; transition: opacity 0.8s 0.5s ease;
+}
+.ps-names {
+  font-family: var(--serif); font-size: 1.55rem; font-weight: 300; font-style: italic;
+  color: var(--gold-light); text-align: center; line-height: 1.35;
+  position: relative; z-index: 1;
+  opacity: 0; transform: translateY(8px);
+  transition: opacity 1s 0.7s ease, transform 1s 0.7s ease;
+}
+.ps-amp { display: block; font-size: 0.75rem; color: #C97070; margin: 2px 0; }
+.ps-date {
+  font-size: 0.48rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--muted); margin-top: 8px; position: relative; z-index: 1;
+  opacity: 0; transition: opacity 0.8s 1.1s ease;
+}
+.ps-rsvp {
+  margin-top: 16px; padding: 8px 20px;
+  border: 1px solid rgba(200,169,110,0.28);
+  color: var(--gold); font-size: 0.42rem; letter-spacing: 0.16em;
+  text-transform: uppercase; font-family: var(--sans);
+  position: relative; z-index: 1;
+  opacity: 0; transform: translateY(4px);
+  transition: opacity 0.8s 1.4s ease, transform 0.8s 1.4s ease;
+}
+/* Trigger screen animations */
+.phone-screen.lit .ps-blessing,
+.phone-screen.lit .ps-orn,
+.phone-screen.lit .ps-names,
+.phone-screen.lit .ps-date,
+.phone-screen.lit .ps-rsvp {
+  opacity: 1; transform: translateY(0);
+}
+
+/* ── HERO HEADLINE ── */
+.hero-headline {
+  position: absolute;
+  bottom: 10%; left: 50%;
+  transform: translateX(-50%) translateY(16px);
+  opacity: 0; pointer-events: none;
+  text-align: center; z-index: 30;
+  width: 100%; padding: 0 24px;
+}
+.hero-headline h1 {
+  font-family: var(--serif); font-size: clamp(1.6rem, 4vw, 2.6rem);
+  font-weight: 300; font-style: italic; color: var(--cream); line-height: 1.2;
+  margin-bottom: 12px;
+}
+.hero-headline h1 em { color: var(--gold); font-style: italic; }
+.hero-headline p {
+  font-size: 0.78rem; color: var(--muted); margin-bottom: 20px; line-height: 1.7;
+}
+.hero-headline-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 12px 28px;
+  border: 1px solid rgba(200,169,110,0.35);
+  color: var(--gold); font-size: 0.68rem; letter-spacing: 0.14em;
+  text-transform: uppercase; font-family: var(--sans); cursor: pointer;
+  background: none; transition: all 0.3s;
+}
+.hero-headline-cta:hover { background: rgba(200,169,110,0.08); border-color: var(--gold); }
+.hero-headline-cta svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+
+/* ── SCROLL HINT ── */
+.scroll-hint {
+  position: absolute; bottom: 36px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  z-index: 10; pointer-events: none;
+}
+.scroll-hint-label { font-size: 0.56rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted); }
+.scroll-hint-line { width: 1px; height: 32px; background: linear-gradient(to bottom, var(--gold-dim), transparent); animation: scrollPulse 2s ease-in-out infinite; }
+@keyframes scrollPulse { 0%,100%{opacity:0.4;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(1.2)} }
+
+/* ═══════════ SECTIONS (unchanged) ═══════════ */
+.section { position: relative; padding: 120px 48px; max-width: 1200px; margin: 0 auto; }
+.section-label { font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 16px; }
+.section-title { font-family: var(--serif); font-size: clamp(2rem,5vw,3.4rem); font-weight: 300; font-style: italic; line-height: 1.2; color: var(--cream); margin-bottom: 20px; }
+.section-title em { color: var(--gold); }
+.section-body { font-size: 0.9rem; color: var(--muted); line-height: 1.9; max-width: 480px; }
+.orn { display: flex; align-items: center; gap: 12px; margin: 20px 0; }
+.orn-line { flex: 1; height: 0.5px; max-width: 80px; background: linear-gradient(90deg, transparent, var(--gold-dim)); }
+.orn-line.rev { background: linear-gradient(90deg, var(--gold-dim), transparent); }
+.orn-diamond { width: 5px; height: 5px; background: var(--gold-dim); transform: rotate(45deg); opacity: 0.7; }
+
+/* Phone preview section */
+.preview-section { background: var(--bg2); padding: 120px 0; overflow: hidden; position: relative; }
+.preview-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 80% at 50% 50%, rgba(200,169,110,0.04) 0%, transparent 70%); }
+.preview-inner { max-width: 1200px; margin: 0 auto; padding: 0 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.preview-copy { position: relative; z-index: 2; }
+.preview-phones { position: relative; height: 600px; display: flex; align-items: center; justify-content: center; }
+.phone { position: absolute; width: 240px; height: 490px; background: #0A0A0A; border-radius: 38px; border: 1.5px solid rgba(200,169,110,0.2); box-shadow: 0 40px 80px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(255,255,255,0.03); overflow: hidden; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
+.phone::before { content: ''; position: absolute; top: 14px; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: #1a1a1a; border-radius: 2px; z-index: 10; }
+.phone-1 { left: 50%; transform: translateX(-60%) translateY(-20px); z-index: 3; }
+.phone-2 { left: 50%; transform: translateX(0%) translateY(20px) scale(0.9); z-index: 2; opacity: 0.6; }
+.preview-phones:hover .phone-1 { transform: translateX(-65%) translateY(-30px) rotateY(5deg); }
+.preview-phones:hover .phone-2 { transform: translateX(5%) translateY(10px) scale(0.9) rotateY(-3deg); }
+.phone-content { position: absolute; inset: 0; background: #0B0B1A; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 20px 20px; overflow: hidden; }
+.phone-content::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 30%, rgba(201,169,110,0.06) 0%, transparent 60%); }
+.inv-blessing { font-family: var(--serif); font-style: italic; font-size: 0.7rem; color: var(--gold); margin-bottom: 6px; position: relative; z-index: 1; }
+.inv-ornament { width: 60px; height: 0.5px; background: linear-gradient(90deg, transparent, var(--gold-dim), transparent); margin: 6px auto; position: relative; z-index: 1; }
+.inv-names { font-family: var(--serif); font-size: 1.5rem; font-weight: 300; font-style: italic; color: var(--gold-light); line-height: 1.4; text-align: center; position: relative; z-index: 1; }
+.inv-amp { font-size: 0.8rem; color: #C97070; display: block; margin: 2px 0; }
+.inv-date { font-size: 0.52rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-top: 8px; position: relative; z-index: 1; }
+.phone-content-2 { background: #0F0A18; }
+.phone-content-2::before { background: radial-gradient(ellipse at 50% 30%, rgba(160,100,200,0.08) 0%, transparent 60%); }
+.inv-names-2 { font-family: var(--serif); font-size: 1.3rem; font-style: italic; font-weight: 300; color: #D4A8E8; text-align: center; position: relative; z-index: 1; }
+.inv-sub-2 { font-size: 0.5rem; letter-spacing: 0.2em; text-transform: uppercase; color: #8B6B9A; margin-top: 6px; position: relative; z-index: 1; }
+
+/* How It Works */
+.hiw-section { padding: 120px 48px; max-width: 1200px; margin: 0 auto; }
+.hiw-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; margin-top: 64px; position: relative; }
+.hiw-grid::before { content: ''; position: absolute; top: 56px; left: calc(100%/6); right: calc(100%/6); height: 0.5px; background: linear-gradient(90deg, transparent, var(--faint), var(--faint), transparent); }
+.hiw-step { padding: 40px 36px; position: relative; text-align: center; border: 1px solid rgba(200,169,110,0.06); transition: border-color 0.4s; }
+.hiw-step:hover { border-color: rgba(200,169,110,0.14); }
+.hiw-number { font-family: var(--serif); font-size: 3rem; font-style: italic; font-weight: 300; color: var(--faint); margin-bottom: 20px; transition: color 0.4s; }
+.hiw-step:hover .hiw-number { color: var(--gold-dim); }
+.hiw-step-title { font-family: var(--serif); font-size: 1.2rem; font-style: italic; color: var(--cream); margin-bottom: 12px; }
+.hiw-step-body { font-size: 0.8rem; color: var(--muted); line-height: 1.8; }
+
+/* Occasions */
+.occasions-section { background: var(--bg2); padding: 120px 48px; position: relative; overflow: hidden; }
+.occasions-section::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 2L58 30L30 58L2 30Z' fill='none' stroke='rgba(200,169,110,0.025)' stroke-width='1'/%3E%3C/svg%3E") repeat; }
+.occasions-inner { max-width: 1200px; margin: 0 auto; position: relative; }
+.occasions-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-top: 56px; }
+.occasion-card { aspect-ratio: 3/4; position: relative; overflow: hidden; cursor: pointer; background: var(--bg); border: 1px solid rgba(200,169,110,0.08); transition: all 0.5s cubic-bezier(0.25,0.46,0.45,0.94); display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding: 24px; }
+.occasion-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.8) 100%); z-index: 1; }
+.occasion-bg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
+.occasion-card:hover .occasion-bg { transform: scale(1.05); }
+.occasion-card:hover { border-color: rgba(200,169,110,0.2); }
+.occasion-content { position: relative; z-index: 2; text-align: center; }
+.occasion-tag { font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 6px; }
+.occasion-name { font-family: var(--serif); font-size: 1.4rem; font-style: italic; font-weight: 300; color: var(--cream); margin-bottom: 12px; }
+.occasion-cta { font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); opacity: 0; transform: translateY(8px); transition: all 0.4s; }
+.occasion-card:hover .occasion-cta { opacity: 1; transform: translateY(0); }
+.occ-art { width: 100%; height: 100%; }
+
+/* Testimonials */
+.testimonials-section { padding: 120px 48px; max-width: 1200px; margin: 0 auto; }
+.testimonials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 56px; }
+.testimonial-card { padding: 36px 32px; border: 1px solid rgba(200,169,110,0.08); background: var(--bg2); position: relative; transition: border-color 0.4s; }
+.testimonial-card::before { content: '\201C'; position: absolute; top: 20px; left: 24px; font-family: var(--serif); font-size: 4rem; color: var(--faint); line-height: 1; }
+.testimonial-card:hover { border-color: rgba(200,169,110,0.15); }
+.testimonial-text { font-family: var(--serif); font-size: 1rem; font-style: italic; font-weight: 300; color: var(--cream); line-height: 1.8; margin-bottom: 24px; position: relative; z-index: 1; }
+.testimonial-divider { width: 32px; height: 0.5px; background: var(--gold-dim); margin-bottom: 16px; }
+.testimonial-author { font-size: 0.75rem; color: var(--muted); font-weight: 400; }
+.testimonial-author strong { display: block; color: var(--gold-light); font-weight: 400; font-family: var(--serif); font-style: italic; font-size: 0.95rem; margin-bottom: 3px; }
+.testimonial-occasion { font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-dim); }
+
+/* CTA */
+.cta-section { position: relative; padding: 140px 48px; text-align: center; overflow: hidden; background: var(--bg2); }
+.cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 70% at 50% 50%, rgba(200,169,110,0.07) 0%, transparent 70%); }
+.flap-divider { width: 100%; height: 60px; overflow: hidden; position: absolute; top: 0; left: 0; }
+.flap-divider svg { width: 100%; height: 100%; }
+.cta-content { position: relative; z-index: 1; padding-top: 40px; }
+.cta-title { font-family: var(--serif); font-size: clamp(2.5rem,6vw,4.5rem); font-weight: 300; font-style: italic; color: var(--cream); line-height: 1.1; margin-bottom: 20px; }
+.cta-title em { color: var(--gold); }
+.cta-sub { font-size: 0.88rem; color: var(--muted); max-width: 400px; margin: 0 auto 40px; line-height: 1.8; }
+.cta-buttons { display: flex; align-items: center; justify-content: center; gap: 16px; }
+.btn-primary { padding: 14px 36px; background: linear-gradient(135deg,var(--gold-dim),var(--gold),var(--gold-dim)); background-size: 200% 100%; color: var(--bg); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; font-family: var(--sans); font-weight: 500; border: none; cursor: pointer; transition: all 0.4s; }
+.btn-primary:hover { background-position: 100% 0; box-shadow: 0 8px 24px rgba(200,169,110,0.2); }
+.btn-outline { padding: 14px 36px; border: 1px solid rgba(200,169,110,0.3); color: var(--gold); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; font-family: var(--sans); cursor: pointer; background: none; transition: all 0.3s; }
+.btn-outline:hover { border-color: var(--gold); background: rgba(200,169,110,0.06); }
+
+/* Footer */
+footer { background: #080706; padding: 60px 48px 40px; border-top: 1px solid rgba(200,169,110,0.07); }
+.footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+.footer-brand-name { font-family: var(--serif); font-size: 1.8rem; font-style: italic; color: var(--gold); margin-bottom: 12px; }
+.footer-brand-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.8; max-width: 220px; }
+.footer-col-title { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 20px; }
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-links a { font-size: 0.8rem; color: var(--muted); transition: color 0.3s; }
+.footer-links a:hover { color: var(--cream); }
+.footer-bottom { max-width: 1200px; margin: 0 auto; padding-top: 28px; border-top: 1px solid rgba(200,169,110,0.06); display: flex; align-items: center; justify-content: space-between; }
+.footer-bottom-text { font-size: 0.65rem; color: var(--faint); letter-spacing: 0.08em; }
+.footer-bottom-arabic { font-family: var(--serif); font-size: 0.7rem; font-style: italic; color: var(--faint); }
+
+/* Scroll reveal */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.9s cubic-bezier(.25,.46,.45,.94), transform 0.9s cubic-bezier(.25,.46,.45,.94); }
+.reveal.in-view { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.1s; } .reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.3s; } .reveal-d4 { transition-delay: 0.4s; }
+
+/* Tweaks */
+#tweaks-panel { display: none; position: fixed; bottom: 24px; right: 24px; z-index: 9999; background: #1A1612; border: 1px solid rgba(200,169,110,0.2); padding: 20px 24px; width: 240px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
+#tweaks-panel.visible { display: block; }
+.tweaks-title { font-size: 0.58rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--faint); }
+.tweak-row { margin-bottom: 14px; }
+.tweak-label { font-size: 0.65rem; color: var(--muted); margin-bottom: 6px; display: block; }
+.tweak-select { width: 100%; background: var(--bg); border: 1px solid var(--faint); color: var(--cream); padding: 6px 10px; font-family: var(--sans); font-size: 0.7rem; outline: none; cursor: pointer; }
+.tweak-select:focus { border-color: var(--gold-dim); }
+
+/* Responsive */
+@media (max-width: 900px) {
+  nav { padding: 20px 24px; }
+  nav.scrolled { padding: 14px 24px; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .preview-inner { grid-template-columns: 1fr; gap: 60px; }
+  .preview-phones { height: 400px; }
+  .phone { width: 180px; height: 370px; }
+  .hiw-grid { grid-template-columns: 1fr; }
+  .hiw-grid::before { display: none; }
+  .occasions-grid { grid-template-columns: repeat(2,1fr); }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr 1fr; gap: 36px; }
+  .section,.hiw-section,.testimonials-section,.occasions-section,.cta-section { padding-left: 24px; padding-right: 24px; }
+}
+@media (max-width: 580px) {
+  .occasions-grid { grid-template-columns: 1fr 1fr; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .cta-buttons,.footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">Scripta<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="collections.html">Collections</a></li>
+    <li><a href="how-it-works.html">How It Works</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="contact.html" class="nav-cta">Get Started</a></li>
+  </ul>
+  <div class="nav-hamburger" id="hamburger"><span></span><span></span></div>
+</nav>
+
+<!-- ═══════════════════════════════════
+     ENVELOPE HERO
+═══════════════════════════════════ -->
+<div class="envelope-track" id="envelope-track">
+  <div class="envelope-sticky" id="envelope-sticky">
+
+    <!-- Ambient warm glow that intensifies as envelope opens -->
+    <div class="env-ambient" id="env-ambient"></div>
+
+    <!-- Eyebrow tagline -->
+    <div class="env-eyebrow" id="env-eyebrow">
+      <span class="env-eyebrow-text">The evolution of the Lebanese kart 3azime</span>
+    </div>
+
+    <!-- Envelope scene -->
+    <div class="envelope-scene" id="envelope-scene">
+
+      <!-- Envelope wrapper — gets rotateY in beat 2 -->
+      <div class="env-wrapper" id="env-wrapper">
+
+        <!-- ── FRONT FACE ── -->
+        <div class="env-front" id="env-front">
+          <div class="env-body">
+            <!-- Inner surface visible behind flap -->
+            <div class="env-inside-surface">
+              <span class="env-inside-scripta">Scripta</span>
+            </div>
+            <!-- Golden glow from inside -->
+            <div class="env-inner-light" id="env-inner-light"></div>
+            <!-- Bottom V fold -->
+            <div class="env-bottom"></div>
+            <!-- Wax seal -->
+            <svg class="env-seal" id="env-seal" viewBox="0 0 76 76">
+              <circle class="bg" cx="38" cy="38" r="34"/>
+              <circle class="ring" cx="38" cy="38" r="28"/>
+              <circle class="ring" cx="38" cy="38" r="22" stroke-dasharray="1.5 3"/>
+              <text x="38" y="40" font-size="22">𝒮</text>
+            </svg>
+            <!-- Crack lines on seal -->
+            <svg class="env-seal-cracks" id="env-seal-cracks" viewBox="0 0 86 86">
+              <g stroke="rgba(200,169,110,0.5)" stroke-width="0.8" fill="none" stroke-linecap="round">
+                <path d="M43 10 L38 26 L44 32 L36 48"/>
+                <path d="M72 30 L56 36 L52 30 L40 38"/>
+                <path d="M60 68 L48 52 L54 46 L46 34"/>
+                <path d="M18 60 L34 50 L30 44 L42 36"/>
+                <path d="M15 25 L28 36 L24 42 L34 40"/>
+              </g>
+            </svg>
+            <!-- The flap — rotates on X -->
+            <div class="env-flap" id="env-flap"></div>
+          </div>
+        </div>
+
+        <!-- ── BACK FACE ── -->
+        <div class="env-back" id="env-back">
+          <div class="env-back-flap"></div>
+          <div class="env-back-wordmark">Scripta</div>
+          <div class="env-back-line"></div>
+          <div class="env-back-seal">𝒮</div>
+        </div>
+
+      </div>
+      <!-- /env-wrapper -->
+
+      <!-- Phone hero — rises from envelope in beat 3 -->
+      <div class="phone-hero" id="phone-hero">
+        <div class="phone-hero-frame">
+          <div class="phone-screen" id="phone-screen">
+            <div class="ps-blessing">بسم الله الرحمن الرحيم</div>
+            <div class="ps-orn"></div>
+            <div class="ps-names">
+              Nathalie<span class="ps-amp">♥</span>Marc
+            </div>
+            <div class="ps-orn" style="transition-delay: 0.9s;"></div>
+            <div class="ps-date">15 · June · 2025 · Byblos</div>
+            <div class="ps-rsvp">RSVP</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero headline — appears below phone in beat 3 -->
+      <div class="hero-headline" id="hero-headline">
+        <h1>Digital invitations<br>for every <em>occasion</em></h1>
+        <p>Premium Lebanese digital invitations — cinematic, intimate, unforgettable.</p>
+        <button class="hero-headline-cta" onclick="location.href='collections.html'">
+          Explore Collections
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+
+    </div>
+    <!-- /envelope-scene -->
+
+    <!-- Scroll hint -->
+    <div class="scroll-hint" id="scroll-hint">
+      <span class="scroll-hint-label">Scroll to open</span>
+      <div class="scroll-hint-line"></div>
+    </div>
+
+  </div>
+</div>
+<!-- /envelope-track -->
+
+<!-- ═══════════════════════════════════
+     PHONE PREVIEW SECTION
+═══════════════════════════════════ -->
+<section class="preview-section">
+  <div class="preview-inner">
+    <div class="preview-copy">
+      <p class="section-label reveal">Living Invitations</p>
+      <h2 class="section-title reveal reveal-d1">A new kind of <em>digital card</em></h2>
+      <div class="orn reveal reveal-d1">
+        <div class="orn-line"></div><div class="orn-diamond"></div><div class="orn-line rev"></div>
+      </div>
+      <p class="section-body reveal reveal-d2" style="margin-bottom:32px;">Each Scripta invitation is a bespoke digital experience — with countdown timers, RSVP forms, photo galleries, and venue maps — delivered as a link that guests open like a real card.</p>
+      <p class="section-body reveal reveal-d3" style="font-size:0.82rem;color:var(--faint);margin-bottom:36px;">No apps. No downloads. Just a URL that opens to something beautiful.</p>
+      <a href="collections.html" class="btn-outline reveal reveal-d4" style="display:inline-block;">Browse Templates</a>
+    </div>
+    <div class="preview-phones reveal reveal-d2">
+      <div class="phone phone-1">
+        <div class="phone-content">
+          <div class="inv-blessing">بسم الله الرحمن الرحيم</div>
+          <div class="inv-ornament"></div>
+          <div class="inv-names">Nathalie<span class="inv-amp">♥</span>Marc</div>
+          <div class="inv-ornament"></div>
+          <div class="inv-date">15 · VI · 2025 · Byblos</div>
+          <div style="margin-top:16px;padding:10px 20px;border:1px solid rgba(200,169,110,0.25);font-size:0.45rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);cursor:pointer;position:relative;z-index:1;">RSVP</div>
+        </div>
+      </div>
+      <div class="phone phone-2">
+        <div class="phone-content phone-content-2">
+          <div style="font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:#8B6B9A;margin-bottom:10px;position:relative;z-index:1;">You're invited</div>
+          <div class="inv-names-2">Layla turns<br>30</div>
+          <div class="inv-sub-2">A night to remember · Beirut</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     HOW IT WORKS
+═══════════════════════════════════ -->
+<section class="hiw-section">
+  <p class="section-label reveal">The Process</p>
+  <h2 class="section-title reveal reveal-d1">From vision to <em>unveiled</em></h2>
+  <div class="hiw-grid">
+    <div class="hiw-step reveal reveal-d1">
+      <div class="hiw-number">I</div>
+      <div class="hiw-step-title">Choose your collection</div>
+      <p class="hiw-step-body">Browse our curated library of invitation templates — each designed around an occasion and aesthetic.</p>
+    </div>
+    <div class="hiw-step reveal reveal-d2">
+      <div class="hiw-number">II</div>
+      <div class="hiw-step-title">We personalize it</div>
+      <p class="hiw-step-body">Share your details and preferences. Our team configures every element — names, dates, venues, music — to perfection.</p>
+    </div>
+    <div class="hiw-step reveal reveal-d3">
+      <div class="hiw-number">III</div>
+      <div class="hiw-step-title">Send the link</div>
+      <p class="hiw-step-body">A private URL, shared via WhatsApp. Guests open it to a living invitation. RSVP responses arrive in real time.</p>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:56px;">
+    <a href="how-it-works.html" class="btn-outline reveal" style="display:inline-block;">Learn More</a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     OCCASIONS
+═══════════════════════════════════ -->
+<section class="occasions-section">
+  <div class="occasions-inner">
+    <p class="section-label reveal">Collections</p>
+    <h2 class="section-title reveal reveal-d1">Every occasion, <em>reimagined</em></h2>
+    <div class="occasions-grid">
+      <div class="occasion-card reveal reveal-d1" onclick="location.href='collections.html?filter=wedding'">
+        <div class="occasion-bg">
+          <svg class="occ-art" viewBox="0 0 300 400"><defs><radialGradient id="wg" cx="50%" cy="40%" r="60%"><stop offset="0%" stop-color="#1a130a"/><stop offset="100%" stop-color="#080604"/></radialGradient></defs><rect width="300" height="400" fill="url(#wg)"/><circle cx="150" cy="160" r="50" fill="none" stroke="rgba(200,169,110,0.12)" stroke-width="0.5"/><g transform="translate(150,160)"><line x1="-30" y1="0" x2="30" y2="0" stroke="rgba(200,169,110,0.25)" stroke-width="0.5"/><line x1="0" y1="-30" x2="0" y2="30" stroke="rgba(200,169,110,0.25)" stroke-width="0.5"/><circle r="3" fill="rgba(200,169,110,0.35)"/></g></svg>
+        </div>
+        <div class="occasion-content">
+          <div class="occasion-tag">Collection</div>
+          <div class="occasion-name">Wedding</div>
+          <div class="occasion-cta">View Designs →</div>
+        </div>
+      </div>
+      <div class="occasion-card reveal reveal-d2" onclick="location.href='collections.html?filter=birthday'">
+        <div class="occasion-bg">
+          <svg class="occ-art" viewBox="0 0 300 400"><defs><radialGradient id="bg2g" cx="50%" cy="40%" r="60%"><stop offset="0%" stop-color="#0f0818"/><stop offset="100%" stop-color="#06040c"/></radialGradient></defs><rect width="300" height="400" fill="url(#bg2g)"/><circle cx="150" cy="160" r="55" fill="none" stroke="rgba(160,100,200,0.12)" stroke-width="0.5"/><circle cx="150" cy="160" r="4" fill="rgba(160,100,200,0.25)"/></svg>
+        </div>
+        <div class="occasion-content">
+          <div class="occasion-tag">Collection</div>
+          <div class="occasion-name">Birthday</div>
+          <div class="occasion-cta">View Designs →</div>
+        </div>
+      </div>
+      <div class="occasion-card reveal reveal-d3" onclick="location.href='collections.html?filter=corporate'">
+        <div class="occasion-bg">
+          <svg class="occ-art" viewBox="0 0 300 400"><defs><radialGradient id="cgg" cx="50%" cy="40%" r="60%"><stop offset="0%" stop-color="#080d15"/><stop offset="100%" stop-color="#04070d"/></radialGradient></defs><rect width="300" height="400" fill="url(#cgg)"/><rect x="115" y="130" width="70" height="70" fill="none" stroke="rgba(200,169,110,0.12)" stroke-width="0.5" transform="rotate(45 150 165)"/></svg>
+        </div>
+        <div class="occasion-content">
+          <div class="occasion-tag">Collection</div>
+          <div class="occasion-name">Corporate</div>
+          <div class="occasion-cta">View Designs →</div>
+        </div>
+      </div>
+      <div class="occasion-card reveal reveal-d4" onclick="location.href='collections.html?filter=gender-reveal'">
+        <div class="occasion-bg">
+          <svg class="occ-art" viewBox="0 0 300 400"><defs><radialGradient id="grgg" cx="50%" cy="40%" r="60%"><stop offset="0%" stop-color="#0f0a14"/><stop offset="100%" stop-color="#060409"/></radialGradient></defs><rect width="300" height="400" fill="url(#grgg)"/><circle cx="130" cy="155" r="30" fill="none" stroke="rgba(100,130,200,0.12)" stroke-width="0.5"/><circle cx="170" cy="165" r="30" fill="none" stroke="rgba(200,100,150,0.12)" stroke-width="0.5"/></svg>
+        </div>
+        <div class="occasion-content">
+          <div class="occasion-tag">Collection</div>
+          <div class="occasion-name">Gender Reveal</div>
+          <div class="occasion-cta">View Designs →</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:48px;">
+      <a href="collections.html" class="btn-outline reveal" style="display:inline-block;">View All Collections</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     TESTIMONIALS
+═══════════════════════════════════ -->
+<section class="testimonials-section">
+  <p class="section-label reveal">What families say</p>
+  <h2 class="section-title reveal reveal-d1">Moments they'll <em>always remember</em></h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal reveal-d1">
+      <p class="testimonial-text">"Our guests couldn't stop talking about the invitation. They said it was the most beautiful digital card they'd ever received — several kept it saved on their phones."</p>
+      <div class="testimonial-divider"></div>
+      <div class="testimonial-author"><strong>Nathalie & Marc Khoury</strong><span class="testimonial-occasion">Wedding · Byblos 2024</span></div>
+    </div>
+    <div class="testimonial-card reveal reveal-d2">
+      <p class="testimonial-text">"The RSVP system saved us weeks of coordination. Everything came in automatically. The design was stunning — exactly the elegance we wanted."</p>
+      <div class="testimonial-divider"></div>
+      <div class="testimonial-author"><strong>Elie Gemayel</strong><span class="testimonial-occasion">Father of the Bride · Metn 2024</span></div>
+    </div>
+    <div class="testimonial-card reveal reveal-d3">
+      <p class="testimonial-text">"We used Scripta for our product launch. The corporate template was refined and professional — guests arrived already impressed before they saw the venue."</p>
+      <div class="testimonial-divider"></div>
+      <div class="testimonial-author"><strong>Lara Abou Jaoude</strong><span class="testimonial-occasion">Corporate Event · Beirut 2025</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     CTA
+═══════════════════════════════════ -->
+<section class="cta-section">
+  <div class="flap-divider">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,0 L720,55 L1440,0 L1440,0 L0,0 Z" fill="#110E0B"/></svg>
+  </div>
+  <div class="cta-content">
+    <p class="section-label reveal" style="margin-bottom:16px;">Begin</p>
+    <h2 class="cta-title reveal reveal-d1">Your invitation<br><em>awaits you</em></h2>
+    <p class="cta-sub reveal reveal-d2">Every great occasion deserves an arrival. Let Scripta craft yours.</p>
+    <div class="cta-buttons reveal reveal-d3">
+      <button class="btn-primary" onclick="location.href='collections.html'">Browse Collections</button>
+      <button class="btn-outline" onclick="location.href='contact.html'">Contact Us</button>
+    </div>
+    <div class="orn reveal reveal-d4" style="justify-content:center;margin-top:56px;">
+      <div class="orn-line" style="max-width:60px;background:linear-gradient(90deg,transparent,var(--faint))"></div>
+      <div class="orn-diamond"></div>
+      <div class="orn-line rev" style="max-width:60px;background:linear-gradient(90deg,var(--faint),transparent)"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand-name">Scripta</div>
+      <p class="footer-brand-desc">Premium digital invitations for Lebanon's most meaningful occasions.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Pages</div>
+      <ul class="footer-links">
+        <li><a href="collections.html">Collections</a></li>
+        <li><a href="how-it-works.html">How It Works</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Occasions</div>
+      <ul class="footer-links">
+        <li><a href="collections.html?filter=wedding">Weddings</a></li>
+        <li><a href="collections.html?filter=birthday">Birthdays</a></li>
+        <li><a href="collections.html?filter=corporate">Corporate</a></li>
+        <li><a href="collections.html?filter=gender-reveal">Gender Reveals</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Connect</div>
+      <ul class="footer-links">
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">WhatsApp</a></li>
+        <li><a href="contact.html"><span class="__cf_email__" data-cfemail="b9d1dcd5d5d6f9cadacbd0c9cdd897d5db">[email&#160;protected]</span></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-bottom-text">© 2025 Scripta. All rights reserved.</span>
+    <span class="footer-bottom-arabic">كارت عزيمة رقمي</span>
+  </div>
+</footer>
+
+<!-- TWEAKS -->
+<div id="tweaks-panel">
+  <div class="tweaks-title">Tweaks</div>
+  <div class="tweak-row">
+    <label class="tweak-label">Accent Color</label>
+    <select class="tweak-select" id="tweak-accent">
+      <option value="#C8A96E">Gold (Default)</option>
+      <option value="#C0A0C0">Mauve Rose</option>
+      <option value="#8AADA0">Sage</option>
+      <option value="#A8B8C8">Dusty Blue</option>
+    </select>
+  </div>
+  <div class="tweak-row">
+    <label class="tweak-label">Envelope Color</label>
+    <select class="tweak-select" id="tweak-envelope">
+      <option value="#C9B99A">Linen (Default)</option>
+      <option value="#1A1A2E">Midnight</option>
+      <option value="#2A1A1A">Bordeaux</option>
+      <option value="#E8E0D0">Ivory</option>
+    </select>
+  </div>
+  <div class="tweak-row">
+    <label class="tweak-label">Animation Speed</label>
+    <select class="tweak-select" id="tweak-speed">
+      <option value="1">Normal</option>
+      <option value="1.5">Slow (cinematic)</option>
+      <option value="0.7">Fast</option>
+    </select>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js" defer></script><script>
+/* ══════════════════════════════════════════
+   ENVELOPE ANIMATION — THREE BEATS
+══════════════════════════════════════════ */
+const track        = document.getElementById('envelope-track');
+const flap         = document.getElementById('env-flap');
+const seal         = document.getElementById('env-seal');
+const sealCracks   = document.getElementById('env-seal-cracks');
+const innerLight   = document.getElementById('env-inner-light');
+const envWrapper   = document.getElementById('env-wrapper');
+const envFront     = document.getElementById('env-front');
+const envBack      = document.getElementById('env-back');
+const phoneHero    = document.getElementById('phone-hero');
+const phoneScreen  = document.getElementById('phone-screen');
+const heroHeadline = document.getElementById('hero-headline');
+const scrollHint   = document.getElementById('scroll-hint');
+const envEyebrow   = document.getElementById('env-eyebrow');
+const envAmbient   = document.getElementById('env-ambient');
+const nav          = document.getElementById('main-nav');
+
+let phoneScreenLit = false;
+
+/* Easings */
+function eio(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+function eo(t)  { return 1 - Math.pow(1 - t, 3); }
+function clamp(v,a,b) { return Math.max(a, Math.min(b, v)); }
+function remap(v,a,b) { return clamp((v - a) / (b - a), 0, 1); }
+
+function getProgress() {
+  const rect = track.getBoundingClientRect();
+  return clamp(-rect.top / (track.offsetHeight - window.innerHeight), 0, 1);
+}
+
+/* Initial state — front fully visible, back hidden, phone hidden, headline hidden */
+envFront.style.opacity = '1';
+envBack.style.opacity  = '0';
+envWrapper.style.opacity = '1';
+phoneHero.style.opacity  = '0';
+heroHeadline.style.opacity = '0';
+heroHeadline.style.pointerEvents = 'none';
+
+function tick() {
+  const p = getProgress();
+
+  /* ── Hints ── */
+  scrollHint.style.opacity = Math.max(0, 1 - p * 10).toString();
+  envEyebrow.style.opacity  = Math.max(0, 1 - p * 6).toString();
+
+  /* ── Background warmth ── */
+  const warmth = eio(remap(p, 0, 0.60));
+  envAmbient.style.background = `radial-gradient(ellipse 80% 70% at 50% 50%, rgba(180,110,30,${(warmth * 0.14).toFixed(3)}) 0%, rgba(120,70,20,${(warmth * 0.07).toFixed(3)}) 40%, transparent 70%)`;
+
+  /* ══════════════════════════════
+     BEAT 1  (p 0 → 0.28)
+     Flap opens · Seal cracks · Inner glow bleeds
+  ══════════════════════════════ */
+  const b1 = remap(p, 0, 0.28);
+
+  flap.style.transform = `rotateX(${eio(b1) * -188}deg)`;
+
+  const sealFadeT = eio(remap(b1, 0.38, 1));
+  seal.style.opacity   = (1 - sealFadeT).toFixed(3);
+  seal.style.transform = `translate(-50%,-50%) scale(${(1 - sealFadeT * 0.3).toFixed(3)})`;
+
+  sealCracks.style.opacity = eio(remap(b1, 0.32, 0.85)).toFixed(3);
+  innerLight.style.opacity  = eio(remap(b1, 0.18, 1)).toFixed(3);
+
+  /* ══════════════════════════════
+     BEAT 2  (p 0.24 → 0.58)
+     Envelope rotates on Y axis — back face reveals
+     Front/back opacity driven by cosine so no backface-visibility issues
+  ══════════════════════════════ */
+  const b2     = remap(p, 0.24, 0.58);
+  const yAngle = eio(b2) * 180;
+  const midDip = 1 - Math.sin(b2 * Math.PI) * 0.09; // slight scale dip at midpoint
+
+  /* Cross-fade: front visible when angle < 90, back visible when angle > 90 */
+  const cosA = Math.cos(yAngle * Math.PI / 180);
+  envFront.style.opacity = Math.max(0,  cosA).toFixed(3);
+  envBack.style.opacity  = Math.max(0, -cosA).toFixed(3);
+
+  /* ══════════════════════════════
+     BEAT 3  (p 0.55 → 0.82)
+     Phone rises · Envelope fades
+  ══════════════════════════════ */
+  const b3         = remap(p, 0.55, 0.82);
+  const phoneRise  = eo(b3);
+  const phoneOpacity = eio(remap(p, 0.55, 0.70));
+
+  /* Phone: starts hidden below center, rises to centered above */
+  const phoneY = 55 - phoneRise * 107;
+  phoneHero.style.transform    = `translate(-50%, ${phoneY.toFixed(1)}%)`;
+  phoneHero.style.opacity      = phoneOpacity.toFixed(3);
+  phoneHero.style.pointerEvents = phoneOpacity > 0.5 ? 'all' : 'none';
+
+  if (phoneOpacity > 0.88 && !phoneScreenLit) {
+    phoneScreenLit = true;
+    phoneScreen.classList.add('lit');
+  }
+
+  /* Envelope fades + drifts once phone is rising */
+  const envFadeP = eio(remap(p, 0.66, 0.84));
+  const wrapperOpacity = 1 - envFadeP;
+  const wrapperDrift   = envFadeP * 18;
+
+  envWrapper.style.opacity   = wrapperOpacity.toFixed(3);
+  envWrapper.style.transform = `rotateY(${yAngle.toFixed(2)}deg) scale(${midDip.toFixed(3)}) translateX(${wrapperDrift.toFixed(1)}%)`;
+
+  /* ══════════════════════════════
+     HEADLINE  (p 0.78 → 0.96)
+  ══════════════════════════════ */
+  const headP = eio(remap(p, 0.78, 0.96));
+  heroHeadline.style.opacity       = headP.toFixed(3);
+  heroHeadline.style.transform     = `translateX(-50%) translateY(${((1 - headP) * 16).toFixed(1)}px)`;
+  heroHeadline.style.pointerEvents = headP > 0.5 ? 'all' : 'none';
+
+  /* Nav */
+  nav.classList.toggle('scrolled', window.scrollY > 80);
+}
+
+window.addEventListener('scroll', tick, { passive: true });
+tick();
+
+/* ══════════════════════════════════════════
+   SCROLL REVEAL
+══════════════════════════════════════════ */
+const reveals = document.querySelectorAll('.reveal');
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); ro.unobserve(e.target); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => ro.observe(el));
+
+/* ══════════════════════════════════════════
+   TWEAKS
+══════════════════════════════════════════ */
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "accent": "#C8A96E",
+  "envelope": "#C9B99A",
+  "bg": "#0C0A09"
+}/*EDITMODE-END*/;
+
+function applyTweaks(t) {
+  document.documentElement.style.setProperty('--gold', t.accent);
+  document.documentElement.style.setProperty('--envelope', t.envelope);
+  document.documentElement.style.setProperty('--bg', t.bg || '#0C0A09');
+}
+applyTweaks(TWEAK_DEFAULTS);
+
+const tweakPanel = document.getElementById('tweaks-panel');
+document.getElementById('tweak-accent').addEventListener('change', e => {
+  applyTweaks({ accent: e.target.value, envelope: document.getElementById('tweak-envelope').value });
+  window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { accent: e.target.value } }, '*');
+});
+document.getElementById('tweak-envelope').addEventListener('change', e => {
+  document.documentElement.style.setProperty('--envelope', e.target.value);
+  window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { envelope: e.target.value } }, '*');
+});
+
+window.addEventListener('message', e => {
+  if (e.data?.type === '__activate_edit_mode') tweakPanel.classList.add('visible');
+  if (e.data?.type === '__deactivate_edit_mode') tweakPanel.classList.remove('visible');
+});
+window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+</script>
+</body>
+</html>
